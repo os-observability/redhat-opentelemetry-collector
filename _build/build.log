@@ -1,0 +1,21 @@
+2021-12-20T20:32:40.923-0600	INFO	internal/command.go:88	OpenTelemetry Collector distribution builder	{"version": "0.41.0", "date": "2021-12-09T08:20:17Z"}
+2021-12-20T20:32:40.923-0600	INFO	internal/command.go:108	Using config file	{"path": "manifest.yaml"}
+2021-12-20T20:32:40.970-0600	WARN	builder/config.go:107	IncludeCore is deprecated. Starting from v0.41.0, you need to include all components explicitly.
+go.opentelemetry.io/collector/cmd/builder/internal/builder.(*Config).Validate
+	go.opentelemetry.io/collector/cmd/builder/internal/builder/config.go:107
+go.opentelemetry.io/collector/cmd/builder/internal.Command.func1
+	go.opentelemetry.io/collector/cmd/builder/internal/command.go:42
+github.com/spf13/cobra.(*Command).execute
+	github.com/spf13/cobra@v1.2.1/command.go:856
+github.com/spf13/cobra.(*Command).ExecuteC
+	github.com/spf13/cobra@v1.2.1/command.go:974
+github.com/spf13/cobra.(*Command).Execute
+	github.com/spf13/cobra@v1.2.1/command.go:902
+main.main
+	go.opentelemetry.io/collector/cmd/builder/main.go:26
+runtime.main
+	runtime/proc.go:255
+2021-12-20T20:32:40.971-0600	INFO	builder/config.go:112	Using go	{"go-executable": "/usr/local/go/bin/go"}
+2021-12-20T20:32:40.972-0600	INFO	builder/main.go:93	Sources created	{"path": "./_build"}
+2021-12-20T20:32:41.318-0600	INFO	builder/main.go:125	Getting go modules
+2021-12-20T20:32:41.631-0600	INFO	builder/main.go:100	Generating source codes only, the distribution will not be compiled.
