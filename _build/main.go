@@ -19,9 +19,9 @@ func main() {
 	}
 
 	info := component.BuildInfo{
-		Command:  "otelcol",
+		Command:     "otelcol",
 		Description: "OpenTelemetry Collector",
-		Version:  "0.41.0",
+		Version:     "0.42.0",
 	}
 
 	if err := run(service.CollectorSettings{BuildInfo: info, Factories: factories}); err != nil {
