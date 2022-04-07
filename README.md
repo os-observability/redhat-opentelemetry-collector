@@ -1,4 +1,4 @@
-# RHOSDT OpenTelemetry Collector Configuration
+# RHOSDT OpenTelemetry Collector Distribution
 
 This repository configures a build of the OpenTelemetry Collector with the supported components for a Red Hat OpenShift distributed tracing product.
 
