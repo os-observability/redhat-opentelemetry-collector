@@ -1,8 +1,8 @@
 Flag --go has been deprecated, use config distribution::go
-2022-09-27T09:26:47.807+0200	INFO	internal/command.go:121	OpenTelemetry Collector Builder	{"version": "0.60.0", "date": "2022-09-14T18:02:39Z"}
-2022-09-27T09:26:47.807+0200	INFO	internal/command.go:154	Using config file	{"path": "manifest.yaml"}
-2022-09-27T09:26:47.879+0200	INFO	builder/config.go:103	Using go	{"go-executable": "/home/ploffay/bin/go/bin/go"}
-2022-09-27T09:26:47.880+0200	INFO	builder/main.go:76	Sources created	{"path": "./_build"}
-2022-09-27T09:27:12.674+0200	INFO	builder/main.go:118	Getting go modules
-2022-09-27T09:27:18.080+0200	INFO	builder/main.go:87	Compiling
-2022-09-27T09:27:48.515+0200	INFO	builder/main.go:99	Compiled	{"binary": "./_build/otelcol"}
+2022-11-04T17:50:34.990-0600	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "0.63.1", "date": "2022-10-28T21:30:49Z"}
+2022-11-04T17:50:34.991-0600	INFO	internal/command.go:158	Using config file	{"path": "manifest.yaml"}
+2022-11-04T17:50:35.031-0600	INFO	builder/config.go:107	Using go	{"go-executable": "/usr/local/go/bin/go"}
+2022-11-04T17:50:35.032-0600	INFO	builder/main.go:76	Sources created	{"path": "./_build"}
+2022-11-04T17:50:48.956-0600	INFO	builder/main.go:118	Getting go modules
+2022-11-04T17:50:53.545-0600	INFO	builder/main.go:87	Compiling
+2022-11-04T17:51:08.509-0600	INFO	builder/main.go:99	Compiled	{"binary": "./_build/otelcol"}
