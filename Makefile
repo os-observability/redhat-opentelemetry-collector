@@ -5,11 +5,11 @@ OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 
 build: ocb
 	mkdir -p _build
-	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml > _build/build.log 2>&1
+	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
 generate-sources: ocb
 	@mkdir -p _build
-	${OTELCOL_BUILDER} --skip-compilation=true --go ${GO} --config manifest.yaml > _build/build.log 2>&1
+	${OTELCOL_BUILDER} --skip-compilation=true --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
 ocb:
 ifeq (, $(shell which ocb >/dev/null 2>/dev/null))
