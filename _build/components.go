@@ -20,6 +20,7 @@ import (
 	spanprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor"
 	k8sattributesprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor"
 	resourcedetectionprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor"
+	filterprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor"
 	otlpreceiver "go.opentelemetry.io/collector/receiver/otlpreceiver"
 	jaegerreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver"
 	opencensusreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver"
@@ -69,6 +70,7 @@ func components() (component.Factories, error) {
 		spanprocessor.NewFactory(),
 		k8sattributesprocessor.NewFactory(),
 		resourcedetectionprocessor.NewFactory(),
+		filterprocessor.NewFactory(),
 	)
 	if err != nil {
 		return component.Factories{}, err

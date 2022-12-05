@@ -10,6 +10,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.63.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.63.0

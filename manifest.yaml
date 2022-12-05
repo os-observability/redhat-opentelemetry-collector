@@ -13,12 +13,9 @@ receivers:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.63.0
 exporters:
-  - import: go.opentelemetry.io/collector/exporter/loggingexporter
-    gomod: go.opentelemetry.io/collector v0.63.1
-  - import: go.opentelemetry.io/collector/exporter/otlpexporter
-    gomod: go.opentelemetry.io/collector v0.63.1
-  - import: go.opentelemetry.io/collector/exporter/otlphttpexporter
-    gomod: go.opentelemetry.io/collector v0.63.1
+  - gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.63.1
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.63.1
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.63.1
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/jaegerexporter v0.63.0
 extensions:
   - import: go.opentelemetry.io/collector/extension/zpagesextension
@@ -38,3 +35,4 @@ processors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.63.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.63.0
