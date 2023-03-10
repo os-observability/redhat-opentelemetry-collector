@@ -517,6 +517,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokena
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.63.0/go.mod h1:lCqEYp/i2M2qW+kyB0IzfmvM5mfniQ6ppSM2KyFeAbY=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.63.0 h1:PPSdSNW5ODqQOzN0XELJzY3qaYRyv0okao7a9LOvQxQ=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.63.0/go.mod h1:Jdk1Cug4M2a61tydzv3fNqvw8WtpUTDM1q/Iqc/PnD4=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.63.0 h1:xfuIabNRaB7RGh4C9SeKgn4j5ciUTsKwB5XZPltDeUM=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.63.0/go.mod h1:MvzPhWs5AFwVJ9iUtcwUs2cjeHiGkvegUQUKvEZRiHA=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.63.0 h1:rF8UuIGWZMi0LugBGrPzQCpQiwi96AA0xY5beCEskVA=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.63.0/go.mod h1:cKToSzuvHNDTPH94Y24z3LsNP/f9adbzobUOpfAJ4CI=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.63.0 h1:JHYEwRgZbdVAIUJmgfMsNMZQUgsoD8En+NTw+A219ok=

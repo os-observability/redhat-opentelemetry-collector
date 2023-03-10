@@ -9,6 +9,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.63.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.63.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.63.0

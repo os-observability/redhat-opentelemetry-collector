@@ -22,6 +22,7 @@ extensions:
     gomod: go.opentelemetry.io/collector v0.63.1
   - import: go.opentelemetry.io/collector/extension/ballastextension
     gomod: go.opentelemetry.io/collector v0.63.1
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.63.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v0.63.0
