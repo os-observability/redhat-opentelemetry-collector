@@ -2,7 +2,7 @@
 
 module github.com/os-observability/redhat-opentelemetry-collector
 
-go 1.18
+go 1.20
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/jaegerexporter v0.63.0
