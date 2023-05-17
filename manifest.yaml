@@ -39,3 +39,4 @@ processors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.74.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.74.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.74.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/routingprocessor v0.74.0
