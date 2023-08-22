@@ -5,9 +5,8 @@ package main
 
 import (
 	"log"
-
 	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/service"
+	"go.opentelemetry.io/collector/otelcol"
 )
 
 func main() {
@@ -19,16 +18,16 @@ func main() {
 	info := component.BuildInfo{
 		Command:     "otelcol",
 		Description: "OpenTelemetry Collector",
-		Version:     "0.63.1",
+		Version:     "0.81.0",
 	}
 
-	if err := run(service.CollectorSettings{BuildInfo: info, Factories: factories}); err != nil {
+	if err := run(otelcol.CollectorSettings{BuildInfo: info, Factories: factories}); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func runInteractive(params service.CollectorSettings) error {
-	cmd := service.NewCommand(params)
+func runInteractive(params otelcol.CollectorSettings) error {
+	cmd := otelcol.NewCommand(params)
 	if err := cmd.Execute(); err != nil {
 		log.Fatalf("collector server run finished with error: %v", err)
 	}
