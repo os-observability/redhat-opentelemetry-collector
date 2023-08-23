@@ -11,6 +11,7 @@ receivers:
     gomod: go.opentelemetry.io/collector v0.81.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.81.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.81.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.81.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.81.0
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.81.0

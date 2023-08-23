@@ -35,6 +35,7 @@ import (
 	otlpreceiver "go.opentelemetry.io/collector/receiver/otlpreceiver"
 	jaegerreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver"
 	opencensusreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver"
+	prometheusreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver"
 	zipkinreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver"
 )
 
@@ -60,6 +61,7 @@ func components() (otelcol.Factories, error) {
 		otlpreceiver.NewFactory(),
 		jaegerreceiver.NewFactory(),
 		opencensusreceiver.NewFactory(),
+		prometheusreceiver.NewFactory(),
 		zipkinreceiver.NewFactory(),
 	)
 	if err != nil {
