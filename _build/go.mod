@@ -8,7 +8,6 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.81.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.81.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.81.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.81.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.81.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.81.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.81.0
@@ -58,7 +57,6 @@ require (
 	github.com/Azure/go-autorest/autorest/validation v0.3.1 // indirect
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
-	github.com/GehirnInc/crypt v0.0.0-20200316065508-bb7000b8a962 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.15.2 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/Shopify/sarama v1.38.1 // indirect
@@ -221,7 +219,6 @@ require (
 	github.com/spf13/viper v1.14.0 // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
-	github.com/tg123/go-htpasswd v1.2.1 // indirect
 	github.com/tilinna/clock v1.1.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.0 // indirect

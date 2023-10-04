@@ -576,8 +576,6 @@ github.com/Azure/go-autorest/tracing v0.6.0/go.mod h1:+vhtPC754Xsa23ID7GlGsrdKBp
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-github.com/GehirnInc/crypt v0.0.0-20200316065508-bb7000b8a962 h1:KeNholpO2xKjgaaSyd+DyQRrsQjhbSeS7qe4nEw8aQw=
-github.com/GehirnInc/crypt v0.0.0-20200316065508-bb7000b8a962/go.mod h1:kC29dT1vFpj7py2OvG1khBdQpo3kInWP+6QipLbdngo=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.15.2 h1:9VwVugD2NuPr6/IjrNJLpzaX7j+P6EJIup7cpNwcYhw=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.15.2/go.mod h1:Xx0VKh7GJ4si3rmElbh19Mejxz68ibWg/J30ZOMrqzU=
 github.com/HdrHistogram/hdrhistogram-go v1.1.2 h1:5IcZpTvzydCQeHzK4Ef/D5rrSqwxob0t8PQPMybUNFM=
@@ -1179,8 +1177,6 @@ github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.81.0 h1:ngaYCKSNGv2IQQOASWdMrJflYI4RFywrl4UmEpd3GT8=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.81.0/go.mod h1:tSCTdkncfZ1dnsdJGN2GtlzAj5Qx0YQ3TIh1E7zvpy0=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.81.0 h1:ts0afKsnRpVQrX9w9dphbmrWI4hTbOt0P3p6Un9oDIk=
-github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.81.0 h1:5rnbwxwn9+PF6hMpRYoz8fI8n/Oyj6uFTi+nCqXcITo=
-github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.81.0/go.mod h1:RFbrR6/CmOHkuJIlGoi3xfUpkSZ15EubW0qcpAAHUC8=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.81.0 h1:JIWz66PeZSlnvPWSrR1FIHocH1Gp22bSrv8ojlq0Tks=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.81.0/go.mod h1:3OxaXupXNWXHYqKQHNzrQfZ9CzkwBjTFtKtx9h7qh1Y=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.81.0 h1:ZqX6htxXlPr5GrAj/zpGjYGvhBIRkosyzV4VjGYLvKg=
@@ -1407,8 +1403,6 @@ github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXl
 github.com/stvp/go-udp-testing v0.0.0-20201019212854-469649b16807/go.mod h1:7jxmlfBCDBXRzr0eAQJ48XC1hBu1np4CS5+cHEYfwpc=
 github.com/subosito/gotenv v1.4.1 h1:jyEFiXpy21Wm81FBN71l9VoMMV8H8jG+qIK3GCpY6Qs=
 github.com/subosito/gotenv v1.4.1/go.mod h1:ayKnFf/c6rvx/2iiLrJUk1e6plDbT3edrFNGqEflhK0=
-github.com/tg123/go-htpasswd v1.2.1 h1:i4wfsX1KvvkyoMiHZzjS0VzbAPWfxzI8INcZAKtutoU=
-github.com/tg123/go-htpasswd v1.2.1/go.mod h1:erHp1B86KXdwQf1X5ZrLb7erXZnWueEQezb2dql4q58=
 github.com/tidwall/gjson v1.10.2 h1:APbLGOM0rrEkd8WBw9C24nllro4ajFuJu0Sc9hRz8Bo=
 github.com/tidwall/match v1.1.1 h1:+Ho715JplO36QYgwN9PGYNhgZvoUSc9X2c80KVTi+GA=
 github.com/tidwall/pretty v1.2.0 h1:RWIZEg2iJ8/g6fDDYzMpobmaoGh5OLl4AXtGUGPcqCs=
