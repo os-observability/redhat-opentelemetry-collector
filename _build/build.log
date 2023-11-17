@@ -1,8 +1,12 @@
 Flag --go has been deprecated, use config distribution::go
-2023-10-26T13:37:33.962+0200	INFO	internal/command.go:117	OpenTelemetry Collector Builder	{"version": "0.86.0", "date": "2023-09-25T22:14:12Z"}
-2023-10-26T13:37:33.964+0200	INFO	internal/command.go:153	Using config file	{"path": "manifest.yaml"}
-2023-10-26T13:37:33.967+0200	INFO	builder/config.go:106	Using go	{"go-executable": "/usr/local/go/bin/go"}
-2023-10-26T13:37:33.968+0200	INFO	builder/main.go:69	Sources created	{"path": "./_build"}
-2023-10-26T13:37:34.273+0200	INFO	builder/main.go:121	Getting go modules
-2023-10-26T13:37:37.280+0200	INFO	builder/main.go:80	Compiling
-2023-10-26T13:39:12.899+0200	INFO	builder/main.go:102	Compiled	{"binary": "./_build/otelcol"}
+2023-11-17T18:12:06.687+0100	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.89.0", "date": "2023-11-14T16:00:21Z"}
+2023-11-17T18:12:06.688+0100	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
+2023-11-17T18:12:06.696+0100	INFO	builder/config.go:109	Using go	{"go-executable": "/home/ploffay/bin/go/bin/go"}
+2023-11-17T18:12:06.697+0100	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
+2023-11-17T18:12:06.697+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
+2023-11-17T18:12:07.420+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
+2023-11-17T18:12:07.678+0100	INFO	builder/main.go:142	Getting go modules
+2023-11-17T18:12:07.678+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
+2023-11-17T18:12:07.766+0100	INFO	builder/main.go:102	Compiling
+2023-11-17T18:12:07.766+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
+2023-11-17T18:12:13.127+0100	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}
