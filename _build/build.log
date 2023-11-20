@@ -1,12 +1,12 @@
 Flag --go has been deprecated, use config distribution::go
-2023-11-17T18:12:06.687+0100	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.89.0", "date": "2023-11-14T16:00:21Z"}
-2023-11-17T18:12:06.688+0100	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
-2023-11-17T18:12:06.696+0100	INFO	builder/config.go:109	Using go	{"go-executable": "/home/ploffay/bin/go/bin/go"}
-2023-11-17T18:12:06.697+0100	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
-2023-11-17T18:12:06.697+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
-2023-11-17T18:12:07.420+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
-2023-11-17T18:12:07.678+0100	INFO	builder/main.go:142	Getting go modules
-2023-11-17T18:12:07.678+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
-2023-11-17T18:12:07.766+0100	INFO	builder/main.go:102	Compiling
-2023-11-17T18:12:07.766+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
-2023-11-17T18:12:13.127+0100	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}
+2023-11-20T19:19:55.931+0100	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.89.0", "date": "2023-11-14T16:00:21Z"}
+2023-11-20T19:19:55.933+0100	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
+2023-11-20T19:19:55.941+0100	INFO	builder/config.go:109	Using go	{"go-executable": "/home/ploffay/bin/go/bin/go"}
+2023-11-20T19:19:55.943+0100	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
+2023-11-20T19:19:55.943+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
+2023-11-20T19:19:56.550+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
+2023-11-20T19:19:56.756+0100	INFO	builder/main.go:142	Getting go modules
+2023-11-20T19:19:56.756+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
+2023-11-20T19:19:56.805+0100	INFO	builder/main.go:102	Compiling
+2023-11-20T19:19:56.805+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
+2023-11-20T19:19:57.107+0100	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}

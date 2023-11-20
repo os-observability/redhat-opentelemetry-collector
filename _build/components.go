@@ -11,6 +11,7 @@ import (
 	"go.opentelemetry.io/collector/receiver"
 	spanmetricsconnector "github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector"
 	debugexporter "go.opentelemetry.io/collector/exporter/debugexporter"
+	loggingexporter "go.opentelemetry.io/collector/exporter/loggingexporter"
 	otlpexporter "go.opentelemetry.io/collector/exporter/otlpexporter"
 	otlphttpexporter "go.opentelemetry.io/collector/exporter/otlphttpexporter"
 	prometheusexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter"
@@ -70,6 +71,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Exporters, err = exporter.MakeFactoryMap(
 		debugexporter.NewFactory(),
+		loggingexporter.NewFactory(),
 		otlpexporter.NewFactory(),
 		otlphttpexporter.NewFactory(),
 		prometheusexporter.NewFactory(),
