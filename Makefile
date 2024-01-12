@@ -5,7 +5,7 @@ OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 
 build: ocb
 	mkdir -p _build
-	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
+	CGO_ENABLED=0 ${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
 generate-sources: ocb
 	@mkdir -p _build
