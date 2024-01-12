@@ -7,7 +7,7 @@ RUN make build
 ## copied with the execute bit lost (see #1317)
 RUN chmod 755 /go/_build/otelcol
 
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 
 ARG USER_UID=10001
 USER ${USER_UID}
