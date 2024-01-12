@@ -1,5 +1,4 @@
 FROM registry.access.redhat.com/ubi8/go-toolset  as builder
-SHELL ["/bin/bash", "-c"]
 COPY . .
 USER root
 RUN make build
