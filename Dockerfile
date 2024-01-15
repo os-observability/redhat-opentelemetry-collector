@@ -1,4 +1,7 @@
-FROM registry.access.redhat.com/ubi8/go-toolset  as builder
+FROM registry.access.redhat.com/ubi8/ubi-minimal as builder
+
+RUN microdnf -y install which go-toolset make
+WORKDIR /opt/app-root/src
 COPY . .
 USER root
 RUN make build

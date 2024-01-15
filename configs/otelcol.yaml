@@ -26,8 +26,8 @@ processors:
   batch:
 
 exporters:
-  logging:
-    logLevel: debug
+  debug:
+    verbosity: detailed
 
 service:
 
@@ -36,6 +36,6 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
   extensions: [health_check, pprof, zpages]
