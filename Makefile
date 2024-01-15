@@ -1,11 +1,11 @@
 GO=$(shell which go)
-OTELCOL_BUILDER_VERSION ?= 0.89.0
+OTELCOL_BUILDER_VERSION ?= 0.92.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 
 build: ocb
 	mkdir -p _build
-	CGO_ENABLED=0 ${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
+	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
 generate-sources: ocb
 	@mkdir -p _build
