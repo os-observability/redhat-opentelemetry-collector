@@ -12,6 +12,10 @@ RUN chmod 755 /opt/app-root/src/_build/otelcol
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
+# Install the systemd package which provides journalctl required by journald receiver.
+# https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/journaldreceiver
+RUN microdnf -y install systemd
+
 ARG USER_UID=10001
 USER ${USER_UID}
 
