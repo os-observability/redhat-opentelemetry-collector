@@ -1,2 +1,4 @@
 _build/otelcol
+_build/vendor/**
 bin/**
+dist/**
