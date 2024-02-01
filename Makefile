@@ -4,7 +4,7 @@ OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= redhat-otel-collector
 
-build: ocb vendor
+build: ocb
 	mkdir -p _build
 	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
