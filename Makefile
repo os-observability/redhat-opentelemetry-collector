@@ -1,13 +1,14 @@
 GO=$(shell which go)
-OTELCOL_BUILDER_VERSION ?= 0.92.0
+OTELCOL_VERSION ?= 0.92.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
+PROJECT ?= redhat-otel-collector
 
-build: ocb
+build: ocb vendor
 	mkdir -p _build
 	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
-generate-sources: ocb
+generate-sources: ocb vendor
 	@mkdir -p _build
 	${OTELCOL_BUILDER} --skip-compilation=true --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
 
@@ -21,9 +22,35 @@ ifeq (, $(shell which ocb >/dev/null 2>/dev/null))
 	[ "$${machine}" != x86_64 ] || machine=amd64 ;\
 	echo "Installing ocb ($${os}/$${machine}) at $(OTELCOL_BUILDER_DIR)";\
 	mkdir -p $(OTELCOL_BUILDER_DIR) ;\
-	curl -sLo $(OTELCOL_BUILDER) "https://github.com/open-telemetry/opentelemetry-collector/releases/download/cmd%2Fbuilder%2Fv$(OTELCOL_BUILDER_VERSION)/ocb_$(OTELCOL_BUILDER_VERSION)_$${os}_$${machine}" ;\
+	curl -sLo $(OTELCOL_BUILDER) "https://github.com/open-telemetry/opentelemetry-collector/releases/download/cmd%2Fbuilder%2Fv$(OTELCOL_VERSION)/ocb_$(OTELCOL_VERSION)_$${os}_$${machine}" ;\
 	chmod +x $(OTELCOL_BUILDER) ;\
 	}
 else
 OTELCOL_BUILDER=$(shell which ocb)
 endif
+
+# Download all dependencies to the vendor directory.
+.PHONY: vendor
+vendor:
+	@echo "Downloading dependencies of the custom collector..."
+	cd ./_build && $(GO) mod tidy && $(GO) mod vendor
+
+# Archive the source code with all dependencies in a tarball.
+.PHONY: archive
+archive:
+	mkdir -p dist/
+
+	@echo "Creating a tarball with the source code..."
+	git archive \
+	--prefix=$(PROJECT)-$(OTELCOL_VERSION)/ \
+	--output ./dist/$(PROJECT)-$(OTELCOL_VERSION).tar.gz \
+	HEAD
+
+	@echo "Creating a tarball with dependencies..."
+	tar -cz \
+	--transform="s/^\./$(PROJECT)-$(OTELCOL_VERSION)/" \
+	--file ./dist/$(PROJECT)-deps-$(OTELCOL_VERSION).tar.gz \
+	./_build/vendor
+
+	@echo "The archives are available at dist/:"
+	@find dist/*.tar.gz
