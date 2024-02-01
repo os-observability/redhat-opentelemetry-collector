@@ -2,7 +2,9 @@ GO=$(shell which go)
 OTELCOL_VERSION ?= 0.93.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
-PROJECT ?= redhat-otel-collector
+PROJECT ?= redhat-opentelemetry-collector
+RPM_BUILDER ?= fedpkg 
+RELEASE ?= epel7
 
 build: ocb
 	mkdir -p _build
@@ -54,3 +56,8 @@ archive:
 
 	@echo "The archives are available at dist/:"
 	@find dist/*.tar.gz
+
+# Build the collector as RPM.
+.PHONY:rpm/source
+rpm/source: archive
+	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
