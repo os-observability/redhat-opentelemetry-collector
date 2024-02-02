@@ -39,7 +39,7 @@ vendor:
 
 # Archive the source code with all dependencies in a tarball.
 .PHONY: archive
-archive:
+archive: vendor
 	mkdir -p dist/
 
 	@echo "Creating a tarball with the source code..."
