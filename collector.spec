@@ -6,7 +6,7 @@ ExcludeArch:            %{ix86} s390 ppc ppc64 aarch64
 %gometa
 
 %global common_description %{expand:
-TODO}
+Collector with the supported components for a Red Hat build of OpenTelemetry product}
 
 %global golicenses    LICENSE
 %global godocs        README.md
