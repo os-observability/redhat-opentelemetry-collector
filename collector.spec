@@ -1,6 +1,8 @@
 %global goipath         github.com/os-observability/redhat-opentelemetry-collector
 
-Version:                0.92.0
+%define project_version %(make -s -C .. project_version)
+
+Version:                %{project_version}
 ExcludeArch:            %{ix86} s390 ppc ppc64 aarch64
 
 %gometa
@@ -11,10 +13,11 @@ Collector with the supported components for a Red Hat build of OpenTelemetry pro
 %global golicenses    LICENSE
 %global godocs        README.md
 
-Name:           redhat-opentelemetry-collector
+%define project_name %(make -s -C .. project_name)
+
+Name:           %{project_name}
 Release:        1%{?dist}
 Summary:        Red Hat build of OpenTelemetry
-```
 
 License:        Apache-2.0
 
@@ -23,6 +26,7 @@ Source1:        %{name}-deps-%{version}.tar.gz
 
 BuildRequires: go-toolset-1.20
 BuildRequires: git
+BuildRequires: make
 
 %description
 %{common_description}

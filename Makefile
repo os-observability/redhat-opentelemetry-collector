@@ -61,3 +61,9 @@ archive:
 .PHONY:rpm/source
 rpm/source: archive
 	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
+
+project_version:
+	@echo ${OTELCOL_VERSION}
+
+project_name:
+	@echo ${PROJECT}
