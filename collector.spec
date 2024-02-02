@@ -13,7 +13,8 @@ Collector with the supported components for a Red Hat build of OpenTelemetry pro
 
 Name:           redhat-opentelemetry-collector
 Release:        1%{?dist}
-Summary:        TODO
+Summary:        Red Hat build of OpenTelemetry
+```
 
 License:        Apache-2.0
 
