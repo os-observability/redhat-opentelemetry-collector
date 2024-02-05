@@ -31,16 +31,13 @@ BuildRequires: make
 %description
 %{common_description}
 
-%gopkg
-
 %prep
-%goprep
+%goprep -k
 
 %build
 make build
 
 %install
-%gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
@@ -51,8 +48,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %license %{golicenses}
 %doc %{godocs}
 %{_bindir}/*
-
-%gopkgfiles
 
 %changelog
 * Thu Feb 1 21:59:10 CET 2024 Nina Olear <nolear@redhat.com> - 0.93.4
