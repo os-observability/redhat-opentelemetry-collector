@@ -35,7 +35,7 @@ endif
 .PHONY: vendor
 vendor:
 	@echo "Downloading dependencies of the custom collector..."
-	cd ./_build && $(GO) mod tidy && $(GO) mod vendor
+	cd ./_build && $(GO) go mod tidy && $(GO) go mod vendor
 
 # Archive the source code with all dependencies in a tarball.
 .PHONY: archive
