@@ -59,11 +59,9 @@ archive: vendor
 
 # Build the collector as RPM.
 .PHONY:rpm/source
-rpm/source: archive
+rpm/source: collector.spec archive
 	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
 
-project_version:
-	@echo ${OTELCOL_VERSION}
-
-project_name:
-	@echo ${PROJECT}
+.PHONY: collector.spec
+collector.spec: collector.spec.in
+	sed -e "s/%%PROJECT%%/$(PROJECT)/" -e "s/%%VERSION%%/$(OTELCOL_VERSION)/" < $< > $@
