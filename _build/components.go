@@ -16,6 +16,7 @@ import (
 	otlphttpexporter "go.opentelemetry.io/collector/exporter/otlphttpexporter"
 	prometheusexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter"
 	kafkaexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter"
+	awscloudwatchlogsexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter"
 	zpagesextension "go.opentelemetry.io/collector/extension/zpagesextension"
 	ballastextension "go.opentelemetry.io/collector/extension/ballastextension"
 	jaegerremotesampling "github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling"
@@ -80,6 +81,7 @@ func components() (otelcol.Factories, error) {
 		otlphttpexporter.NewFactory(),
 		prometheusexporter.NewFactory(),
 		kafkaexporter.NewFactory(),
+		awscloudwatchlogsexporter.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
