@@ -2,7 +2,9 @@ GO=$(shell which go)
 OTELCOL_VERSION ?= 0.93.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
-PROJECT ?= redhat-otel-collector
+PROJECT ?= redhat-opentelemetry-collector
+RPM_BUILDER ?= fedpkg 
+RELEASE ?= epel7
 
 build: ocb
 	mkdir -p _build
@@ -33,11 +35,11 @@ endif
 .PHONY: vendor
 vendor:
 	@echo "Downloading dependencies of the custom collector..."
-	cd ./_build && $(GO) mod tidy && $(GO) mod vendor
+	cd ./_build && $(GO) go mod tidy && $(GO) go mod vendor
 
 # Archive the source code with all dependencies in a tarball.
 .PHONY: archive
-archive:
+archive: vendor
 	mkdir -p dist/
 
 	@echo "Creating a tarball with the source code..."
@@ -54,3 +56,15 @@ archive:
 
 	@echo "The archives are available at dist/:"
 	@find dist/*.tar.gz
+
+# Build the collector as RPM.
+.PHONY:rpm/source
+rpm/source: collector.spec archive
+	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
+
+.PHONY: collector.spec
+collector.spec: collector.spec.in
+	sed -e "s/%%PROJECT%%/$(PROJECT)/" -e "s/%%VERSION%%/$(OTELCOL_VERSION)/" < $< > $@
+
+rpm/fedora-testbuild:
+	docker run --rm -v ${PWD}:/src:z fedora:39 /bin/bash -c 'dnf install -y git make curl gzip tar rpm-build golang fedpkg && git config --global --add safe.directory /src && pushd src && export GOPROXY=https://proxy.golang.org,direct && make rpm/source && popd'
