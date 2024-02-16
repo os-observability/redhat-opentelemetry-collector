@@ -20,7 +20,7 @@ License:        Apache-2.0
 Source0:        %{name}-%{version}.tar.gz
 Source1:        %{name}-deps-%{version}.tar.gz
 
-BuildRequires: go-toolset-1.20
+BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 BuildRequires: git
 
 %description
