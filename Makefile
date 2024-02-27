@@ -1,5 +1,5 @@
 GO=$(shell which go)
-OTELCOL_VERSION ?= 0.93.0
+OTELCOL_VERSION ?= 0.95.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= redhat-opentelemetry-collector
