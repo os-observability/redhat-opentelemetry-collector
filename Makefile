@@ -35,7 +35,7 @@ endif
 .PHONY: vendor
 vendor:
 	@echo "Downloading dependencies of the custom collector..."
-	cd ./_build && $(GO) go mod tidy && $(GO) go mod vendor
+	cd ./_build && $(GO) mod tidy && $(GO) mod vendor
 
 # Archive the source code with all dependencies in a tarball.
 .PHONY: archive
@@ -67,4 +67,4 @@ collector.spec: collector.spec.in
 	sed -e "s/%%PROJECT%%/$(PROJECT)/" -e "s/%%VERSION%%/$(OTELCOL_VERSION)/" < $< > $@
 
 rpm/fedora-testbuild:
-	docker run --rm -v ${PWD}:/src:z fedora:39 /bin/bash -c 'dnf install -y git make curl gzip tar rpm-build golang fedpkg && git config --global --add safe.directory /src && pushd src && export GOPROXY=https://proxy.golang.org,direct && make srpm && popd'
+	docker run --rm -v ${PWD}:/src:z fedora:39 /bin/bash -c 'dnf install -y git make curl gzip tar rpm-build golang fedpkg which && git config --global --add safe.directory /src && pushd src && export GOPROXY=https://proxy.golang.org,direct && make srpm && popd'
