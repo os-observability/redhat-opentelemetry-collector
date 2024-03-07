@@ -49,7 +49,7 @@ archive: vendor
 
 	@echo "Creating a tarball with the source code & dependencies..."
 	tar -cz \
-	--transform="s/^\./$(PROJECT)-$(OTELCOL_VERSION)/" \
+	--transform="s/^\./redhat-$(PROJECT)-$(OTELCOL_VERSION)/" \
 	--file ./dist/$(PROJECT)-$(OTELCOL_VERSION).tar.gz \
 	-C ./_build .
 
