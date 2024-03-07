@@ -18,19 +18,23 @@ Summary:        Red Hat build of OpenTelemetry
 License:        Apache-2.0
 
 Source0:        %{name}-%{version}.tar.gz
-Source1:        %{name}-deps-%{version}.tar.gz
 
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
-BuildRequires: git
+BuildRequires: binutils
 
 %description
 %{common_description}
 
 %prep
 %goprep -k
+mkdir -p _build
+mkdir -p _build/bin
+
 
 %build
-go build -buildmode pie -mod vendor
+go build -v -buildmode pie -mod vendor -o _build/bin/opentelemetry-collector
+
+%define debug_package %{nil}
 
 %install
 install -m 0755 -vd                     %{buildroot}%{_bindir}

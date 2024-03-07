@@ -1,4 +1,7 @@
 _build/otelcol
 _build/vendor/**
+_build/LICENSE
+_build/README.md
+collector.spec
 bin/**
 dist/**
