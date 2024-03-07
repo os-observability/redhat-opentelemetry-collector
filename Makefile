@@ -4,7 +4,7 @@ OTELCOL_VERSION ?= 0.95.0
 OCB_VERSION ?= 0.93.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
-PROJECT ?= redhat-opentelemetry-collector
+PROJECT ?= opentelemetry-collector
 RPM_BUILDER ?= fedpkg 
 RELEASE ?= epel7
 
@@ -43,18 +43,15 @@ vendor:
 .PHONY: archive
 archive: vendor
 	mkdir -p dist/
+	# NOTE: we copy README and LICENSE into _build, since append does not work on a tar.gz.
+	cp README.md _build
+	cp LICENSE _build
 
-	@echo "Creating a tarball with the source code..."
-	git archive \
-	--prefix=$(PROJECT)-$(OTELCOL_VERSION)/ \
-	--output ./dist/$(PROJECT)-$(OTELCOL_VERSION).tar.gz \
-	HEAD
-
-	@echo "Creating a tarball with dependencies..."
+	@echo "Creating a tarball with the source code & dependencies..."
 	tar -cz \
 	--transform="s/^\./$(PROJECT)-$(OTELCOL_VERSION)/" \
-	--file ./dist/$(PROJECT)-deps-$(OTELCOL_VERSION).tar.gz \
-	./_build/vendor
+	--file ./dist/$(PROJECT)-$(OTELCOL_VERSION).tar.gz \
+	-C ./_build .
 
 	@echo "The archives are available at dist/:"
 	@find dist/*.tar.gz
