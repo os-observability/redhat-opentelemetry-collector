@@ -43,6 +43,7 @@ import (
 	kafkareceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver"
 	filelogreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver"
 	journaldreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver"
+	k8seventsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver"
 )
 
 func components() (otelcol.Factories, error) {
@@ -73,6 +74,7 @@ func components() (otelcol.Factories, error) {
 		kafkareceiver.NewFactory(),
 		filelogreceiver.NewFactory(),
 		journaldreceiver.NewFactory(),
+		k8seventsreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
