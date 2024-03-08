@@ -2,9 +2,7 @@
 
 module github.com/os-observability/redhat-opentelemetry-collector
 
-go 1.21
-
-toolchain go1.21.0
+go 1.20
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.95.0
