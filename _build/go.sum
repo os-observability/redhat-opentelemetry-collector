@@ -881,6 +881,8 @@ go.opentelemetry.io/collector/extension/auth v0.95.0 h1:Qu2/I6YXW1yhh+M5PZ6b5izP
 go.opentelemetry.io/collector/extension/auth v0.95.0/go.mod h1:FSODnSbmqfRT9dQdJgogby7j4bcV8TmrhddTvcAjcjU=
 go.opentelemetry.io/collector/extension/ballastextension v0.95.0 h1:ikdfIQiTktrVws4EhDH7I/BNIgfBJiIk+fdkmyh2VCY=
 go.opentelemetry.io/collector/extension/ballastextension v0.95.0/go.mod h1:J6ErxwsYS+7DD7wKNFaPe2Yh6iFzmWLJs4YEpmI6VgU=
+go.opentelemetry.io/collector/extension/memorylimiterextension v0.95.0 h1:E++Lrq8EBbNM9HKQurp/JwYZSCL0d420GPDx6xlNAlU=
+go.opentelemetry.io/collector/extension/memorylimiterextension v0.95.0/go.mod h1:a6qCi3k0BGGbeRskOFenBE2T7avv7+MXmGa7vXBmAWE=
 go.opentelemetry.io/collector/extension/zpagesextension v0.95.0 h1:O9TNgmPDFZOyBxbmeEqmsp9r2ZBYOAqpNXSgKAV915o=
 go.opentelemetry.io/collector/extension/zpagesextension v0.95.0/go.mod h1:CfvfIazNopdw9EK1rQXKMyRBwNJ5UzXBY4+U37PcBoE=
 go.opentelemetry.io/collector/featuregate v1.2.0 h1:nF8OGq5PsSNSLeuNwTWlOqThxbLW6v6DOCvSqQMc108=
