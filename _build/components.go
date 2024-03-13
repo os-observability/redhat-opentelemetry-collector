@@ -19,6 +19,7 @@ import (
 	awscloudwatchlogsexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter"
 	zpagesextension "go.opentelemetry.io/collector/extension/zpagesextension"
 	ballastextension "go.opentelemetry.io/collector/extension/ballastextension"
+	memorylimiterextension "go.opentelemetry.io/collector/extension/memorylimiterextension"
 	jaegerremotesampling "github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling"
 	healthcheckextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension"
 	pprofextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension"
@@ -53,6 +54,7 @@ func components() (otelcol.Factories, error) {
 	factories.Extensions, err = extension.MakeFactoryMap(
 		zpagesextension.NewFactory(),
 		ballastextension.NewFactory(),
+		memorylimiterextension.NewFactory(),
 		jaegerremotesampling.NewFactory(),
 		healthcheckextension.NewFactory(),
 		pprofextension.NewFactory(),
