@@ -1,4 +1,4 @@
-GO=$(shell which go)
+GO ?= $(shell which go)
 OTELCOL_VERSION ?= 0.95.0
 # TODO: Align the ocb version with the collector version as soon as the ubi go 1.21 is supported.
 OCB_VERSION ?= 0.93.0
