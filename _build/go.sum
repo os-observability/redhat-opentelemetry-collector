@@ -593,6 +593,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig v0.
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8stest v0.95.0 h1:ZGMhpoJld9iAH3ckD9+Kg/KVsDNFJRDJ78yYAG+WPSU=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka v0.95.0 h1:iPj9aZakOR9e86g3VliOErzrqR+4vqUAZsMuMRmKyZU=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka v0.95.0/go.mod h1:muPIOiVjMFq+coHHikAJJlgxY2USlZdzslPl9sUuQuU=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet v0.95.0 h1:0MxkoAHiasP1ACacSGAvbY2/x/+wcV09xrRElZ3a4ME=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet v0.95.0/go.mod h1:fByMLARn3nXkt5ja0iXsWkiqFXeFN9XUVmL9NX+VaQY=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders v0.95.0 h1:DRIU4BjqsHfVppHTqhNTWE2gx8MHPQnXCHYm+tXv8tM=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders v0.95.0/go.mod h1:AnJ5MEwtRV71+tKgaiwNUuFniL7reC/ZI/7yDhPGI2Y=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent v0.95.0 h1:ngOcZETF9kl+tqYYmkg7CM6c7pfvsD8JlTsuHdwpRCQ=
@@ -646,6 +648,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsrece
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver v0.95.0/go.mod h1:/4vYNIam2Zvfu3fGxmpZbL3Kmh2+s0t8VZZXZeF5I3k=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver v0.95.0 h1:mM7WeXlRlYVsW6UrMFLu1ihRSlbZvqrbYrkm93KIBLI=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver v0.95.0/go.mod h1:p9M/8YgCZ/eN5DIOEk2Geyfn+6YU35yktfhOdTj7wEo=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver v0.95.0 h1:w5zZU8DomZ2S8pUnw5x/ri5WKqSydOygGH+7DFnFT1E=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver v0.95.0/go.mod h1:wy2MttcV6T9dfVA00rBiI0aFrM8R6euRukUxt0EnNWc=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.95.0 h1:oc69sTNLdFnpCOMMgfy5H63FTV9J74h9jYd40+kxgds=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.95.0/go.mod h1:zz2IkOLSzq8dRBqLkL7RuQa5svDy4LVSX2TMCP+x4TU=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.95.0 h1:yfu5KW2Yt086K5N+vkv9nZuAkx0wkEkoQ81kHefMBZI=
@@ -863,6 +867,8 @@ go.opentelemetry.io/collector/confmap/provider/yamlprovider v0.95.0 h1:0voEqMGQP
 go.opentelemetry.io/collector/confmap/provider/yamlprovider v0.95.0/go.mod h1:+Qd0OaNuvf5/tdHQoAUNknDjdT29ZonkgWmlsV9XewY=
 go.opentelemetry.io/collector/connector v0.95.0 h1:HBfGg92Eyw5jkneu7jh3yed7w/dzi7v6SZ+CyqpNK7E=
 go.opentelemetry.io/collector/connector v0.95.0/go.mod h1:an/NwQl07kw28iiwmZzN2KUeF3Br6UeW8u9iFpAlCXc=
+go.opentelemetry.io/collector/connector/forwardconnector v0.95.0 h1:snrJAeI00ISTDbD80Gc1+84YGZKS6ke4ZVjE38mB5jk=
+go.opentelemetry.io/collector/connector/forwardconnector v0.95.0/go.mod h1:n6B1f2GeTYiuOBa1IAc7gclg7wkuyEn7qp2MRzVzArQ=
 go.opentelemetry.io/collector/consumer v0.95.0 h1:M/N5RDx8/6Hz5L1qWUXdtirtdoV8BEjIxCSdt6cCx+I=
 go.opentelemetry.io/collector/consumer v0.95.0/go.mod h1:tM5aOolWS1zAByMbne2xVOkmVvZrF3VEKY6TkxhmkOs=
 go.opentelemetry.io/collector/exporter v0.95.0 h1:orUpjMVsD2IYRzrofE0tBhEBGHjr7W4wfltERxnWhP4=
@@ -1358,6 +1364,8 @@ k8s.io/klog/v2 v2.110.1/go.mod h1:YGtd1984u+GgbuZ7e08/yBuAfKLSO0+uR1Fhi6ExXjo=
 k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7/go.mod h1:wXW5VT87nVfh/iLV8FpR2uDvrFyomxbtb1KivDbvPTE=
 k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00 h1:aVUu9fTY98ivBPKR9Y5w/AuzbMm96cd3YHRTU83I780=
 k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00/go.mod h1:AsvuZPBlUDVuCdzJ87iajxtXuR9oktsTctW/R9wwouA=
+k8s.io/kubelet v0.29.1 h1:cso8Dk8dymkj8q+EvW/aCbIYU2aOkH27gho48tYza/8=
+k8s.io/kubelet v0.29.1/go.mod h1:hTl/naFcCVG1Ku17fMgj/krbheBwBkf3gnFhaboMx7E=
 k8s.io/utils v0.0.0-20201110183641-67b214c5f920/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
 k8s.io/utils v0.0.0-20230726121419-3b25d923346b h1:sgn3ZU783SCgtaSJjpcVVlRqd6GSnlTLKgpAAttJvpI=
 k8s.io/utils v0.0.0-20230726121419-3b25d923346b/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=

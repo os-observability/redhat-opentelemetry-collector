@@ -10,6 +10,7 @@ import (
 	"go.opentelemetry.io/collector/processor"
 	"go.opentelemetry.io/collector/receiver"
 	spanmetricsconnector "github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector"
+	forwardconnector "go.opentelemetry.io/collector/connector/forwardconnector"
 	debugexporter "go.opentelemetry.io/collector/exporter/debugexporter"
 	loggingexporter "go.opentelemetry.io/collector/exporter/loggingexporter"
 	otlpexporter "go.opentelemetry.io/collector/exporter/otlpexporter"
@@ -45,6 +46,7 @@ import (
 	filelogreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver"
 	journaldreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver"
 	k8seventsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver"
+	kubeletstatsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver"
 )
 
 func components() (otelcol.Factories, error) {
@@ -77,6 +79,7 @@ func components() (otelcol.Factories, error) {
 		filelogreceiver.NewFactory(),
 		journaldreceiver.NewFactory(),
 		k8seventsreceiver.NewFactory(),
+		kubeletstatsreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
@@ -112,6 +115,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Connectors, err = connector.MakeFactoryMap(
 		spanmetricsconnector.NewFactory(),
+		forwardconnector.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err

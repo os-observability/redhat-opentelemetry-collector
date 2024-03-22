@@ -28,12 +28,14 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver v0.95.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.95.0
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector/component v0.95.0
 	go.opentelemetry.io/collector/connector v0.95.0
+	go.opentelemetry.io/collector/connector/forwardconnector v0.95.0
 	go.opentelemetry.io/collector/exporter v0.95.0
 	go.opentelemetry.io/collector/exporter/debugexporter v0.95.0
 	go.opentelemetry.io/collector/exporter/loggingexporter v0.95.0
@@ -190,6 +192,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka v0.95.0 // indirect
+	github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/batchpersignal v0.95.0 // indirect
@@ -321,6 +324,7 @@ require (
 	k8s.io/client-go v0.29.1 // indirect
 	k8s.io/klog/v2 v2.110.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00 // indirect
+	k8s.io/kubelet v0.29.1 // indirect
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
