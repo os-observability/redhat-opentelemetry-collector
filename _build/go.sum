@@ -626,6 +626,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin 
 github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin v0.95.0/go.mod h1:3g9JvA8shSYY9XwHDrO8ierXxrNhOeKOXDPnxZfMeGc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.95.0 h1:u1C/RzSqLz9pgXpzjeguhdttysMXpfZuZCyCtYXS3XM=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.95.0/go.mod h1:FIbrRX2BGpY9+FXdgSZNg7WH3Yk4CuCNP5OLYfM+Oj4=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v0.95.0 h1:348XhLVfFdlHRXiwRqH1Bd7tIw2PWe8NeRECFtKsznE=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v0.95.0/go.mod h1:5jgNZX79RDJFDwwYg9JJJVUdgbNIEJ+6FHXpSgI2MeY=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.95.0 h1:G1MrHQ8c1hNT/KzNS/cv3RU9GUicUztuLE9LE2U++Xw=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.95.0/go.mod h1:KO835nLbHPhzzDtPphCjnuT2EkKxVpUBDNG34F26oJs=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.95.0 h1:GWLeuhbVRoOYBf0niEjSqE9bLpM8T51w4Pv1UNrAKPI=
