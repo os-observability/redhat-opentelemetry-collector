@@ -18,6 +18,7 @@ import (
 	prometheusexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter"
 	kafkaexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter"
 	awscloudwatchlogsexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter"
+	loadbalancingexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter"
 	zpagesextension "go.opentelemetry.io/collector/extension/zpagesextension"
 	ballastextension "go.opentelemetry.io/collector/extension/ballastextension"
 	memorylimiterextension "go.opentelemetry.io/collector/extension/memorylimiterextension"
@@ -98,6 +99,7 @@ func components() (otelcol.Factories, error) {
 		prometheusexporter.NewFactory(),
 		kafkaexporter.NewFactory(),
 		awscloudwatchlogsexporter.NewFactory(),
+		loadbalancingexporter.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err

@@ -1,13 +1,13 @@
 Flag --go has been deprecated, use config distribution::go
-2024-03-27T11:25:59.575+0100	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.93.0", "date": "2024-01-24T11:10:24Z"}
-2024-03-27T11:25:59.576+0100	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
-2024-03-27T11:25:59.589+0100	INFO	builder/config.go:109	Using go	{"go-executable": "go1.20.14"}
-2024-03-27T11:25:59.589+0100	INFO	builder/main.go:67	You're building a distribution with non-aligned version of the builder. Compilation may fail due to API changes. Please upgrade your builder or API	{"builder-version": "0.93.0"}
-2024-03-27T11:25:59.590+0100	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
-2024-03-27T11:25:59.590+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
-2024-03-27T11:26:00.206+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
-2024-03-27T11:26:00.977+0100	INFO	builder/main.go:142	Getting go modules
-2024-03-27T11:26:00.977+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
-2024-03-27T11:26:01.146+0100	INFO	builder/main.go:102	Compiling
-2024-03-27T11:26:01.146+0100	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
-2024-03-27T11:26:04.688+0100	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}
+2024-04-02T12:41:42.523+0200	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.93.0", "date": "2024-01-24T11:10:24Z"}
+2024-04-02T12:41:42.524+0200	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
+2024-04-02T12:41:42.528+0200	INFO	builder/config.go:109	Using go	{"go-executable": "/usr/local/go/bin/go"}
+2024-04-02T12:41:42.528+0200	INFO	builder/main.go:67	You're building a distribution with non-aligned version of the builder. Compilation may fail due to API changes. Please upgrade your builder or API	{"builder-version": "0.93.0"}
+2024-04-02T12:41:42.529+0200	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
+2024-04-02T12:41:42.529+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
+2024-04-02T12:41:42.666+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
+2024-04-02T12:41:42.865+0200	INFO	builder/main.go:142	Getting go modules
+2024-04-02T12:41:42.865+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
+2024-04-02T12:41:42.925+0200	INFO	builder/main.go:102	Compiling
+2024-04-02T12:41:42.925+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
+2024-04-02T12:43:17.786+0200	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}
