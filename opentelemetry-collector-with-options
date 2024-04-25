@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PATCH_DIR="/etc/opentelemetry-collector/configs/"
+
+if [ -d "$PATCH_DIR" ]; then
+    PATCH_FILES=$(ls "$PATCH_DIR"/*.yaml 2>/dev/null | sort)
+    if [ -n "$PATCH_FILES" ]; then
+        CONFIG_OPTIONS=""
+
+        for PATCH_FILE in $PATCH_FILES; do
+            CONFIG_OPTIONS+=" --config \"file:$PATCH_FILE\""
+        done
+    fi
+fi
+
+/usr/bin/opentelemetry-collector --config $CONFIG_OPTIONS

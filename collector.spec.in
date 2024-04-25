@@ -18,10 +18,18 @@ Summary:        Red Hat build of OpenTelemetry
 License:        Apache-2.0
 
 Source0:        %{name}-%{version}.tar.gz
+Source1: 00-default-rhde-config.yaml
+Source2: opentelemetry-collector.service
+Source3: microshift-opentelemetry-gateway.yaml
+Source4: kustomization.yaml
 
+BuildRequires: systemd
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 BuildRequires: binutils
 BuildRequires: git
+
+Requires(pre): /usr/sbin/useradd, /usr/bin/getent
+Requires(postun): /usr/sbin/userdel
 
 %description
 %{common_description}
@@ -38,17 +46,61 @@ go build -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collec
 %define debug_package %{nil}
 
 %install
+# create expected directory layout
+mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector
+mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs
+mkdir -p %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/
+mkdir -p %{buildroot}%{_unitdir}
+
+# install files
+install -p -m 0644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
+install -p -m 0644 -D %{SOURCE2} %{buildroot}%{_unitdir}/%{name}.service
+install -p -m 0644 -D %{SOURCE3} %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-gateway.yaml
+install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/microshift/manifests/kustomization.yaml
+
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+
+%pre
+/usr/bin/getent group observability > /dev/null || /usr/sbin/groupadd -r observability
+/usr/bin/getent passwd observability > /dev/null || /usr/sbin/useradd -r -M -s /sbin/nologin -g observability -G systemd-journal observability
+
+%postun
+/usr/sbin/userdel observability
+
+%post
+/bin/systemctl --system daemon-reload 2>&1
+
+%preun
+if [ $1 -eq 0 ]; then
+    /bin/systemctl --quiet stop %{name}.service
+    /bin/systemctl --quiet disable %{name}.service
+fi
+
+%posttrans
+/bin/systemctl is-enabled %{name}.service >/dev/null 2>&1
+if [  $? -eq 0 ]; then
+    /bin/systemctl restart %{name}.service >/dev/null
+fi
 
 %check
 %gocheck
 
 %files
+%{_unitdir}/%{name}.service
+%{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
+%{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
+%{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
+
 %license %{golicenses}
 %doc %{godocs}
 %{_bindir}/*
 
 %changelog
+* Fri Apr 12 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.95.0
+- add observability user that is part of the systemd-journal group
+- add opentelemetry collector config folder (`/etc/opentelemetry-collector/configs`)
+- add opentelemetry collector default config
+- add microshift manifests
 * Thu Feb 1 21:59:10 CET 2024 Nina Olear <nolear@redhat.com> - 0.93.4
 - First package for Copr

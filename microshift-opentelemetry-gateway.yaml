@@ -1,0 +1,141 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: observability
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opentelemetry-gateway-config
+  namespace: observability
+data:
+# TODO: remove hostnetwork-v2 scc and flip exporter config fromlocalhost to ${env:K8S_HOST_IP}.
+  config.yaml: |
+    receivers:
+      kubeletstats:
+        collection_interval: 20s
+        auth_type: "serviceAccount"
+        endpoint: "https://${env:K8S_HOST_IP}:10250"
+        insecure_skip_verify: true
+      otlp:
+        protocols:
+          grpc:
+          http:
+    processors:
+      batch:
+        send_batch_size: 10000
+        timeout: 10s
+    exporters:
+      otlp/host:
+        endpoint: ${env:K8S_HOST_IP}:54317
+        tls:
+          insecure: true
+          insecure_skip_verify: true
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/host]
+        metrics:
+          receivers: [otlp, kubeletstats]
+          processors: [batch]
+          exporters: [otlp/host]
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/host]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: opentelemetry-gateway
+  namespace: observability
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: otel-apiserver
+rules:
+  - apiGroups: ['']
+    resources: ['nodes/stats']
+    verbs: ['get', 'watch', 'list']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: otel-collector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: otel-apiserver
+subjects:
+  - kind: ServiceAccount
+    name: opentelemetry-gateway
+    namespace: observability
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: opentelemetry-gateway
+  namespace: observability
+  labels:
+    app: opentelemetry-gateway
+spec:
+  selector:
+    matchLabels:
+      app: opentelemetry-gateway
+  template:
+    metadata:
+      labels:
+        app: opentelemetry-gateway
+    spec:
+      serviceAccountName: opentelemetry-gateway
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: opentelemetry-collector
+        image: ghcr.io/os-observability/redhat-opentelemetry-collector/redhat-opentelemetry-collector:main
+        command: ["/otelcol", "--config=/etc/opentelemetry/config.yaml"]
+        # TODO: enable after 3.1 release
+        # image: registry.redhat.io/rhosdt/opentelemetry-collector-rhel8:0.93.0
+        # command: ["/go/bin/otelcol-linux", "--config=/etc/opentelemetry/config.yaml"]
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/opentelemetry
+        env:
+        - name: K8S_HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+      volumes:
+      - name: config-volume
+        configMap:
+          name: opentelemetry-gateway-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: observability
+spec:
+  ports:
+    - name: http-otlp
+      port: 4318
+      targetPort: 54318
+      protocol: TCP
+    - name: grpc-otlp
+      port: 4317
+      targetPort: 54317
+      protocol: TCP
+  selector:
+    app: opentelemetry-gateway

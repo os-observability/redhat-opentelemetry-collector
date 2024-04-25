@@ -1,0 +1,14 @@
+[Unit]
+Description=RHDE Observability Agent
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/opentelemetry-collector-with-options
+User=observability
+Group=observability
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
