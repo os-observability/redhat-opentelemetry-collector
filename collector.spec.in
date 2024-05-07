@@ -22,6 +22,7 @@ Source1: 00-default-rhde-config.yaml
 Source2: opentelemetry-collector.service
 Source3: microshift-opentelemetry-gateway.yaml
 Source4: kustomization.yaml
+Source5: opentelemetry-collector-with-options
 
 BuildRequires: systemd
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
@@ -55,8 +56,9 @@ mkdir -p %{buildroot}%{_unitdir}
 # install files
 install -p -m 0644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
 install -p -m 0644 -D %{SOURCE2} %{buildroot}%{_unitdir}/%{name}.service
-install -p -m 0644 -D %{SOURCE3} %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-gateway.yaml
-install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/microshift/manifests/kustomization.yaml
+install -p -m 0644 -D %{SOURCE3} %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
+install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
+install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_bindir}/opentelemetry-collector-with-options
 
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
@@ -91,6 +93,7 @@ fi
 %{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
 %{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
 %{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
+%{buildroot}%{_bindir}/opentelemetry-collector-with-options
 
 %license %{golicenses}
 %doc %{godocs}

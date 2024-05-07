@@ -59,7 +59,7 @@ archive: vendor
 # Build the collector as RPM.
 .PHONY: rpm/source
 rpm/source: collector.spec archive
-	cp 00-default-rhde-config.yaml kustomization.yaml microshift-opentelemetry-gateway.yaml opentelemetry-collector.service ./dist
+	cp opentelemetry-collector-with-options 00-default-rhde-config.yaml kustomization.yaml microshift-opentelemetry-gateway.yaml opentelemetry-collector.service ./dist
 	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
 
 .PHONY: collector.spec
