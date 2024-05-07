@@ -9,6 +9,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v0.95.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.95.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.95.0
@@ -129,6 +130,7 @@ require (
 	github.com/gophercloud/gophercloud v1.7.0 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/grafana/loki/pkg/push v0.0.0-20231127162423-bd505f8e2d37 // indirect
 	github.com/grafana/regexp v0.0.0-20221122212121-6b5c0a4cb7fd // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1 // indirect
 	github.com/haimrubinstein/go-syslog/v3 v3.0.0 // indirect
@@ -208,6 +210,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/azure v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/jaeger v0.95.0 // indirect
+	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/loki v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/opencensus v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/prometheus v0.95.0 // indirect
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin v0.95.0 // indirect
