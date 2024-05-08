@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal as builder
+FROM registry.access.redhat.com/ubi9/ubi-minimal as builder
 
 RUN microdnf -y install which go-toolset make
 WORKDIR /opt/app-root/src
@@ -10,7 +10,7 @@ RUN make build
 ## copied with the execute bit lost (see #1317)
 RUN chmod 755 /opt/app-root/src/_build/otelcol
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 # Install the systemd package which provides journalctl required by journald receiver and add user to systemd-journal group.
 # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/journaldreceiver
