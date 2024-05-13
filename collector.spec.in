@@ -21,18 +21,19 @@ Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 BuildRequires: binutils
+BuildRequires: git
 
 %description
 %{common_description}
 
 %prep
-%goprep -k
 mkdir -p _build
 mkdir -p _build/bin
 
+%setup -q -n %{name}-%{version}
 
 %build
-go build -v -buildmode pie -mod vendor -o _build/bin/opentelemetry-collector
+go build -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collector
 
 %define debug_package %{nil}
 
