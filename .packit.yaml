@@ -38,7 +38,7 @@ jobs:
     trigger: pull_request
     targets:
       - fedora-40-x86_64
-      - rhel-9-x86_64
+      # - rhel-9-x86_64 - NOTE: N/A
       # - fedora-40-aarch64
       # - rhel-9-aarch64
 
