@@ -28,19 +28,18 @@ actions:
 jobs:
   - job: copr_build
     trigger: pull_request
-    enable_net: True
     targets:
       - fedora-40-x86_64
+      - rhel-9-x86_64
       # - fedora-40-aarch64
-      # - rhel-9-x86_64
       # - rhel-9-aarch64
 
   - job: tests
     trigger: pull_request
     targets:
       - fedora-40-x86_64
+      - rhel-9-x86_64
       # - fedora-40-aarch64
-      # - rhel-9-x86_64
       # - rhel-9-aarch64
 
 srpm_build_deps:
