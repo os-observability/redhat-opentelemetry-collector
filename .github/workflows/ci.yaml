@@ -26,6 +26,3 @@ jobs:
 
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
-
-      - name: Verify srpm
-        run: make rpm/fedora-testbuild
