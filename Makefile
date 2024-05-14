@@ -7,6 +7,7 @@ OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= opentelemetry-collector
 RPM_BUILDER ?= fedpkg 
 RELEASE ?= epel7
+MAKEFLAGS += --silent
 
 build: ocb
 	mkdir -p _build
@@ -46,6 +47,7 @@ archive: vendor
 	# NOTE: we copy README and LICENSE into _build, since append does not work on a tar.gz.
 	cp README.md _build
 	cp LICENSE _build
+	cp opentelemetry-collector-with-options 00-default-rhde-config.yaml kustomization.yaml microshift-opentelemetry-gateway.yaml opentelemetry-collector.service _build
 
 	@echo "Creating a tarball with the source code & dependencies..."
 	tar -cz \
@@ -59,7 +61,6 @@ archive: vendor
 # Build the collector as RPM.
 .PHONY: rpm/source
 rpm/source: collector.spec archive
-	cp opentelemetry-collector-with-options 00-default-rhde-config.yaml kustomization.yaml microshift-opentelemetry-gateway.yaml opentelemetry-collector.service ./dist
 	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
 
 .PHONY: collector.spec
@@ -73,3 +74,17 @@ rpm/fedora-testbuild:
 .PHONY: version
 version:
 	@echo $(OTELCOL_VERSION)
+
+.PHONY: packit/srpm
+packit/srpm:
+	packit --debug srpm
+
+.PHONY: packit/srpm
+packit/rpm/mock:
+	packit build in-mock
+
+.PHONY: clean
+clean:
+	rm -rf ./dist ./_build/vendor ./bin
+	rm -rf collector.spec
+	rm -rf *.tar.gz *.rpm
