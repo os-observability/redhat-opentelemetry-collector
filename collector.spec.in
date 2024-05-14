@@ -51,7 +51,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector
 mkdir -p %{buildroot}%{_unitdir}
 
 # install files
-install -p -m 0644  ./00-default-rhde-config.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
+install -p -m 0644  ./00-default-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
 install -p -m 0644  ./opentelemetry-collector.service %{buildroot}%{_unitdir}/%{name}.service
 install -p -m 0644  ./microshift-opentelemetry-gateway.yaml %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
 install -p -m 0644  ./kustomization.yaml %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
@@ -86,7 +86,7 @@ fi
 
 %files
 %{_unitdir}/%{name}.service
-%{_sysconfdir}/opentelemetry-collector/configs/00-default-rhde-config.yaml
+%{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
 %{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
 %{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
 

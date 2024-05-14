@@ -12,7 +12,7 @@ files_to_sync:
     - README.md
     - LICENSE
     - opentelemetry-collector-with-options
-    - 00-default-rhde-config.yaml
+    - 00-default-receivers.yaml
     - kustomization.yaml
     - microshift-opentelemetry-gateway.yaml
     - opentelemetry-collector.service ./dist
