@@ -13,3 +13,15 @@ This repository configures a build of the OpenTelemetry Collector with the suppo
 ```
 git tag v0.48.0 && git push origin v0.48.0
 ```
+
+## RPM
+
+To build `srpm` and `rpm`s we used (packit)[https://packit.dev/].
+
+```
+# build srpm 
+make clean packit/srpm
+
+# build rpm (includes srpm)
+make clean packit/rpm/mock
+```
