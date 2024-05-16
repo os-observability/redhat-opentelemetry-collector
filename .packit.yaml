@@ -9,7 +9,13 @@ files_to_sync:
     - .packit.yaml
     - Makefile
     - _build
-
+    - README.md
+    - LICENSE
+    - opentelemetry-collector-with-options
+    - 00-default-receivers.yaml
+    - kustomization.yaml
+    - microshift-opentelemetry-gateway.yaml
+    - opentelemetry-collector.service ./dist
 # name in upstream package repository or registry (e.g. in PyPI)
 upstream_package_name: red-hat-build-of-opentelemetry-collector
 # downstream (Fedora) RPM package name

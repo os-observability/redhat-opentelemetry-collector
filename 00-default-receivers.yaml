@@ -1,0 +1,32 @@
+---
+receivers:
+  otlp/microshift:
+    protocols:
+      grpc:
+        # TODO: Its not going to work if the default ip range in microshift got modified
+        endpoint: "10.44.0.0:54317"
+  journald:
+    units:
+    priority: info
+
+  hostmetrics:
+    root_path: /
+    collection_interval: 10s
+    scrapers:
+      cpu:
+      memory:
+  hostmetrics/disk:
+    root_path: /
+    collection_interval: 30s
+    scrapers:
+      disk:
+      filesystem:
+
+processors:
+  batch:
+  resourcedetection/system:
+    detectors: ["system"]
+
+exporters:
+  debug:
+
