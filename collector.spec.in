@@ -39,7 +39,6 @@ mkdir -p _build/bin
 %build
 
 go build -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collector
-mv opentelemetry-collector-with-options %{gobuilddir}/bin/opentelemetry-collector-with-options
 
 %define debug_package %{nil}
 
@@ -58,6 +57,7 @@ install -p -m 0644  ./kustomization.yaml %{buildroot}%{_sysconfdir}/microshift/m
 
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0755 -p ./opentelemetry-collector-with-options %{buildroot}%{_bindir}/
 
 %pre
 /usr/bin/getent group observability > /dev/null || /usr/sbin/groupadd -r observability
