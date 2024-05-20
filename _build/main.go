@@ -17,7 +17,12 @@ func main() {
 		Version:     "0.95.0",
 	}
 
-	if err := run(otelcol.CollectorSettings{BuildInfo: info, Factories: components}); err != nil {
+	set := otelcol.CollectorSettings{
+		BuildInfo: info,
+		Factories: components,
+	}
+
+	if err := run(set); err != nil {
 		log.Fatal(err)
 	}
 }

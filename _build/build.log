@@ -1,13 +1,9 @@
 Flag --go has been deprecated, use config distribution::go
-2024-05-07T15:51:33.472+0200	INFO	internal/command.go:123	OpenTelemetry Collector Builder	{"version": "0.93.0", "date": "2024-01-24T11:10:24Z"}
-2024-05-07T15:51:33.478+0200	INFO	internal/command.go:159	Using config file	{"path": "manifest.yaml"}
-2024-05-07T15:51:33.496+0200	INFO	builder/config.go:109	Using go	{"go-executable": "/var/home/frzifus/.go/bin/go"}
-2024-05-07T15:51:33.496+0200	INFO	builder/main.go:67	You're building a distribution with non-aligned version of the builder. Compilation may fail due to API changes. Please upgrade your builder or API	{"builder-version": "0.93.0"}
-2024-05-07T15:51:33.505+0200	INFO	builder/main.go:91	Sources created	{"path": "./_build"}
-2024-05-07T15:51:33.505+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["get", "cloud.google.com/go"]}
-2024-05-07T15:51:33.947+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "tidy", "-compat=1.20"]}
-2024-05-07T15:51:34.411+0200	INFO	builder/main.go:142	Getting go modules
-2024-05-07T15:51:34.411+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["mod", "download"]}
-2024-05-07T15:51:34.640+0200	INFO	builder/main.go:102	Compiling
-2024-05-07T15:51:34.640+0200	INFO	builder/main.go:25	Running go subcommand.	{"arguments": ["build", "-trimpath", "-o", "otelcol", "-ldflags=-s -w"]}
-2024-05-07T15:53:47.491+0200	INFO	builder/main.go:121	Compiled	{"binary": "./_build/otelcol"}
+2024-05-20T10:59:06.435-0600	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "0.100.0", "date": "2024-05-06T17:52:27Z"}
+2024-05-20T10:59:06.436-0600	INFO	internal/command.go:161	Using config file	{"path": "manifest.yaml"}
+2024-05-20T10:59:06.441-0600	INFO	builder/config.go:132	Using go	{"go-executable": "/usr/local/go/bin/go"}
+2024-05-20T10:59:06.441-0600	INFO	builder/main.go:77	You're building a distribution with non-aligned version of the builder. Compilation may fail due to API changes. Please upgrade your builder or API	{"builder-version": "0.100.0"}
+2024-05-20T10:59:06.443-0600	INFO	builder/main.go:100	Sources created	{"path": "./_build"}
+2024-05-20T10:59:15.036-0600	INFO	builder/main.go:191	Getting go modules
+2024-05-20T10:59:15.529-0600	INFO	builder/main.go:111	Compiling
+2024-05-20T10:59:29.122-0600	INFO	builder/main.go:130	Compiled	{"binary": "./_build/otelcol"}
