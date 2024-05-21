@@ -16,7 +16,7 @@ git tag v0.48.0 && git push origin v0.48.0
 
 ## RPM
 
-To build `srpm` and `rpm`s we used (packit)[https://packit.dev/].
+To build `srpm` and `rpm`s we used [packit](https://packit.dev/).
 
 ```
 # build srpm 
