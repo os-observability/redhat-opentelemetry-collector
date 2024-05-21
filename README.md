@@ -25,3 +25,10 @@ make clean packit/srpm
 # build rpm (includes srpm)
 make clean packit/rpm/mock
 ```
+
+## Install from Copr
+
+```
+dnf copr enable frzifus/redhat-opentelemetry-collector-main 
+dnf install -y opentelemetry-collector
+```
