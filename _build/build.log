@@ -1,9 +1,8 @@
 Flag --go has been deprecated, use config distribution::go
-2024-05-20T11:00:52.337-0600	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "0.100.0", "date": "2024-05-06T17:52:27Z"}
-2024-05-20T11:00:52.338-0600	INFO	internal/command.go:161	Using config file	{"path": "manifest.yaml"}
-2024-05-20T11:00:52.342-0600	INFO	builder/config.go:132	Using go	{"go-executable": "/usr/local/go/bin/go"}
-2024-05-20T11:00:52.343-0600	INFO	builder/main.go:77	You're building a distribution with non-aligned version of the builder. Compilation may fail due to API changes. Please upgrade your builder or API	{"builder-version": "0.100.0"}
-2024-05-20T11:00:52.345-0600	INFO	builder/main.go:100	Sources created	{"path": "./_build"}
-2024-05-20T11:01:08.137-0600	INFO	builder/main.go:191	Getting go modules
-2024-05-20T11:01:08.236-0600	INFO	builder/main.go:111	Compiling
-2024-05-20T11:01:34.329-0600	INFO	builder/main.go:130	Compiled	{"binary": "./_build/otelcol"}
+2024-05-21T07:55:18.001-0600	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "0.100.0", "date": "2024-05-06T17:52:27Z"}
+2024-05-21T07:55:18.002-0600	INFO	internal/command.go:161	Using config file	{"path": "manifest.yaml"}
+2024-05-21T07:55:18.007-0600	INFO	builder/config.go:132	Using go	{"go-executable": "/usr/local/go/bin/go"}
+2024-05-21T07:55:18.010-0600	INFO	builder/main.go:100	Sources created	{"path": "./_build"}
+2024-05-21T07:55:32.601-0600	INFO	builder/main.go:191	Getting go modules
+2024-05-21T07:55:45.005-0600	INFO	builder/main.go:111	Compiling
+2024-05-21T07:56:00.014-0600	INFO	builder/main.go:130	Compiled	{"binary": "./_build/otelcol"}

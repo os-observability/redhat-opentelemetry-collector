@@ -52,6 +52,7 @@ import (
 	k8seventsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver"
 	kubeletstatsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver"
 	k8sclusterreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver"
+	k8sobjectsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sobjectsreceiver"
 )
 
 func components() (otelcol.Factories, error) {
@@ -87,6 +88,7 @@ func components() (otelcol.Factories, error) {
 		k8seventsreceiver.NewFactory(),
 		kubeletstatsreceiver.NewFactory(),
 		k8sclusterreceiver.NewFactory(),
+		k8sobjectsreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
