@@ -714,6 +714,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativeto
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v0.100.0/go.mod h1:cOZsxGDkQ0TSjGjPTDy5mLr05g3Qc7BtEkxCVc4bnwI=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.100.0 h1:vVeD2DzDNSIQ079KN6SFz3mT+XyECW1EI0oAmZCIkqo=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.100.0/go.mod h1:mT8zCUgCcEN/ssOMVRSMKvZNRHyCNSqhlQjlARgXvAI=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.100.0 h1:PGNQlrsMv4JLBaV+Lm0MHuGNDnG6LgA5JKy9yNAChx4=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.100.0/go.mod h1:WzefAfUKIx+R91hqbw/IdADXDeS19X0TaviW/P6Nbt8=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.100.0 h1:Fo3qyrQpq7OpmT16wcP11frGBaEpZIZDp0iO8rYxxfM=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.100.0/go.mod h1:87PKkME2Ug4Wu9BoR8o6e0n+t9pAbbcCTqn6w/4/FXg=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.100.0 h1:q2WEJSZS+O6ammMci+hsbU1FSfg44TIjQJJ8QqGGXlI=
