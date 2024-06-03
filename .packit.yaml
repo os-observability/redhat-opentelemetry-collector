@@ -1,11 +1,11 @@
 # See the documentation for more information:
 # https://packit.dev/docs/configuration/
 
-specfile_path: collector.spec
+specfile_path: opentelemetry-collector.spec
 
 # add or remove files that should be synced
 files_to_sync:
-    - collector.spec.in
+    - opentelemetry-collector.spec.in
     - .packit.yaml
     - Makefile
     - _build
@@ -28,7 +28,7 @@ srpm_build_deps:
 
 actions:
   post-upstream-clone:
-    - make collector.spec
+    - make opentelemetry-collector.spec
 
   create-archive:
     - make archive
