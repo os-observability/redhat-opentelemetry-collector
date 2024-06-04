@@ -60,11 +60,11 @@ archive: vendor
 
 # Build the collector as RPM.
 .PHONY: rpm/source
-rpm/source: collector.spec archive
+rpm/source: opentelemetry-collector.spec archive
 	cp *.spec ./dist && cd dist/ && $(RPM_BUILDER) --release "$(RELEASE)" srpm
 
-.PHONY: collector.spec
-collector.spec: collector.spec.in
+.PHONY: opentelemetry-collector.spec
+opentelemetry-collector.spec: opentelemetry-collector.spec.in
 	sed -e "s/%%PROJECT%%/$(PROJECT)/" -e "s/%%VERSION%%/$(OTELCOL_VERSION)/" < $< > $@
 
 .PHONY: rpm/fedora-testbuild
@@ -86,5 +86,5 @@ packit/rpm/mock:
 .PHONY: clean
 clean:
 	rm -rf ./dist ./_build/vendor ./bin
-	rm -rf collector.spec
+	rm -rf opentelemetry-collector.spec
 	rm -rf *.tar.gz *.rpm
