@@ -47,7 +47,7 @@ archive: vendor
 	# NOTE: we copy README and LICENSE into _build, since append does not work on a tar.gz.
 	cp README.md _build
 	cp LICENSE _build
-	cp opentelemetry-collector-with-options 00-default-receivers.yaml kustomization.yaml microshift-opentelemetry-gateway.yaml opentelemetry-collector.service _build
+	cp opentelemetry-collector-with-options 00-default-receivers.yaml 00-microshift-receivers.yaml kustomization.yaml opentelemetry-collector.service _build
 
 	@echo "Creating a tarball with the source code & dependencies..."
 	tar -cz \

@@ -46,14 +46,12 @@ go build -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collec
 # create expected directory layout
 mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector
 mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs
-mkdir -p %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/
 mkdir -p %{buildroot}%{_unitdir}
 
 # install files
 install -p -m 0644  ./00-default-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
+install -p -m 0644  ./00-microshift-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-microshift-receivers.yaml
 install -p -m 0644  ./opentelemetry-collector.service %{buildroot}%{_unitdir}/%{name}.service
-install -p -m 0644  ./microshift-opentelemetry-gateway.yaml %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
-install -p -m 0644  ./kustomization.yaml %{buildroot}%{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
 
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
@@ -87,8 +85,7 @@ fi
 %files
 %{_unitdir}/%{name}.service
 %{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
-%{_sysconfdir}/microshift/manifests/opentelemetry-collector/manifest.yaml
-%{_sysconfdir}/microshift/manifests/opentelemetry-collector/kustomization.yaml
+%{_sysconfdir}/opentelemetry-collector/configs/00-microshift-receivers.yaml
 
 %license %{golicenses}
 %doc %{godocs}

@@ -13,4 +13,32 @@ if [ -d "$PATCH_DIR" ]; then
     fi
 fi
 
+wait_for_microshift() {
+    local timeout=300  # seconds
+    local elapsed=0
+    local interval=5
+
+    while ! systemctl is-active --quiet microshift.service; do
+        elapsed=$((elapsed + interval))
+        if [ $elapsed -ge $timeout ]; then
+            echo "Warning: microshift.service is not running."
+            return 1
+        fi
+        echo "Waiting for microshift.service to start up..."
+        sleep $interval
+    done
+    return 0
+}
+
+
+# Set a default IP so that the microshift default config is also valid if
+# microshift is installed but not running.
+export K8S_HOST_IP=127.0.0.1
+# setup microshift default receivers if microshift is installed.
+if systemctl list-units --full -all | grep -Fq "microshift.service"; then
+    if wait_for_microshift; then
+        K8S_HOST_IP=$(oc get svc kubernetes -o jsonpath='{.spec.clusterIP}')
+    fi
+fi
+
 /usr/bin/opentelemetry-collector $CONFIG_OPTIONS
