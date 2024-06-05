@@ -36,8 +36,31 @@ wait_for_microshift() {
 export K8S_HOST_IP=127.0.0.1
 # setup microshift default receivers if microshift is installed.
 if systemctl list-units --full -all | grep -Fq "microshift.service"; then
+    export KUBECONFIG=/var/lib/microshift/resources/kubeadmin/kubeconfig
     if wait_for_microshift; then
-        K8S_HOST_IP=$(oc get svc kubernetes -o jsonpath='{.spec.clusterIP}')
+        K8S_HOST_IP=$(oc get svc kubernetes -n default -o jsonpath='{.spec.clusterIP}')
+        cat <<EOF | oc apply -f -
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: observability
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingest
+  namespace: observability
+spec:
+  selector:
+    app: opentelemetry-collector
+  ports:
+    - protocol: TCP
+      port: 4317
+      targetPort: 54317
+EOF
+        export MICROSHIFT_WORKLOAD_IP=$(oc get svc custom-service -n observability -o jsonpath='{.spec.clusterIP}')
+        echo "Service ingest.observability has been assigned IP: $MICROSHIFT_WORKLOAD_IP"
     fi
 fi
 
