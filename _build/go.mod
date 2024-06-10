@@ -4,9 +4,10 @@ module github.com/os-observability/redhat-opentelemetry-collector
 
 go 1.21.0
 
-toolchain go1.21.8
+toolchain go1.21.1
 
 require (
+	github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.102.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.102.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.102.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.102.0

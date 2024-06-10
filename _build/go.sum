@@ -626,6 +626,8 @@ github.com/onsi/gomega v0.0.0-20170829124025-dcabb60a477c/go.mod h1:C1qb7wdrVGGV
 github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
 github.com/onsi/gomega v1.30.0 h1:hvMK7xYz4D3HapigLTeGdId/NcfQx1VHMJc60ew99+8=
 github.com/onsi/gomega v1.30.0/go.mod h1:9sxs+SwGrKI0+PWe4Fxa9tFQQBG5xSsSbMXOI8PPpoQ=
+github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.102.0 h1:Pe8mD+tVvETjLka2bZteb3Qux+1wfg9gAt8b7Tg4eYI=
+github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.102.0/go.mod h1:4EwWs9G8DRS9k9TIg8yamd6bLeMBRBza2OnmD4ByKGo=
 github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.102.0 h1:h9PLYmJx+Ko8sqz02Vf+z+O8Wx7HaZBkvXt3g0tKG14=
 github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.102.0/go.mod h1:PVQqU0d9bUVYEWOaymAUKNRaeeYizxFWkC9ibijey8c=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.102.0 h1:uWN/MbNH5JMPJBmq9FyjJWNnAFqhUlz1rvHPJxa4p0I=
