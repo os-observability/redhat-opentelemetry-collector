@@ -10,6 +10,7 @@ import (
 	"go.opentelemetry.io/collector/processor"
 	"go.opentelemetry.io/collector/receiver"
 	spanmetricsconnector "github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector"
+	routingconnector "github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector"
 	forwardconnector "go.opentelemetry.io/collector/connector/forwardconnector"
 	debugexporter "go.opentelemetry.io/collector/exporter/debugexporter"
 	loggingexporter "go.opentelemetry.io/collector/exporter/loggingexporter"
@@ -129,6 +130,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Connectors, err = connector.MakeFactoryMap(
 		spanmetricsconnector.NewFactory(),
+		routingconnector.NewFactory(),
 		forwardconnector.NewFactory(),
 	)
 	if err != nil {
