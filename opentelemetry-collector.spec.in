@@ -50,7 +50,6 @@ mkdir -p %{buildroot}%{_unitdir}
 
 # install files
 install -p -m 0644  ./00-default-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
-install -p -m 0644  ./00-microshift-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-microshift-receivers.yaml
 install -p -m 0644  ./opentelemetry-collector.service %{buildroot}%{_unitdir}/%{name}.service
 
 install -m 0755 -vd                     %{buildroot}%{_bindir}
@@ -85,13 +84,15 @@ fi
 %files
 %{_unitdir}/%{name}.service
 %{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
-%{_sysconfdir}/opentelemetry-collector/configs/00-microshift-receivers.yaml
 
 %license %{golicenses}
 %doc %{godocs}
 %{_bindir}/*
 
 %changelog
+* Fri June 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.0
+- move microshift specifics into another rpm
+- bump collector version to 0.102.0
 * Fri Apr 12 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.95.0
 - add observability user that is part of the systemd-journal group
 - add opentelemetry collector config folder (`/etc/opentelemetry-collector/configs`)
