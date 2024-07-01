@@ -13,8 +13,6 @@ files_to_sync:
     - LICENSE
     - opentelemetry-collector-with-options
     - 00-default-receivers.yaml
-    - 00-microshift-receivers.yaml
-    - kustomization.yaml
     - opentelemetry-collector.service ./dist
 # name in upstream package repository or registry (e.g. in PyPI)
 upstream_package_name: red-hat-build-of-opentelemetry-collector
