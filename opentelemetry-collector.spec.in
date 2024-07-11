@@ -90,7 +90,7 @@ fi
 %{_bindir}/*
 
 %changelog
-* Fri June 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
+* Fri Jun 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
 - move microshift specifics into another rpm
 - bump collector version to 0.102.0
 * Fri Apr 12 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.95.0
