@@ -38,7 +38,7 @@ mkdir -p _build/bin
 
 %build
 
-go build -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collector
+go build -ldflags "-s -w" -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collector
 
 %define debug_package %{nil}
 
