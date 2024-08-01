@@ -23,6 +23,7 @@ BuildRequires: systemd
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 BuildRequires: binutils
 BuildRequires: git
+BuildRequires:  policycoreutils, checkpolicy, selinux-policy-devel
 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent
 Requires(postun): /usr/sbin/userdel
@@ -38,6 +39,10 @@ mkdir -p _build/bin
 
 %build
 
+# Compile the SELinux policy module
+checkmodule -M -m -o otel_collector_journald.mod otel_collector_journald.te
+semodule_package -o otel_collector_journald.pp -m otel_collector_journald.mod
+
 go build -ldflags "-s -w" -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/opentelemetry-collector
 
 %define debug_package %{nil}
@@ -49,6 +54,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs
 mkdir -p %{buildroot}%{_unitdir}
 
 # install files
+
+install -m 0644 ./otel_collector_journald.pp %{buildroot}%{_datadir}/selinux/packages/otel_collector_journald.pp
+
 install -p -m 0644  ./00-default-receivers.yaml %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
 install -p -m 0644  ./opentelemetry-collector.service %{buildroot}%{_unitdir}/%{name}.service
 
@@ -64,12 +72,15 @@ install -m 0755 -p ./opentelemetry-collector-with-options %{buildroot}%{_bindir}
 /usr/sbin/userdel observability
 
 %post
+semodule -i %{_datadir}/selinux/packages/otel_collector_journald.pp
+restorecon -v %{_bindir}/opentelemetry-collector
 /bin/systemctl --system daemon-reload 2>&1
 
 %preun
 if [ $1 -eq 0 ]; then
     /bin/systemctl --quiet stop %{name}.service
     /bin/systemctl --quiet disable %{name}.service
+    semodule -r otel_collector_journald
 fi
 
 %posttrans
@@ -84,6 +95,7 @@ fi
 %files
 %{_unitdir}/%{name}.service
 %{_sysconfdir}/opentelemetry-collector/configs/00-default-receivers.yaml
+%{_datadir}/selinux/packages/otel_collector_journald.pp
 
 %license %{golicenses}
 %doc %{godocs}

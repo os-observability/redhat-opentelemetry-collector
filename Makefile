@@ -47,6 +47,7 @@ archive: vendor
 	# NOTE: we copy README and LICENSE into _build, since append does not work on a tar.gz.
 	cp README.md _build
 	cp LICENSE _build
+	cp otel_collector_journald.te _build
 	cp opentelemetry-collector-with-options 00-default-receivers.yaml opentelemetry-collector.service _build
 
 	@echo "Creating a tarball with the source code & dependencies..."
@@ -57,6 +58,11 @@ archive: vendor
 
 	@echo "The archives are available at dist/:"
 	@find dist/*.tar.gz
+
+.PHONY: pkg/selinux
+pkg/selinux:
+	checkmodule -M -m -o otel_collector_journald.mod otel_collector_journald.te
+	semodule_package -o otel_collector_journald.pp -m otel_collector_journald.mod
 
 # Build the collector as RPM.
 .PHONY: rpm/source
