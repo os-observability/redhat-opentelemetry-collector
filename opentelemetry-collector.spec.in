@@ -49,6 +49,7 @@ go build -ldflags "-s -w" -v -buildmode pie -mod vendor -o %{gobuilddir}/bin/ope
 
 %install
 # create expected directory layout
+mkdir -p %{buildroot}%{_datadir}/selinux/packages
 mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector
 mkdir -p %{buildroot}%{_sysconfdir}/opentelemetry-collector/configs
 mkdir -p %{buildroot}%{_unitdir}
