@@ -8,6 +8,7 @@ files_to_sync:
     - opentelemetry-collector.spec.in
     - .packit.yaml
     - Makefile
+    - otel_collector_journald.te
     - _build
     - README.md
     - LICENSE
