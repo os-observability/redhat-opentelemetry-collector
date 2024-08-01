@@ -10,6 +10,8 @@ require {
     class dir { search open };
     class service status;
     class process transition;
+    class tcp_socket { read write connect create getattr setattr };
+    class udp_socket { read write connect create getattr setattr };
 }
 
 # Define the new type for the OpenTelemetry Collector process
@@ -34,4 +36,10 @@ allow otel_collector_t journald_t:service status;
 
 # Allow otel_collector_t to get the status of syslogd
 allow otel_collector_t syslogd_t:service status;
+
+# Allow otel_collector_t to create and use TCP sockets
+allow otel_collector_t self:tcp_socket { read write connect create getattr setattr };
+
+# Allow otel_collector_t to create and use UDP sockets
+allow otel_collector_t self:udp_socket { read write connect create getattr setattr };
 
