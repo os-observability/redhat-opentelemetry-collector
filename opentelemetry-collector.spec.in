@@ -23,7 +23,7 @@ BuildRequires: systemd
 BuildRequires: %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 BuildRequires: binutils
 BuildRequires: git
-BuildRequires:  policycoreutils, checkpolicy, selinux-policy-devel
+BuildRequires: policycoreutils, checkpolicy, selinux-policy-devel
 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent
 Requires(postun): /usr/sbin/userdel
@@ -103,6 +103,10 @@ fi
 %{_bindir}/*
 
 %changelog
+* Thu Aug 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
+- add default SELinux polices
+- Grant access to journal logs
+- Grant access to UDP/TCP network sockets 
 * Fri Jun 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
 - move microshift specifics into another rpm
 - bump collector version to 0.102.0
