@@ -23,6 +23,3 @@ jobs:
 
       - name: Verify
         run: make build
-
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
