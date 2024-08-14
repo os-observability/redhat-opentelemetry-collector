@@ -1,7 +1,7 @@
 GO ?= $(shell which go)
-OTELCOL_VERSION ?= 0.102.1
+OTELCOL_VERSION ?= 0.107.0
 # TODO: Align the ocb version with the collector version as soon as the ubi go 1.21 is supported.
-OCB_VERSION ?= 0.106.1
+OCB_VERSION ?= 0.107.0
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= opentelemetry-collector
@@ -27,7 +27,7 @@ ifeq (, $(shell which ocb >/dev/null 2>/dev/null))
 	[ "$${machine}" != x86_64 ] || machine=amd64 ;\
 	echo "Installing ocb ($${os}/$${machine}) at $(OTELCOL_BUILDER_DIR)";\
 	mkdir -p $(OTELCOL_BUILDER_DIR) ;\
-	curl -sLo $(OTELCOL_BUILDER) "https://github.com/open-telemetry/opentelemetry-collector/releases/download/cmd%2Fbuilder%2Fv$(OCB_VERSION)/ocb_$(OCB_VERSION)_$${os}_$${machine}" ;\
+	curl -sLo $(OTELCOL_BUILDER) "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv$(OCB_VERSION)/ocb_$(OCB_VERSION)_$${os}_$${machine}" ;\
 	chmod +x $(OTELCOL_BUILDER) ;\
 	}
 else
