@@ -1,7 +1,7 @@
 %global goipath         github.com/os-observability/redhat-opentelemetry-collector
 
 Version:                %%VERSION%%
-ExcludeArch:            %{ix86} s390 ppc ppc64 aarch64
+ExcludeArch:            %{ix86} s390 ppc ppc64
 
 %gometa
 

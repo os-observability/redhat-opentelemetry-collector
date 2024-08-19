@@ -41,12 +41,14 @@ jobs:
     targets:
       - fedora-40-x86_64
       - epel-9-x86_64
+      - epel-9-aarch64
 
   - job: tests
     trigger: pull_request
     targets:
       - fedora-40-x86_64
       - epel-9-x86_64
+      - epel-9-aarch64
 
   - job: copr_build
     trigger: commit
@@ -57,6 +59,7 @@ jobs:
     targets:
       - fedora-40-x86_64
       - epel-9-x86_64
+      - epel-9-aarch64
 
   - job: tests
     trigger: commit
@@ -64,3 +67,4 @@ jobs:
     targets:
       - fedora-40-x86_64
       - epel-9-x86_64
+      - epel-9-aarch64
