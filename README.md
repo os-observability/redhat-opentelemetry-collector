@@ -7,6 +7,7 @@ This repository configures a build of the OpenTelemetry Collector with the suppo
 1. Update Makefile and manifest.yaml to select the desired upstream version and component selection for the product release. 
 1. Run `make build`
 1. Create a pull request with the changes, including changes in the `_build` directory.
+1. Update changelog in [RPM spec](./opentelemetry-collector.spec.in)
 
 ## Release
 
