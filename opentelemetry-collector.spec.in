@@ -103,7 +103,9 @@ fi
 %{_bindir}/*
 
 %changelog
-* Thu Aug 28 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
+* Thu Aug 28 2024 Pavol Loffay <ploffay@redhat.com> - 0.107.0
+- Added support for aarch64
+* Mon Aug 5 2024 Benedikt Bongartz <bongartz@redhat.com> - 0.102.1
 - add default SELinux polices
 - Grant access to journal logs
 - Grant access to UDP/TCP network sockets 
