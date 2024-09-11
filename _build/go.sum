@@ -760,6 +760,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsr
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver v0.107.0/go.mod h1:hDYtJDkZC8000mX8pyoh8IL8fN5L24nLOfSTvlJrLO8=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.107.0 h1:yizCOy+1mZH/qspjuTKe39soOHzcvvSqEN06L14/+zQ=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.107.0/go.mod h1:uvit3xGHKcMXk278oJJCzuZo203YPlGg1kHfEt46svs=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver v0.107.0 h1:AKICouznB/3h717BZWmFtUtMddEmJ2l7NxRcsedbwZM=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver v0.107.0/go.mod h1:0TXuzYHWMuoa8sune7fYiR3nuJxLEN1uTRlkGjl4sDk=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.107.0 h1:z0yJXXetEkzUclja/RlH5YlrvnNPAHxVOapl6/OMnnA=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.107.0/go.mod h1:5l8TuILgdmTCNsXBJKeBtZGR5KnNycSFH17SWOx79KA=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.107.0 h1:Qg8lUWdYF7PY2RWotfCu+V1spuk3BHPchLNLyOZh6TM=
