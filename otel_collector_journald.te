@@ -1,11 +1,9 @@
 module otel_collector_journald 1.0;
 
 require {
-    type journalctl_exec_t;
-    type journald_log_t;
-    type journald_t;
+    type journalctl_t;
     type syslogd_t;
-    type usr_bin_t;
+    type usr_t;
     class file { read open execute };
     class dir { search open };
     class service status;
@@ -19,20 +17,20 @@ type otel_collector_t;
 type otel_collector_exec_t;
 
 # Allow the execution of the collector binary with the correct label
-allow usr_bin_t otel_collector_exec_t:file { read execute open };
+allow usr_t otel_collector_exec_t:file { read execute open };
 allow otel_collector_t otel_collector_exec_t:file { read execute open };
 
-# Allow the transition from usr_bin_t to otel_collector_t
-type_transition usr_bin_t otel_collector_exec_t:process otel_collector_t;
+# Allow the transition from usr_t to otel_collector_t
+type_transition usr_t otel_collector_exec_t:process otel_collector_t;
 
 # Allow otel_collector_t to read journald logs
-allow otel_collector_t journald_log_t:file { read open };
+allow otel_collector_t journalctl_t:file { read open };
 
 # Allow otel_collector_t to search and open directories of journald logs
-allow otel_collector_t journald_log_t:dir { search open };
+allow otel_collector_t journalctl_t:dir { search open };
 
 # Allow otel_collector_t to get the status of journald
-allow otel_collector_t journald_t:service status;
+allow otel_collector_t journalctl_t:service status;
 
 # Allow otel_collector_t to get the status of syslogd
 allow otel_collector_t syslogd_t:service status;
@@ -42,4 +40,3 @@ allow otel_collector_t self:tcp_socket { read write connect create getattr setat
 
 # Allow otel_collector_t to create and use UDP sockets
 allow otel_collector_t self:udp_socket { read write connect create getattr setattr };
-
