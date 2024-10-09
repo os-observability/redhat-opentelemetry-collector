@@ -7,6 +7,7 @@ go 1.21.0
 toolchain go1.21.8
 
 require (
+	github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.107.0
