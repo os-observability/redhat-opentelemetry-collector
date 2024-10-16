@@ -638,6 +638,10 @@ github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsc
 github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.107.0/go.mod h1:jrqMHeaEBFtmRKKocfoVrfGjRYWp2+nj9C2aGdEN7xo=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.107.0 h1:cIaYEgd0iJxCX0+VdSpp6i1klpcIL5klAF56HpjfZgM=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.107.0/go.mod h1:dZwzAzfB0a8LaKmjTd3aTTtEZ53+o7Zyh0cLpJmeYKk=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter v0.107.0 h1:IOqkja0zN+wuh45uwUg1jpYmbY7CuWMEF7Fg9uiMAqg=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter v0.107.0/go.mod h1:BXtdUeALBhju91oCsOPGvZpqrVx5tUbaPOXmuqPb0Ts=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.107.0 h1:sIwLXsjZOgNxI3dH8nfng4eS7+XT0VLG4OoQ2YSLwU4=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.107.0/go.mod h1:xHwOHRCITxgdxGbuPWIvHHYYhnEiLOsdUKaGjZEkVq0=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.107.0 h1:IdxmP2WqTCa3yE+/qYPVyfAi7Xo8RIkNcVaZnMEq0xk=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.107.0/go.mod h1:gMY05z3fY6HnL/vNfyVYl3w4eihI8DftosfHuxqEeTg=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v0.107.0 h1:2Gw/AFpVEmKu83zXEDb6KVDdeF2mSfYnBP3o+XPoZJY=
@@ -670,6 +674,10 @@ github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/cwlogs v0
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/cwlogs v0.107.0/go.mod h1:kYO7M0bpKigfvpngR+SXUl8MRSmgpCU/2xHA35ZLBkY=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil v0.107.0 h1:GREBJzOdgSvj3Q6t25MmM/bJ/zBFZXRHx8KBFBUbJkE=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil v0.107.0/go.mod h1:najb8Uga4rB/sJkZ2bqaFc+c0730PWMQgvdHlH89EPo=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics v0.107.0 h1:5AEnjTCxVUNFOsvV7TeI5s685Lf7TSK1UmWz4Ujzgs8=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics v0.107.0/go.mod h1:03Ke711j5xBX8jF0w10SFgFIIiNp2rQTzfgFTw2xIaE=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray v0.107.0 h1:zcr0/T2S9Rd05ZrqRhOeUdxcd49v0gHVt6124w19FyM=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray v0.107.0/go.mod h1:mLdvho16W0CKX8lVgSpPWzOXF81Lz4Ywa5kQXWHm4/o=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.107.0 h1:NKH1JyZbqUSDGbIVqTyGJclmdnp6v4TQYfLhNI4tZno=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.107.0/go.mod h1:xVn35KHNAGc2JlBhv1BhAIB6F0NkHK+rrDUsibaxRW8=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.107.0 h1:O3Oty9DKsilszc7aFb8dm34jCWXaf0la/pWV11LqGUU=
