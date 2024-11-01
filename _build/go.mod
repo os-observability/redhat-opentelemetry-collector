@@ -4,7 +4,7 @@ module github.com/os-observability/redhat-opentelemetry-collector
 
 go 1.21.0
 
-toolchain go1.21.8
+toolchain go1.22.5
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.107.0
@@ -13,6 +13,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.107.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v0.107.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v0.107.0
@@ -374,6 +375,7 @@ require (
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/api v0.29.3 // indirect
