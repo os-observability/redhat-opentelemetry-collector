@@ -1,8 +1,8 @@
 Flag --go has been deprecated, use config distribution::go
-2024-11-01T01:21:55.019-0600	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "(devel)"}
-2024-11-01T01:21:55.020-0600	INFO	internal/command.go:161	Using config file	{"path": "manifest.yaml"}
-2024-11-01T01:21:55.106-0600	INFO	builder/config.go:142	Using go	{"go-executable": "/usr/local/go/bin/go"}
-2024-11-01T01:21:55.110-0600	INFO	builder/main.go:100	Sources created	{"path": "./_build"}
-2024-11-01T01:22:08.587-0600	INFO	builder/main.go:191	Getting go modules
-2024-11-01T01:22:23.243-0600	INFO	builder/main.go:111	Compiling
-2024-11-01T01:22:52.161-0600	INFO	builder/main.go:130	Compiled	{"binary": "./_build/otelcol"}
+2024-11-12T16:52:14.811Z	INFO	internal/command.go:125	OpenTelemetry Collector Builder	{"version": "0.112.0"}
+2024-11-12T16:52:14.812Z	INFO	internal/command.go:161	Using config file	{"path": "manifest.yaml"}
+2024-11-12T16:52:14.880Z	INFO	builder/config.go:142	Using go	{"go-executable": "/usr/bin/go"}
+2024-11-12T16:52:14.882Z	INFO	builder/main.go:101	Sources created	{"path": "./_build"}
+2024-11-12T16:52:36.302Z	INFO	builder/main.go:192	Getting go modules
+2024-11-12T16:52:56.469Z	INFO	builder/main.go:112	Compiling
+2024-11-12T16:54:01.093Z	INFO	builder/main.go:131	Compiled	{"binary": "./_build/otelcol"}
