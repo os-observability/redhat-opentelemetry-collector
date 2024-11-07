@@ -11,9 +11,13 @@ This repository configures a build of the OpenTelemetry Collector with the suppo
 
 ## Release
 
-```
-git tag v0.48.0 && git push origin v0.48.0
-```
+1. Verify the support levels for each component using the [component parser](./component-parser/README.md). Check with the team for those components whose support level has changed.
+    * If a component is not supported anymore and our support level is `Tech Preview`: mention it to the team, add a new entry to the release notes and remove it from the `manifest.yaml` file.
+    * If a component is not supported anymore and our support level is `General Availability`: mention it to the team to decide how to proceed.
+2. Tag the release commit and push the tag to origin:
+    ```
+    git tag v0.48.0 && git push origin v0.48.0
+    ```
 
 ## RPM
 

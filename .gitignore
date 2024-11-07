@@ -6,4 +6,7 @@ opentelemetry-collector.spec
 bin/**
 dist/**
 *.mod
+!component-parser/go.mod
 *.pp
+opentelemetry-collector/
+opentelemetry-collector-contrib/
