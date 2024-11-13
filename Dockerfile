@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal as builder
 
-RUN microdnf -y install which go-toolset make
+RUN microdnf -y install which golang make
 WORKDIR /opt/app-root/src
 COPY . .
 USER root
