@@ -1,7 +1,6 @@
 GO ?= $(shell which go)
-OTELCOL_VERSION ?= 0.107.0
-# TODO: Align the ocb version with the collector version as soon as the ubi go 1.21 is supported.
-OCB_VERSION ?= 0.107.0
+OTELCOL_VERSION ?= 0.112.0
+OCB_VERSION ?= $(OTELCOL_VERSION)
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= opentelemetry-collector
@@ -12,6 +11,10 @@ MAKEFLAGS += --silent
 build: ocb
 	mkdir -p _build
 	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
+
+build-in-podman:
+	podman run -v $$PWD:/app -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
+	  /bin/sh -c "microdnf -y install make which golang git && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
