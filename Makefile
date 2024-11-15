@@ -1,6 +1,6 @@
 GO ?= $(shell which go)
-OTELCOL_VERSION ?= 0.112.0
-OCB_VERSION ?= $(OTELCOL_VERSION)
+OCB_VERSION ?= 0.113.0
+OTELCOL_VERSION = $(OCB_VERSION)
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
 PROJECT ?= opentelemetry-collector
@@ -10,15 +10,15 @@ MAKEFLAGS += --silent
 
 build: ocb
 	mkdir -p _build
-	${OTELCOL_BUILDER} --skip-compilation=false --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
+	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
 build-in-podman:
 	podman run -v $$PWD:/app -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
-	  /bin/sh -c "microdnf -y install make which golang git && make build"
+	  /bin/sh -c "microdnf -y install make which golang && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
-	${OTELCOL_BUILDER} --skip-compilation=true --go ${GO} --config manifest.yaml 2>&1 | tee _build/build.log
+	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=true --config manifest.yaml 2>&1 | tee _build/build.log
 
 ocb:
 ifeq (, $(shell which ocb >/dev/null 2>/dev/null))
