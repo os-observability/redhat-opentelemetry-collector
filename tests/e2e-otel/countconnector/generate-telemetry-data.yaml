@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: generate-traces
+spec:
+  template:
+    spec:
+      containers:
+      - name: telemetrygen
+        image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:v0.112.0
+        args:
+        - traces
+        - --otlp-endpoint=count-collector:4317
+        - --otlp-insecure=true
+        - --traces=5
+        - "--otlp-attributes=telemetrygentype=\"traces\""
+      restartPolicy: Never
+  backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: generate-metrics
+spec:
+  template:
+    spec:
+      containers:
+      - name: telemetrygen
+        image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:v0.112.0
+        args:
+        - metrics
+        - --otlp-endpoint=count-collector:4317
+        - --otlp-insecure=true
+        - --metrics=5
+        - "--otlp-attributes=telemetrygentype=\"metrics\""
+      restartPolicy: Never
+  backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: generate-logs
+spec:
+  template:
+    spec:
+      containers:
+      - name: telemetrygen
+        image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:v0.112.0
+        args:
+        - logs
+        - --otlp-endpoint=count-collector:4317
+        - --otlp-insecure=true
+        - --logs=5
+        - "--otlp-attributes=telemetrygentype=\"logs\""
+      restartPolicy: Never
+  backoffLimit: 4

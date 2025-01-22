@@ -1,0 +1,44 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: countconnector
+spec:
+  steps:
+  - name: Create OTEL collector instance
+    try:
+    - apply:
+        file: otel-collector.yaml
+    - assert:
+        file: assert-otel-collector.yaml
+  - name: Generate telemetry data. Traces, metrics and logs.
+    try:
+    - apply:
+        file: generate-telemetry-data.yaml
+    - assert:
+        file: assert-generate-telemetry-data.yaml
+  - name: Check the metrics from the count connector
+    try:
+    - proxy:
+        apiVersion: v1
+        kind: Service
+        namespace: ($namespace)
+        name: count-collector
+        port: prometheus
+        path: /metrics
+        outputs:
+        - name: metrics
+          value: (x_metrics_decode($stdout))
+    - assert:
+        resource:
+          # Check for log_record_count_total
+          ($metrics[?as_string(metric.__name__) == 'dev_log_count_total'].value): 
+          - 1
+          # Check for metric_count_total
+          ($metrics[?as_string(metric.__name__) == 'metric_count_total'].value):
+          - 1
+          # Check for metric_datapoint_count_total
+          ($metrics[?as_string(metric.__name__) == 'dev_metrics_datapoint_total'].value):
+          - 1
+          # Check for trace_span_count_total
+          ($metrics[?as_string(metric.__name__) == 'dev_span_count_total'].value):
+          - 10

@@ -1,0 +1,53 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: filelog
+spec:
+  steps:
+  - name: step-00
+    try:
+    - command:
+        args:
+        - -n
+        - $NAMESPACE
+        - create
+        - rolebinding
+        - default-view-$NAMESPACE
+        - --role=pod-view
+        - --serviceaccount=$NAMESPACE:ta
+        entrypoint: kubectl
+    - command:
+        args:
+        - annotate
+        - namespace
+        - ${NAMESPACE}
+        - openshift.io/sa.scc.uid-range=1000/1000
+        - --overwrite
+        entrypoint: kubectl
+    - command:
+        args:
+        - annotate
+        - namespace
+        - ${NAMESPACE}
+        - openshift.io/sa.scc.supplemental-groups=3000/1000
+        - --overwrite
+        entrypoint: kubectl
+    - apply:
+        file: 00-otel-filelog.yaml
+    - assert:
+        file: 00-assert.yaml
+  - name: step-01
+    try:
+    - apply:
+        file: 01-app-plaintext-logs.yaml
+    - assert:
+        file: 01-assert.yaml
+  - name: Wait for the metrics, logs to be collected
+    try:
+    - sleep:
+        duration: 60s
+  - name: Check the collected logs
+    try:
+    - script:
+        timeout: 5m
+        content: ./check_logs.sh

@@ -1,0 +1,21 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: journaldreceiver
+spec:
+  steps:
+  - name: step-00
+    try:
+    - apply:
+        file: 00-otel-journaldreceiver.yaml
+    - assert:
+        file: 00-assert.yaml
+  - name: Wait for the journal logs to be collected
+    try:
+    - sleep:
+        duration: 60s
+  - name: step-01
+    try:
+    - script:
+        timeout: 5m
+        content: ./check_logs.sh 

@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: verify-traces
+spec:
+  template:
+    spec:
+      containers:
+      - name: verify-traces-green
+        image: ghcr.io/grafana/tempo-operator/test-utils:main
+        command:
+        - /bin/bash
+        - -eux
+        - -c
+        args:
+        - |
+          TRACE_JSON=$(curl -s -G http://tempo-tprocssr-jaegerui.chainsaw-tprocssr.svc:16686/api/traces --data-urlencode "service=green")
+          VALIDATE=$(echo $TRACE_JSON | jq '
+            .data[] | 
+            select(
+              .spans[] | 
+              (
+                (.operationName == "modified-operation") and 
+                (.tags[] | select(.key == "net.peer.ip" and .value == "5.6.7.8")) and 
+                (.tags[] | select(.key == "peer.service" and .value == "modified-client"))
+              )
+            ) and 
+            (
+              .processes[] | 
+              (
+                (.tags[] | select(.key == "X-Tenant" and .value == "blue"))
+              )
+            )
+          ')
+          if [ -n "$VALIDATE" ]; then
+            echo "Validation passed: The trace values match the transform processor settings."
+          else
+            echo "Validation failed: The trace values do not match the transform processor settings."
+            exit 1
+          fi
+      restartPolicy: Never
