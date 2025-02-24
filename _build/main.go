@@ -20,7 +20,7 @@ func main() {
 	info := component.BuildInfo{
 		Command:     "otelcol",
 		Description: "Red Hat build of OpenTelemetry",
-		Version:     "0.113.0",
+		Version:     "0.118.0",
 	}
 
 	set := otelcol.CollectorSettings{
