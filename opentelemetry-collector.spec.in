@@ -12,7 +12,7 @@ Collector with the supported components for a Red Hat build of OpenTelemetry}
 %global godocs        README.md
 
 Name:           %%PROJECT%%
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Red Hat build of OpenTelemetry
 
 License:        Apache-2.0
@@ -26,6 +26,8 @@ BuildRequires: binutils
 BuildRequires: git
 BuildRequires: policycoreutils, checkpolicy, selinux-policy-devel
 
+Requires(pre): shadow-utils
+Requires(pre): util-linux
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent
 Requires(postun): /usr/sbin/userdel
 
@@ -69,7 +71,9 @@ install -m 0755 -p ./opentelemetry-collector-with-options %{buildroot}%{_bindir}
 /usr/bin/getent passwd observability > /dev/null || /usr/sbin/useradd -r -M -s /sbin/nologin -g observability -G systemd-journal observability
 
 %postun
-/usr/sbin/userdel observability
+if [ $1 -eq 0 ]; then
+    /usr/sbin/userdel observability
+fi
 
 %post
 semodule -i %{_datadir}/selinux/packages/otel_collector_journald.pp
@@ -102,6 +106,10 @@ fi
 %{_bindir}/*
 
 %changelog
+* Mon Mar 03 2025 Conor Cowman <ccowman@redhat.com> - 0.119.0-2
+- Bump revision
+- Add runtime requirements for shadow-utils and util-linux
+- Only delete the observability user on full uninstallation
 * Mon Feb 24 2025 Andreas Gerstmayr <agerstmayr@redhat.com> - 0.119.0-1
 - bump collector version to 0.119.0
 * Thu Nov 14 2024 Andreas Gerstmayr <agerstmayr@redhat.com> - 0.113.0-1
