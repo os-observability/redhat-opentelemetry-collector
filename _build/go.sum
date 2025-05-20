@@ -761,6 +761,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrs
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.119.0/go.mod h1:P+8bUN1QRYjDwn8pwXNO+sUoECFP/m+w2Pud4Gx32VU=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.119.0 h1:ZRMmF+QY+OZSZLNRpv7NN2Ib6JSFi469yexeuEyOq5o=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.119.0/go.mod h1:dOfRjw5J83TvrNhqRDamqCjYSwiow+6f7sX6ZRFVaUE=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor v0.119.0 h1:RnnhBiGDZ5rjtqG1ZrgXg7AU0Hpn+S2NC+tZm4bDsnM=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor v0.119.0/go.mod h1:DbYKTD8jVIjSn5HHqthK1dGZdEeJZNnNJ8dX6jn0VOk=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.119.0 h1:vXZYxWXx3HClhJ2ulPpKAl/Zq/9COzB0A2uQ8u8E88Q=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.119.0/go.mod h1:klTWX28fm8xt5C33gYfALvqFhBZfo4a6I0zvGllVJ6U=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.119.0 h1:6E84Ie5d2aU+pnzuGu612UfvdAfvfBK+darD8RdzM7E=
