@@ -4,7 +4,7 @@ module github.com/os-observability/redhat-opentelemetry-collector
 
 go 1.22.7
 
-toolchain go1.22.8
+toolchain go1.23.8
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.119.0
@@ -31,6 +31,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.119.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.119.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.119.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor v0.119.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.119.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.119.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/routingprocessor v0.119.0
