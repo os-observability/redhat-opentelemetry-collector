@@ -4,7 +4,7 @@ module github.com/os-observability/redhat-opentelemetry-collector
 
 go 1.23.7
 
-toolchain go1.24.0
+toolchain go1.23.9
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.126.0
