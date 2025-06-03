@@ -2,7 +2,7 @@
 
 module github.com/os-observability/redhat-opentelemetry-collector
 
-go 1.23.7
+go 1.23.6
 
 toolchain go1.23.9
 
