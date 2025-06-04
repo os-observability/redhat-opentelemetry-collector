@@ -106,6 +106,8 @@ fi
 %{_bindir}/*
 
 %changelog
+* Tue June 03 2025 Pavol Loffay <ploffay@redhat.com> - 0.127.0
+- Bump collector version to 0.127.0
 * Mon Mar 03 2025 Conor Cowman <ccowman@redhat.com> - 0.119.0-2
 - Bump revision
 - Add runtime requirements for shadow-utils and util-linux
