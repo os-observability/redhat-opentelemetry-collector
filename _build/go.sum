@@ -65,6 +65,8 @@ github.com/Code-Hex/go-generics-cache v1.5.1/go.mod h1:qxcC9kRVrct9rHeiYpFWSoW1v
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.27.0 h1:ErKg/3iS1AKcTkf3yixlZ54f9U1rljCkQyEXWUnIUxc=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.27.0/go.mod h1:yAZHSGnqScoU556rBOVkwLze6WP5N+U11RHuWaGVxwY=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/extension/googleclientauthextension v0.51.0 h1:JuexSDG/0ReNGY79+oSixm1Jvvw8RaPdCgTgaNaRPnE=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/extension/googleclientauthextension v0.51.0/go.mod h1:Re7+md/pstjLoSssSuPDSnijX7m9aqYiqmA1lGECv9Y=
 github.com/IBM/sarama v1.45.1 h1:nY30XqYpqyXOXSNoe2XCgjj9jklGM1Ye94ierUb1jQ0=
 github.com/IBM/sarama v1.45.1/go.mod h1:qifDhA3VWSrQ1TjSMyxDl3nYL3oX2C83u+G6L79sq4w=
 github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=
@@ -694,6 +696,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding v0.
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding v0.127.0/go.mod h1:PcZ2+7jJkl7J0k9xVFaVFdw4+0xK30ZXxHPu990uOIM=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension v0.127.0 h1:uOK6WT8/vqPYLNkdRM4ywTKDYfXe+BK9tZMNGNs7Lq8=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension v0.127.0/go.mod h1:PuBIKJHNhHfyrBojM0q9OJDoUB2pA7cb2ytVYd3jLvA=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/googleclientauthextension v0.127.0 h1:v6mukMjUbGnUFUAzxkvS5sQtC7XydFw7d+ZYDTagL/I=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/googleclientauthextension v0.127.0/go.mod h1:EHy/ZC+Y0ioSNNX9+v4h4Ih08qFGteyzYlQMzzEI+M0=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.127.0 h1:jZ1jm12S1KZ28lI9mqWbqnAnTVVBoBOcDGTmgrTQJ08=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.127.0/go.mod h1:muh17dM7w489SrmFc6n42wWA+wWvTLV1BlE92xUY150=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling v0.127.0 h1:sHgg4Bh5zXQS6TJ15lzXdN/8lbSotaC3tQKNzJQyoVo=
@@ -794,6 +798,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrs
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.127.0/go.mod h1:AeYPyu/QbAFnbJ+lqBJ/ON5nRyldfJiawKv50HxmZys=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.127.0 h1:9OmEWY9yB2+wlVcD/yQX1rYx7/cM7Dz3jzYOOFyZCA8=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.127.0/go.mod h1:rwTDGAR1cCCl0JEDplQQTfvnppgg5jfxC+CKby9rTew=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor v0.127.0 h1:b2QbPkflT/z9bXv+cldaoZAxrLNnVr00ioDQRuF3Yj4=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor v0.127.0/go.mod h1:rzSZfqynGPfjqhIhp8jWhwFD/07UovSZ1CfcyfsIks8=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.127.0 h1:atz8c8zHtUxwpH0jINTYyWtLjHLK/U0cVUvi5gSng9s=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.127.0/go.mod h1:7KZWOal//vb6E65dbebWR80bmioR2MI/M1B7uRmZKy8=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.127.0 h1:hEkxkds7W8hntvJ25dKKAFTgG7bslG3AusIrAQlk3zk=
