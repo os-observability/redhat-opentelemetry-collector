@@ -45,6 +45,7 @@ import (
 	resourcedetectionprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor"
 	filterprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor"
 	routingprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/routingprocessor"
+	probabilisticsamplerprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor"
 	cumulativetodeltaprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor"
 	metricstarttimeprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor"
 	groupbyattrsprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor"
@@ -173,6 +174,7 @@ func components() (otelcol.Factories, error) {
 		resourcedetectionprocessor.NewFactory(),
 		filterprocessor.NewFactory(),
 		routingprocessor.NewFactory(),
+		probabilisticsamplerprocessor.NewFactory(),
 		cumulativetodeltaprocessor.NewFactory(),
 		metricstarttimeprocessor.NewFactory(),
 		groupbyattrsprocessor.NewFactory(),
@@ -192,6 +194,7 @@ func components() (otelcol.Factories, error) {
 	factories.ProcessorModules[resourcedetectionprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.127.0"
 	factories.ProcessorModules[filterprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.127.0"
 	factories.ProcessorModules[routingprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/routingprocessor v0.127.0"
+	factories.ProcessorModules[probabilisticsamplerprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.127.0"
 	factories.ProcessorModules[cumulativetodeltaprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v0.127.0"
 	factories.ProcessorModules[metricstarttimeprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor v0.127.0"
 	factories.ProcessorModules[groupbyattrsprocessor.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.127.0"
