@@ -19,5 +19,7 @@ metadata:
     sidecar.opentelemetry.io/inject: "true"
   labels:
     run: otel-logtest-plaintext
+spec:
+  automountServiceAccountToken: false
 status:
   phase: Running

@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # This script checks the OpenTelemetry collector pod for the presence of Logs.
 

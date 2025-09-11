@@ -83,6 +83,9 @@ spec:
           terminationMessagePolicy: File
           securityContext:
             runAsNonRoot: true
+            capabilities:
+              drop:
+                - NET_RAW
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
