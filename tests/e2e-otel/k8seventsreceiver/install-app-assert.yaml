@@ -1,7 +1,0 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: hotrod
-  namespace: chainsaw-k8seventsreceiver 
-status:
-  readyReplicas: 1

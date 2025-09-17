@@ -33,3 +33,7 @@ make clean packit/rpm/mock
 dnf copr enable frzifus/redhat-opentelemetry-collector-main 
 dnf install -y opentelemetry-collector
 ```
+
+## Tests
+
+The end-to-end tests are located at [openshift/distributed-tracing-qe/tests/e2e-otel](https://github.com/openshift/distributed-tracing-qe/tree/main/tests/e2e-otel).
