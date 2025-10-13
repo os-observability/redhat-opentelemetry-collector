@@ -763,6 +763,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfiler
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver v0.135.0/go.mod h1:PNLqvC0NjUaO0KXsifuxqILWnUuhewZQAyOrdOtYn3c=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.135.0 h1:HBNPVpCIYEMbypyNAAQPM/0j5UTqk94f+0Bi145oZNo=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.135.0/go.mod h1:M89Ila5LSmmui0R/tHO5SA/04eYyPkXOhyS3qNHcTE8=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusremotewritereceiver v0.135.0 h1:M4j8YXE+g0u+1DCSkQOfGwA0HKOXQyqH8q+FzFDOE9I=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusremotewritereceiver v0.135.0/go.mod h1:Wf7iVbTgUlrWMlhHB7S6sAkNPk9i+5UTP3J/ED5MxiM=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.135.0 h1:s92RbFmizrSr7Ywdp3d5ZxJrPNZMzASRRRcIrEdJpWg=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.135.0/go.mod h1:4PwLMZv5bDEloRdRpp1t6ejvNGTsv7X/vdYnqiwhNT0=
 github.com/opencontainers/go-digest v1.0.0 h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
