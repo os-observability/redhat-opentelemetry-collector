@@ -29,6 +29,7 @@ BuildRequires: policycoreutils, checkpolicy, selinux-policy-devel
 Requires(pre): shadow-utils
 Requires(pre): util-linux
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent
+Requires(pre): group(systemd-journal)
 Requires(postun): /usr/sbin/userdel
 
 %description
@@ -106,6 +107,8 @@ fi
 %{_bindir}/*
 
 %changelog
+* Thu Oct 16 2025 Kseniia Nivnia <knivnia@redhat.com> - 0.135.0-2
+- Add systemd-journal group to Requires(pre)
 * Tue Sept 17 2025 Pavol Loffay <ploffay@redhat.com> - 0.135.0
 - Bump collector version to 0.135.0
 * Tue June 03 2025 Pavol Loffay <ploffay@redhat.com> - 0.127.0
