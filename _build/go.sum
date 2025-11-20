@@ -1045,8 +1045,8 @@ go.opentelemetry.io/collector/extension/extensionmiddleware/extensionmiddlewaret
 go.opentelemetry.io/collector/extension/extensionmiddleware/extensionmiddlewaretest v0.140.0/go.mod h1:LZvOvHxC9zLkN9kCDMCn0uQrYYR3g3NwPvGTfr4es5k=
 go.opentelemetry.io/collector/extension/extensiontest v0.140.0 h1:a4ggfsp73GA9oGCxBtmQJE827SRq36E+YQIZ0MGIKVQ=
 go.opentelemetry.io/collector/extension/extensiontest v0.140.0/go.mod h1:TKR1zB0CtJ3tedNyUUaeCw5O2qPlFNjHKmh2ri53uTU=
-go.opentelemetry.io/collector/extension/memorylimiterextension v0.135.0 h1:ElMKyM6deYTda5aKiU/gK+MTeYCW9PMS2Ls/LKrIBjo=
-go.opentelemetry.io/collector/extension/memorylimiterextension v0.135.0/go.mod h1:c7voC31Vci1sC5CHSlG8Mio8Osit5lXdck9fbV/0I4U=
+go.opentelemetry.io/collector/extension/memorylimiterextension v0.140.0 h1:AxNlLcGuXeXBgRsoFl0RWFqK35EJ6tf5b3R7X04lMpU=
+go.opentelemetry.io/collector/extension/memorylimiterextension v0.140.0/go.mod h1:YZUFIGDrwFvgDdPUMZ86QEkuyg+8hPWrLnmaws1hiSA=
 go.opentelemetry.io/collector/extension/xextension v0.140.0 h1:LnqY52+vPcrp9Sj5wNbtm4FwultDBFuovPGf2Dnzltc=
 go.opentelemetry.io/collector/extension/xextension v0.140.0/go.mod h1:avzOyx3eIOr/AYcfsaBF9iMZVJnnp/UsdtJUNemYgcs=
 go.opentelemetry.io/collector/extension/zpagesextension v0.140.0 h1:njb8gYyNrskWf0+LlyVGKdKRwtPA2y3a84RFOdlP8cE=
