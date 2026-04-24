@@ -775,8 +775,8 @@ github.com/ovh/go-ovh v1.9.0/go.mod h1:cTVDnl94z4tl8pP1uZ/8jlVxntjSIf09bNcQ5TJSC
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pascaldekloe/goe v0.1.0 h1:cBOtyMzM9HTpWjXfbbunk26uA6nG3a8n06Wieeh0MwY=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
-github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema v0.0.0-20260424094833-e033d55a867d h1:5a/rN2mhxYG5M9TiOU3SLrWpp0Smg5lJPm+ak4ICqbg=
-github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema v0.0.0-20260424094833-e033d55a867d/go.mod h1:FTHxvh8Jh6qrDqDKyeGAQJnJ2JjksfJh63MQAYQ6Rog=
+github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema v0.0.0-20260424101843-9cdb5cda9273 h1:HD7hs4guQWdoyvp9Sa4+Sk0R0TevF5Ig1jPOmVs4/qY=
+github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema v0.0.0-20260424101843-9cdb5cda9273/go.mod h1:FTHxvh8Jh6qrDqDKyeGAQJnJ2JjksfJh63MQAYQ6Rog=
 github.com/pborman/getopt v0.0.0-20170112200414-7148bc3a4c30/go.mod h1:85jBQOZwpVEaDAr341tbn15RS4fCAsIst0qp7i8ex1o=
 github.com/pierrec/lz4/v4 v4.1.15/go.mod h1:gZWDp/Ze/IJXGXf23ltt2EXimqmTUXEy0GFuRQyBid4=
 github.com/pierrec/lz4/v4 v4.1.23 h1:oJE7T90aYBGtFNrI8+KbETnPymobAhzRrR8Mu8n1yfU=
