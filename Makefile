@@ -92,6 +92,13 @@ packit/srpm:
 packit/rpm/mock:
 	packit build in-mock
 
+.PHONY: generate-schemas
+generate-schemas: vendor
+	@echo "Adding collectorschema dependency..."
+	cd _build && $(GO) get github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema@latest && $(GO) mod vendor
+	@echo "Generating YAML schemas for version $(OTELCOL_VERSION)..."
+	cd _build && COLLECTOR_VERSION=$(OTELCOL_VERSION) $(GO) test -run TestGenerateSchemas -v
+
 .PHONY: clean
 clean:
 	rm -rf ./dist ./_build/vendor ./bin

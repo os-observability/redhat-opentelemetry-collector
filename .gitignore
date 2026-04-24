@@ -1,4 +1,5 @@
 _build/otelcol
+_build/redhat-opentelemetry-collector
 _build/vendor/**
 _build/LICENSE
 _build/README.md
