@@ -7,4 +7,5 @@ opentelemetry-collector.spec
 bin/**
 dist/**
 *.mod
+!**/go.mod
 *.pp
