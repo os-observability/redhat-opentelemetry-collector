@@ -1,7 +1,7 @@
-2026-06-02T18:23:47.185+0200	INFO	internal/command.go:97	OpenTelemetry Collector Builder	{"version": "v0.152.0+dirty"}
-2026-06-02T18:23:47.185+0200	INFO	internal/command.go:102	Using config file	{"path": "manifest.yaml"}
-2026-06-02T18:23:47.187+0200	INFO	builder/config.go:165	Using go	{"go-executable": "/usr/lib/golang/bin/go"}
-2026-06-02T18:23:47.190+0200	INFO	builder/main.go:107	Sources created	{"path": "./_build"}
-2026-06-02T18:23:48.173+0200	INFO	builder/main.go:226	Getting go modules
-2026-06-02T18:23:48.300+0200	INFO	builder/main.go:118	Compiling
-2026-06-02T18:28:34.732+0200	INFO	builder/main.go:150	Compiled	{"binary": "./_build/otelcol"}
+2026-06-11T10:56:28.741Z	INFO	internal/command.go:97	OpenTelemetry Collector Builder	{"version": "v0.152.1+dirty"}
+2026-06-11T10:56:28.741Z	INFO	internal/command.go:102	Using config file	{"path": "manifest.yaml"}
+2026-06-11T10:56:28.744Z	INFO	builder/config.go:165	Using go	{"go-executable": "/usr/bin/go"}
+2026-06-11T10:56:28.750Z	INFO	builder/main.go:107	Sources created	{"path": "./_build"}
+2026-06-11T10:57:17.318Z	INFO	builder/main.go:226	Getting go modules
+2026-06-11T10:57:28.275Z	INFO	builder/main.go:118	Compiling
+2026-06-11T11:03:19.390Z	INFO	builder/main.go:150	Compiled	{"binary": "./_build/otelcol"}

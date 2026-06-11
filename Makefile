@@ -1,5 +1,5 @@
 GO ?= $(shell which go)
-OCB_VERSION ?= 0.152.0
+OCB_VERSION ?= 0.152.1
 OTELCOL_VERSION = $(OCB_VERSION)
 OTELCOL_BUILDER_DIR ?= ${PWD}/bin
 OTELCOL_BUILDER ?= ${OTELCOL_BUILDER_DIR}/ocb
@@ -13,8 +13,8 @@ build: ocb
 	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
 build-in-podman:
-	podman run -v $$PWD:/app -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
-	  /bin/sh -c "microdnf -y install make which golang && make build"
+	podman run -v "$$PWD:/app:z" -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
+	  /bin/sh -c "microdnf -y install make which golang git && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
