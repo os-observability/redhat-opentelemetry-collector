@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema/schemagen"
+	"github.com/pavolloffay/opentelemetry-mcp-server/modules/schemagen"
 )
 
 func TestGenerateSchemas(t *testing.T) {

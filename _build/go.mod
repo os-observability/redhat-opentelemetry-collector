@@ -50,7 +50,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.152.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusremotewritereceiver v0.152.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.152.0
-	github.com/pavolloffay/opentelemetry-mcp-server/modules/collectorschema v0.0.0-20260520093054-4540dfe82192
+	github.com/pavolloffay/opentelemetry-mcp-server/modules/schemagen v0.0.0-20260710080957-f5fc4cb72441
 	go.opentelemetry.io/collector/component v1.58.0
 	go.opentelemetry.io/collector/confmap v1.58.0
 	go.opentelemetry.io/collector/confmap/provider/envprovider v1.58.0
