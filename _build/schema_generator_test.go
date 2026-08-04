@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pavolloffay/opentelemetry-mcp-server/modules/schemagen"
+	"github.com/pavolloffay/opentelemetry-mcp-server/modules/schemagen/generator"
 )
 
 func TestGenerateSchemas(t *testing.T) {
@@ -18,13 +18,13 @@ func TestGenerateSchemas(t *testing.T) {
 		t.Fatalf("Failed to get components: %v", err)
 	}
 
-	generator := schemagen.NewCollectorSchemaGenerator(schemaOutputDir, "vendor")
+	gen := generator.NewCollectorSchemaGenerator(schemaOutputDir, "vendor")
 
-	if err := generator.GenerateFromFactories(factories); err != nil {
+	if err := gen.GenerateFromFactories(factories); err != nil {
 		t.Fatalf("Failed to generate schemas: %v", err)
 	}
 
-	if err := generator.CopyReadmeFiles(factories); err != nil {
+	if err := gen.CopyReadmeFiles(factories); err != nil {
 		t.Fatalf("Failed to copy README files: %v", err)
 	}
 
