@@ -8,7 +8,7 @@ RPM_BUILDER ?= fedpkg
 RELEASE ?= epel7
 MAKEFLAGS += --silent
 
-build: ocb
+build: ocb ensure-obi
 	mkdir -p _build
 	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
@@ -37,9 +37,18 @@ else
 OTELCOL_BUILDER=$(shell which ocb)
 endif
 
+OBI_VERSION ?= v0.10.0
+OBI_REPO ?= https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation.git
+OBI_DIR ?= ../opentelemetry-ebpf-instrumentation
+
+.PHONY: ensure-obi
+ensure-obi:
+	@test -d $(OBI_DIR) || \
+		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR)
+
 # Download all dependencies to the vendor directory.
 .PHONY: vendor
-vendor:
+vendor: ensure-obi
 	@echo "Downloading dependencies of the custom collector..."
 	cd ./_build && GOPROXY='https://proxy.golang.org,direct' $(GO) mod tidy && $(GO) mod vendor
 
