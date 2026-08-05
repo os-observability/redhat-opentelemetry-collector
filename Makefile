@@ -46,9 +46,14 @@ ensure-obi:
 	@test -d $(OBI_DIR) || \
 		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR)
 
+.PHONY: generate-obi
+generate-obi: ensure-obi
+	@echo "Generating OBI eBPF artifacts..."
+	$(MAKE) -C $(OBI_DIR) generate
+
 # Download all dependencies to the vendor directory.
 .PHONY: vendor
-vendor: ensure-obi
+vendor: generate-obi
 	@echo "Downloading dependencies of the custom collector..."
 	cd ./_build && GOPROXY='https://proxy.golang.org,direct' $(GO) mod tidy && $(GO) mod vendor
 
