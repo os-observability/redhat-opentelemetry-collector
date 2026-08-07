@@ -8,13 +8,13 @@ RPM_BUILDER ?= fedpkg
 RELEASE ?= epel7
 MAKEFLAGS += --silent
 
-build: ocb ensure-obi
+build: ocb generate-obi
 	mkdir -p _build
 	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
 build-in-podman:
 	podman run -v "$$PWD:/app:z" -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
-	  /bin/sh -c "microdnf -y install make which golang git && make build"
+	  /bin/sh -c "microdnf -y install make which golang git clang llvm && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
