@@ -45,6 +45,7 @@ extensions:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/googleclientauthextension v0.158.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension v0.158.0
 processors:
   - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.158.0
   - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.158.0
@@ -60,6 +61,7 @@ processors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.158.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v0.158.0
 connectors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.158.0
