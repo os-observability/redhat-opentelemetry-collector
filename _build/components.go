@@ -67,6 +67,7 @@ import (
 	k8sclusterreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver"
 	k8sobjectsreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sobjectsreceiver"
 	otlpjsonfilereceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver"
+	collector "go.opentelemetry.io/obi/collector"
 )
 
 type aliasProvider interface{ DeprecatedAlias() component.Type }
@@ -134,6 +135,7 @@ func components() (otelcol.Factories, error) {
 		k8sclusterreceiver.NewFactory(),
 		k8sobjectsreceiver.NewFactory(),
 		otlpjsonfilereceiver.NewFactory(),
+		collector.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
@@ -153,6 +155,7 @@ func components() (otelcol.Factories, error) {
 		k8sclusterreceiver.NewFactory().Type(): "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver v0.158.0",
 		k8sobjectsreceiver.NewFactory().Type(): "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sobjectsreceiver v0.158.0",
 		otlpjsonfilereceiver.NewFactory().Type(): "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver v0.158.0",
+		collector.NewFactory().Type(): "go.opentelemetry.io/obi v0.10.0",
 	})
 
 	factories.Exporters, err = otelcol.MakeFactoryMap[exporter.Factory](
