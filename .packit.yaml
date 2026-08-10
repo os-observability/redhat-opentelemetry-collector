@@ -24,6 +24,8 @@ srpm_build_deps:
   - make
   - golang
   - git
+  - clang
+  - llvm
 
 actions:
   post-upstream-clone:

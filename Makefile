@@ -8,13 +8,13 @@ RPM_BUILDER ?= fedpkg
 RELEASE ?= epel7
 MAKEFLAGS += --silent
 
-build: ocb
+build: ocb generate-obi
 	mkdir -p _build
 	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
 build-in-podman:
 	podman run -v "$$PWD:/app:z" -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
-	  /bin/sh -c "microdnf -y install make which golang git && make build"
+	  /bin/sh -c "microdnf -y install make which golang git clang llvm && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
@@ -37,9 +37,30 @@ else
 OTELCOL_BUILDER=$(shell which ocb)
 endif
 
+OBI_VERSION := $(shell awk '/- gomod: go\.opentelemetry\.io\/obi / {print $$NF; exit}' manifest.yaml)
+OBI_REPO ?= https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation.git
+OBI_DIR ?= .obi-src
+
+.PHONY: ensure-obi
+ensure-obi:
+	@if [ ! -d $(OBI_DIR) ]; then \
+		echo "Cloning OBI $(OBI_VERSION) into $(OBI_DIR)..."; \
+		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR); \
+	elif [ ! -f $(OBI_DIR)/.obi-$(OBI_VERSION) ]; then \
+		echo "OBI version changed to $(OBI_VERSION); re-cloning..."; \
+		rm -rf $(OBI_DIR); \
+		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR); \
+	fi
+	@touch $(OBI_DIR)/.obi-$(OBI_VERSION)
+
+.PHONY: generate-obi
+generate-obi: ensure-obi
+	@echo "Generating OBI eBPF artifacts..."
+	$(MAKE) -C $(OBI_DIR) generate
+
 # Download all dependencies to the vendor directory.
 .PHONY: vendor
-vendor:
+vendor: generate-obi
 	@echo "Downloading dependencies of the custom collector..."
 	cd ./_build && GOPROXY='https://proxy.golang.org,direct' $(GO) mod tidy && $(GO) mod vendor
 
