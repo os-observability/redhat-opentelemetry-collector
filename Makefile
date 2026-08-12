@@ -41,12 +41,8 @@ OBI_DIR ?= .obi-src
 
 .PHONY: ensure-obi
 ensure-obi:
-	@if [ -f $(OBI_DIR)/go.mod ]; then \
-		echo "OBI source already present at $(OBI_DIR)"; \
-	else \
-		echo "Initialising OBI submodule at $(OBI_DIR)..."; \
-		git submodule update --init --depth 1 $(OBI_DIR); \
-	fi
+	@echo "Ensuring OBI submodule at $(OBI_DIR)..."
+	git submodule update --init --depth 1 $(OBI_DIR)
 
 .PHONY: generate-obi
 generate-obi: ensure-obi
