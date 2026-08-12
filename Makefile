@@ -37,21 +37,12 @@ else
 OTELCOL_BUILDER=$(shell which ocb)
 endif
 
-OBI_VERSION := $(shell awk '/- gomod: go\.opentelemetry\.io\/obi / {print $$NF; exit}' manifest.yaml)
-OBI_REPO ?= https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation.git
 OBI_DIR ?= .obi-src
 
 .PHONY: ensure-obi
 ensure-obi:
-	@if [ ! -d $(OBI_DIR) ]; then \
-		echo "Cloning OBI $(OBI_VERSION) into $(OBI_DIR)..."; \
-		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR); \
-	elif [ ! -f $(OBI_DIR)/.obi-$(OBI_VERSION) ]; then \
-		echo "OBI version changed to $(OBI_VERSION); re-cloning..."; \
-		rm -rf $(OBI_DIR); \
-		git clone --depth 1 --branch $(OBI_VERSION) $(OBI_REPO) $(OBI_DIR); \
-	fi
-	@touch $(OBI_DIR)/.obi-$(OBI_VERSION)
+	@echo "Ensuring OBI submodule at $(OBI_DIR)..."
+	git submodule update --init --depth 1 $(OBI_DIR)
 
 .PHONY: generate-obi
 generate-obi: ensure-obi
