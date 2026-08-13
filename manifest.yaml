@@ -20,6 +20,8 @@ receivers:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sobjectsreceiver v0.158.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver v0.158.0
+  - gomod: go.opentelemetry.io/obi v0.10.0
+    import: go.opentelemetry.io/obi/collector
 
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.158.0
@@ -74,3 +76,5 @@ providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.64.0
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.64.0
   - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.64.0
+replaces:
+  - go.opentelemetry.io/obi => ../.obi-src

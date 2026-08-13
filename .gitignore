@@ -6,6 +6,7 @@ _build/README.md
 opentelemetry-collector.spec
 bin/**
 dist/**
+
 *.mod
 !**/go.mod
 *.pp

@@ -8,13 +8,13 @@ RPM_BUILDER ?= fedpkg
 RELEASE ?= epel7
 MAKEFLAGS += --silent
 
-build: ocb
+build: ocb generate-obi
 	mkdir -p _build
 	DIST_GO=${GO} ${OTELCOL_BUILDER} --skip-compilation=false --config manifest.yaml 2>&1 | tee _build/build.log
 
 build-in-podman:
 	podman run -v "$$PWD:/app:z" -w /app --security-opt label=disable registry.access.redhat.com/ubi9/ubi-minimal \
-	  /bin/sh -c "microdnf -y install make which golang git && make build"
+	  /bin/sh -c "microdnf -y install make which golang git clang llvm && make build"
 
 generate-sources: ocb
 	@mkdir -p _build
@@ -37,9 +37,21 @@ else
 OTELCOL_BUILDER=$(shell which ocb)
 endif
 
+OBI_DIR ?= .obi-src
+
+.PHONY: ensure-obi
+ensure-obi:
+	@echo "Ensuring OBI submodule at $(OBI_DIR)..."
+	git submodule update --init --depth 1 $(OBI_DIR)
+
+.PHONY: generate-obi
+generate-obi: ensure-obi
+	@echo "Generating OBI eBPF artifacts..."
+	$(MAKE) -C $(OBI_DIR) generate
+
 # Download all dependencies to the vendor directory.
 .PHONY: vendor
-vendor:
+vendor: generate-obi
 	@echo "Downloading dependencies of the custom collector..."
 	cd ./_build && GOPROXY='https://proxy.golang.org,direct' $(GO) mod tidy && $(GO) mod vendor
 

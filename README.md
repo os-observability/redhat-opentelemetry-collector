@@ -9,6 +9,33 @@ This repository configures a build of the OpenTelemetry Collector with the suppo
 1. Update changelog in [RPM spec](./opentelemetry-collector.spec.in)
 1. Create a pull request with the changes, including changes in the `_build` directory.
 
+## Update OBI version
+
+The OpenTelemetry eBPF Instrumentation (OBI) receiver is pinned in two places
+that must be kept in sync:
+
+- **`manifest.yaml`** declares the module version, e.g. `go.opentelemetry.io/obi v0.10.0`.
+- **`.obi-src`** is a git submodule (see [`.gitmodules`](./.gitmodules)) pinned to a
+  specific commit. A `replace` directive in `manifest.yaml`
+  (`go.opentelemetry.io/obi => ../.obi-src`) redirects the module to this local
+  checkout, so the submodule commit is what actually gets built. The eBPF
+  artifacts are generated from it by `make generate-obi`.
+
+To bump to a new OBI release (e.g. `v0.11.0`):
+
+1. Move the submodule to the matching upstream tag or commit:
+   ```
+   git -C .obi-src fetch --tags
+   git -C .obi-src checkout v0.11.0
+   git add .obi-src
+   ```
+1. Update the module version string in [`manifest.yaml`](./manifest.yaml) to match
+   (`go.opentelemetry.io/obi v0.11.0`).
+1. Run `make build generate-schemas` or `make build-in-podman`. This regenerates the
+   OBI eBPF artifacts and the contents of the `_build` directory.
+1. Create a pull request with the changes, including the updated submodule pointer,
+   `manifest.yaml`, and the `_build` directory.
+
 ## Release
 
 ```
