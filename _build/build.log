@@ -1,7 +1,6 @@
-2026-08-10T10:38:45.137+0100	INFO	internal/command.go:97	OpenTelemetry Collector Builder	{"version": "v0.158.0+dirty"}
-2026-08-10T10:38:45.138+0100	INFO	internal/command.go:102	Using config file	{"path": "manifest.yaml"}
-2026-08-10T10:38:45.139+0100	INFO	builder/config.go:165	Using go	{"go-executable": "/usr/bin/go"}
-2026-08-10T10:38:45.142+0100	INFO	builder/main.go:110	Sources created	{"path": "./_build"}
-2026-08-10T10:38:45.940+0100	INFO	builder/main.go:231	Getting go modules
-2026-08-10T10:38:46.084+0100	INFO	builder/main.go:121	Compiling
-2026-08-10T10:39:02.247+0100	INFO	builder/main.go:153	Compiled	{"binary": "./_build/otelcol"}
+2026-08-19T14:17:02.071+0200	INFO	internal/command.go:97	OpenTelemetry Collector Builder	{"version": "v0.158.0+dirty"}
+2026-08-19T14:17:02.071+0200	INFO	internal/command.go:102	Using config file	{"path": "manifest.yaml"}
+2026-08-19T14:17:02.075+0200	INFO	builder/config.go:165	Using go	{"go-executable": "/usr/lib/golang/bin/go"}
+2026-08-19T14:17:02.085+0200	INFO	builder/main.go:110	Sources created	{"path": "./_build"}
+2026-08-19T14:17:12.981+0200	INFO	builder/main.go:231	Getting go modules
+2026-08-19T14:17:14.180+0200	INFO	builder/main.go:117	Generating source codes only, the distribution will not be compiled.
