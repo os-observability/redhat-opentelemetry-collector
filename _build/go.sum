@@ -252,6 +252,8 @@ github.com/evanphx/json-patch/v5 v5.9.11 h1:/8HVnzMq13/3x9TPvjG08wUGqBTmZBsCWzjT
 github.com/evanphx/json-patch/v5 v5.9.11/go.mod h1:3j+LviiESTElxA4p3EMKAB9HXj3/XEtnUf6OZxqIQTM=
 github.com/expr-lang/expr v1.17.8 h1:W1loDTT+0PQf5YteHSTpju2qfUfNoBt4yw9+wOEU9VM=
 github.com/expr-lang/expr v1.17.8/go.mod h1:8/vRC7+7HBzESEqt5kKpYXxrxkr31SaO8r40VO/1IT4=
+github.com/facebook/time v0.0.0-20240510113249-fa89cc575891 h1:x6T9k2Jw0IPzSdM2i4tVWmnJ3KJ1fEKwWJ++IzDvPDU=
+github.com/facebook/time v0.0.0-20240510113249-fa89cc575891/go.mod h1:2UFAomOuD2vAK1x68czUtCVjAqmyWCEnAXOlmGqf+G0=
 github.com/facette/natsort v0.0.0-20181210072756-2cd4dd1e2dcb h1:IT4JYU7k4ikYg1SCxNI1/Tieq/NFvh6dzLdgi7eu0tM=
 github.com/facette/natsort v0.0.0-20181210072756-2cd4dd1e2dcb/go.mod h1:bH6Xx7IW64qjjJq8M2u4dxNaBiDfKK+z/3eGDpXEQhc=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
@@ -530,6 +532,7 @@ github.com/josharian/native v1.1.0 h1:uuaP0hAbW7Y4l0ZRQ6C9zfb7Mg1mbFKry/xzDAfmtL
 github.com/josharian/native v1.1.0/go.mod h1:7X/raswPFr05uY3HiLlYeyQntB6OO7E/d2Cu7qoaN2w=
 github.com/jpillora/backoff v1.0.0 h1:uvFg412JmmHBHw7iwprIxkPMI+sGQ4kzOWsMeHnm2EA=
 github.com/jpillora/backoff v1.0.0/go.mod h1:J/6gKK9jxlEcS3zixgDgUAsiuZ7yrSoa/FX5e0EB2j4=
+github.com/jsimonetti/rtnetlink v1.2.0 h1:KlwYLoRXgirTFbh1aVI6MJ7i+R/zJr+JkyhlIW1X3z4=
 github.com/jsimonetti/rtnetlink/v2 v2.0.1 h1:xda7qaHDSVOsADNouv7ukSuicKZO7GgVUCXxpaIEIlM=
 github.com/jsimonetti/rtnetlink/v2 v2.0.1/go.mod h1:7MoNYNbb3UaDHtF8udiJo/RH6VsTKP1pqKLUTVCvToE=
 github.com/json-iterator/go v1.1.6/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
@@ -822,6 +825,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsampling
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.158.0/go.mod h1:S41TAW2PqMwMEEjYN/LfuB7oLCDr8KuMiDp2A2xeFmA=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.158.0 h1:kaQITIrqQC6HZxCoFxUo85wT2dxTQMhrS5xIqFz3wHc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.158.0/go.mod h1:EJk1vwQku4XBzN0i0n6M8vMHDbTdSj/CcbnCZqp86sc=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver v0.158.0 h1:IEP0fDKT+D4G22MABEJuvw7A80+JA0236jQrheLpv3s=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver v0.158.0/go.mod h1:LLY244jPzOTKn4MPStbhg83Z1arPSgo5559d40HGr48=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.158.0 h1:H0XJMBO0YrcLGMW2wGh7E5f9SejguLxg3zzwv6gczqg=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.158.0/go.mod h1:/o7sEYvP+NXdMzMBqx6LNw5V7HaB7L81h/B0KvA0FOU=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.158.0 h1:o5g+aGJNBys/UOGtyRvw8Sy5D2k53cNwe2ESpCzWVDY=

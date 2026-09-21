@@ -107,13 +107,21 @@ fi
 %{_bindir}/*
 
 %changelog
+* Mon Sep 21 2026 Kseniia Nivnia <knivnia@redhat.com> - 0.158.0-2
+- Add Chrony receiver
+* Fri Aug 07 2026 Benedikt Bongartz <bongartz@redhat.com> - 0.158.0-1
+- bump collector version to 0.158.0
+* Thu Jun 11 2026 Benedikt Bongartz <bongartz@redhat.com> - 0.152.1-1
+- bump collector version to 0.152.1
+* Tue Jun 02 2026 Benedikt Bongartz <bongartz@redhat.com> - 0.152.0-1
+- bump collector version to 0.152.0
 * Tue Feb 10 2026 Andreas Gerstmayr <agerstmayr@redhat.com> - 0.144.0-1
 - bump collector version to 0.144.0
 * Thu Oct 16 2025 Kseniia Nivnia <knivnia@redhat.com> - 0.135.0-2
 - Add systemd-journal group to Requires(pre)
-* Tue Sept 17 2025 Pavol Loffay <ploffay@redhat.com> - 0.135.0
+* Tue Sep 17 2025 Pavol Loffay <ploffay@redhat.com> - 0.135.0
 - Bump collector version to 0.135.0
-* Tue June 03 2025 Pavol Loffay <ploffay@redhat.com> - 0.127.0
+* Tue Jun 03 2025 Pavol Loffay <ploffay@redhat.com> - 0.127.0
 - Bump collector version to 0.127.0
 * Mon Mar 03 2025 Conor Cowman <ccowman@redhat.com> - 0.119.0-2
 - Bump revision

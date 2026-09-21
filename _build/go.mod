@@ -40,6 +40,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.158.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.158.0
@@ -177,6 +178,7 @@ require (
 	github.com/envoyproxy/go-control-plane/envoy v1.37.0 // indirect
 	github.com/envoyproxy/protoc-gen-validate v1.3.3 // indirect
 	github.com/expr-lang/expr v1.17.8 // indirect
+	github.com/facebook/time v0.0.0-20240510113249-fa89cc575891 // indirect
 	github.com/facette/natsort v0.0.0-20181210072756-2cd4dd1e2dcb // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/felixge/fgprof v0.9.5 // indirect
@@ -378,6 +380,7 @@ require (
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.37 // indirect
 	github.com/shirou/gopsutil/v4 v4.26.7 // indirect
 	github.com/shurcooL/httpfs v0.0.0-20230704072500-f1e31cf0ba5c // indirect
+	github.com/sirupsen/logrus v1.9.4 // indirect
 	github.com/spf13/cobra v1.10.2 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0 // indirect
