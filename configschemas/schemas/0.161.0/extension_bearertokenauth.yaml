@@ -1,0 +1,51 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: bearertokenauth extension configuration
+type: object
+properties:
+    filename:
+        description: Filename points to a file that contains the bearer token(s) to use for every RPC.
+        type: string
+    header:
+        description: Header specifies the auth-header for the token. Defaults to "Authorization"
+        type: string
+    retry_on_failure:
+        description: |-
+            RetryOnFailure configures startup retry behavior when the file referenced by
+            Filename is not yet available. Disabled by default.
+        type: object
+        properties:
+            enabled:
+                description: |-
+                    Enabled defines if any retry logic should be done on a missing file.
+                    Defaults to false.
+                type: boolean
+            interval:
+                description: |-
+                    Interval is the interval between retries.
+                    Defaults to 0 seconds.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            max_retries:
+                description: |-
+                    MaxRetries is the maximum number of times to retry reading the file.
+                    If it's value is set to 0, it means that the retry will continue infinity.
+                    Defaults to 0.
+                type: integer
+        additionalProperties: false
+    scheme:
+        description: Scheme specifies the auth-scheme for the token. Defaults to "Bearer"
+        type: string
+    token:
+        description: BearerToken specifies the bearer token to use for every RPC.
+        type: string
+    tokens:
+        description: Tokens specifies multiple bearer tokens to use for every RPC.
+        type: string
+    wait_for_token_file:
+        description: |-
+            WaitForTokenFile makes Start block until the token file is read successfully
+            (respecting RetryOnFailure) instead of retrying in the background. If the
+            file cannot be read within the retry budget, Start returns an error and
+            collector startup fails. Disabled by default.
+        type: boolean
+additionalProperties: false

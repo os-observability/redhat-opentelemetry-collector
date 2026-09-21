@@ -1,0 +1,1447 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: obi receiver configuration
+type: object
+properties:
+    attributes:
+        type: object
+        properties:
+            extragroupattributes:
+                type: object
+            hostid:
+                type: object
+                properties:
+                    override:
+                        description: Override allows overriding the reported host.id in OBI
+                        type: string
+                additionalProperties: false
+            instanceid:
+                type: object
+                properties:
+                    hostnamednsresolution:
+                        description: |-
+                            HostnameDNSResolution controls whether OBI uses the DNS to resolve the local hostname.
+                            If false, the local hostname is used as-is.
+                        type: boolean
+                    overridehostname:
+                        description: |-
+                            OverrideHostname can be optionally set to avoid resolving any hostname and using this
+                            value. OBI will anyway attach the process ID to the given hostname for composing
+                            the instance ID.
+                        type: string
+                additionalProperties: false
+            kubernetes:
+                type: object
+                properties:
+                    clustername:
+                        description: |-
+                            ClusterName overrides cluster name. If empty, OBI will try to retrieve it from node labels,
+                            the OpenShift Infrastructure CR, or cloud provider metadata (EC2, GCP, Azure),
+                            and leave it empty if all fail.
+                        type: string
+                    disableinformers:
+                        description: |-
+                            DisableInformers allows selectively disabling some informers. Accepted value is a list
+                            that might contain node or service. Disabling any of them
+                            will cause metadata to be incomplete but will reduce the load of the Kube API.
+                            Pods informer can't be disabled. For that purpose, you should disable the whole
+                            kubernetes metadata decoration.
+                        type: array
+                        items:
+                            type: string
+                    dropexternal:
+                        description: |-
+                            DropExternal will drop, in NetO11y component, any flow where the source or destination
+                            IPs are not matched to any kubernetes entity, assuming they are cluster-external
+                        type: boolean
+                    enable:
+                        type: string
+                    informersresyncperiod:
+                        description: InformersResyncPeriod defaults to 30m. Higher values will reduce the load on the Kube API.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    informerssynctimeout:
+                        description: InformersSyncTimeout specifies the timeout for waiting for informers to sync on startup.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    kubeconfigpath:
+                        description: KubeconfigPath specifies the path to the kubeconfig file. If unset, it will look in the usual location.
+                        type: string
+                    metacacheaddress:
+                        description: MetaCacheAddress specifies the host:port address of the obi-k8s-cache service instance
+                        type: string
+                    metarestrictlocalnode:
+                        description: |-
+                            MetaRestrictLocalNode will download only the metadata from the Pods that are located in the same
+                            node as the OBI instance. It will also restrict the Node information to the local node.
+                        type: boolean
+                    metasourcelabels:
+                        description: |-
+                            MetaSourceLabels allows OBI overriding the service name and namespace of an application from
+                            the given labels.
+
+                            Deprecated: kept for backwards-compatibility with Beyla 1.9
+                        type: object
+                        properties:
+                            servicename:
+                                type: string
+                            servicenamespace:
+                                type: string
+                        additionalProperties: false
+                    reconnectinitialinterval:
+                        description: ReconnectInitialInterval specifies the time to wait before reconnecting to the Kubernetes API after a connection loss.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    resourcelabels:
+                        description: ResourceLabels allows OBI overriding the OTEL Resource attributes from a map of user-defined labels.
+                        type: object
+                    servicenametemplate:
+                        description: ServiceNameTemplate allows to override the service.name with a custom value. Uses the go template language.
+                        type: string
+                additionalProperties: false
+            metadataretry:
+                type: object
+                properties:
+                    maxinterval:
+                        description: MaxInterval specifies the upper bound on the wait duration between consecutive retry attempts.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    startinterval:
+                        description: StartInterval specifies the initial wait duration between the first and second retry attempt.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    timeout:
+                        description: Timeout specifies the maximum total time allowed for all retry attempts before giving up.
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                additionalProperties: false
+            metricspannameaggregationlimit:
+                description: |-
+                    MetricSpanNameAggregationLimit works PER SERVICE and only relates to span_metrics.
+                    When the span_name cardinality surpasses this limit, the span_name will be reported as AGGREGATED.
+                    If the value <= 0, it is disabled.
+                type: integer
+            renameunresolvedhosts:
+                description: |-
+                    RenameUnresolvedHosts will replace HostName and PeerName attributes when they are empty or contain
+                    unresolved IP addresses to reduce cardinality.
+                    Set this value to the empty string to disable this feature.
+                type: string
+            renameunresolvedhostsincoming:
+                type: string
+            renameunresolvedhostsoutgoing:
+                type: string
+            select:
+                type: object
+            sensitivequeryparams:
+                description: SensitiveQueryParams controls which query-parameter keys are redacted in url.full and url.query.
+                type: object
+                properties:
+                    add:
+                        type: array
+                        items:
+                            type: string
+                    remove:
+                        type: array
+                        items:
+                            type: string
+                additionalProperties: false
+        additionalProperties: false
+    autotargetexe:
+        description: |-
+            AutoTargetExe selects the executable to instrument matching a Glob against the executable path.
+            To set this value via YAML, use discovery > instrument.
+            It also accepts OTEL_GO_AUTO_TARGET_EXE for compatibility with opentelemetry-go-instrumentation
+        type: object
+    autotargetlanguage:
+        description: |-
+            AutoTargetLanguage selects the executable to instrument matching a Glob of chosen languages.
+            To set this value via YAML, use discovery > instrument.
+        type: object
+    channelbufferlen:
+        type: integer
+    channelsendtimeout:
+        type: string
+        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+    channelsendtimeoutpanic:
+        type: boolean
+    discovery:
+        description: Discovery configuration
+        type: object
+        properties:
+            bpfpidfilteroff:
+                description: Debugging only option. Make sure the kernel side doesn't filter any PIDs, force user space filtering.
+                type: boolean
+            defaultexcludeinstrument:
+                description: |-
+                    DefaultExcludeInstrument defines the default exclusion patterns that prevent self-instrumentation of OBI as well as related observability tools.
+                    It must be set to an empty string or a different value if self-instrumentation is desired.
+                type: object
+            defaultexcludeservices:
+                description: |-
+                    DefaultExcludeServices defines the default exclusion patterns that prevent self-instrumentation of OBI as well as related observability tools.
+                    It must be set to an empty string or a different value if self-instrumentation is desired.
+
+                    Deprecated: Use DefaultExcludeInstrument instead
+                type: object
+            defaultotlpgrpcport:
+                description: |-
+                    DefaultOtlpGRPCPort specifies the default OTLP gRPC port (4317) to fallback on when missing environment variables on service, for
+                    checking for grpc export requests, defaults to 4317
+                type: integer
+            disabledrouteharvesters:
+                type: array
+                items:
+                    type: object
+            excludedlinuxsystempaths:
+                description: |-
+                    Executable paths for which we don't run language detection and cannot be
+                    selected using the path or language selection criteria
+                type: array
+                items:
+                    type: string
+            excludeinstrument:
+                description: |-
+                    ExcludeInstrument works analogously to Instrument, but the applications matching this section won't be instrumented
+                    even if they match the Instrument selection.
+                type: object
+            excludeotelinstrumentedservices:
+                description: Disables instrumentation of services which are already instrumented
+                type: boolean
+            excludeotelinstrumentedservicesspanmetrics:
+                description: Disables generation of span metrics of services which are already instrumented
+                type: boolean
+            excludeservices:
+                description: |-
+                    ExcludeServices works analogously to Services, but the applications matching this section won't be instrumented
+                    even if they match the Services selection.
+
+                    Deprecated: Use ExcludeInstrument instead
+                type: object
+            instrument:
+                description: |-
+                    Instrument selects the services to instrument via Globs. If this section is set,
+                    both the Services and ExcludeServices section is ignored.
+                    If the user defined the OTEL_EBPF_INSTRUMENT_COMMAND or OTEL_EBPF_INSTRUMENT_PORTS variables, they will be
+                    automatically added to the instrument criteria, with the lowest preference.
+                type: object
+            minprocessage:
+                description: Min process age to be considered for discovery.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            pollinterval:
+                description: |-
+                    PollInterval specifies, for the poll service watcher, the interval time between
+                    process inspections. 0 is treated as a default (5s) by the process watcher.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            routeharvestconfig:
+                type: object
+                properties:
+                    javaharvestdelay:
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                additionalProperties: false
+            routeharvestertimeout:
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            services:
+                description: |-
+                    Services selection. If the user defined the OTEL_EBPF_EXECUTABLE_PATH or OTEL_EBPF_OPEN_PORT variables, they will be automatically
+                    added to the services definition criteria, with the lowest preference.
+
+                    Deprecated: Use Instrument instead
+                type: object
+            skipgospecifictracers:
+                description: 'This can be enabled to use generic HTTP tracers only, no Go-specifics will be used:'
+                type: boolean
+        additionalProperties: false
+    ebpf:
+        type: object
+        properties:
+            batchlength:
+                description: |-
+                    BatchLength allows specifying how many items (traces/metrics) will be batched at the initial
+                    stage before being forwarded to the next stage
+                    Must be at least 1
+                type: integer
+            batchtimeout:
+                description: |-
+                    BatchTimeout specifies the timeout to forward the data batch if it didn't
+                    reach the BatchLength size
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            bpfdebug:
+                description: Enables logging of eBPF program events
+                type: boolean
+            bpffspath:
+                description: BPF path used to pin eBPF maps
+                type: string
+            buffersizes:
+                description: Limit max data buffer size per protocol.
+                type: object
+                properties:
+                    http:
+                        type: integer
+                    kafka:
+                        type: integer
+                    mssql:
+                        type: integer
+                    mysql:
+                        type: integer
+                    postgres:
+                        type: integer
+                    tcp:
+                        type: integer
+                additionalProperties: false
+            contextpropagation:
+                description: |-
+                    Enables distributed context propagation.
+                    Can be a combination of: headers, tcp (e.g., "headers,tcp" or "all")
+                type: integer
+            couchbasedbcachesize:
+                type: integer
+            disableblackboxcp:
+                description: Disables OBI black-box context propagation. Used for testing purposes only.
+                type: boolean
+            dnsrequesttimeout:
+                description: DNS timeout after which we report failed event
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            forcebpfmapreader:
+                description: |-
+                    ForceBPFMapReader forces the PerCPU HashMap operation of the Network Flows reader.
+                    The system will always try "batch", which is more efficient, but legacy systems like RHEL8-based will fallback to
+                    "legacy" (the slowest, more resource-consuming iterate&delete approach).
+                type: integer
+            heuristicsqldetect:
+                description: |-
+                    Enables the heuristic based detection of SQL requests. This can be used to detect
+                    talking to databases other than the ones we recognize in OBI, like Postgres and MySQL
+                type: boolean
+            highrequestvolume:
+                description: Optimizes for getting requests information immediately when request response is seen
+                type: boolean
+            httprequesttimeout:
+                description: Must be at least 0
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            instrumentcuda:
+                description: Enables GPU instrumentation for CUDA kernel launches and allocations
+                type: integer
+            kafkatopicuuidcachesize:
+                description: Kafka Topic UUID to Name cache size.
+                type: integer
+            logenricher:
+                description: Log trace-context enricher config
+                type: object
+                properties:
+                    asyncwriterchannellen:
+                        description: |-
+                            AsyncWriterChannelLen defines the capacity of every shard's channel for the async log writer
+                            Default: 500
+                        type: integer
+                    asyncwriterworkers:
+                        description: |-
+                            AsyncWriterWorkers defines the number of shards for the async log writer
+                            Default: 8
+                        type: integer
+                    cachesize:
+                        description: |-
+                            CacheSize defines the maximum number of cached file descriptors
+                            Default: 128
+                        type: integer
+                    cachettl:
+                        description: |-
+                            CacheTTL defines the TTL for cached file descriptors
+                            Default: 30m
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    services:
+                        description: Services specifies the services to enable log enrichment for
+                        type: array
+                        items:
+                            type: object
+                            properties:
+                                service:
+                                    description: Service should also be contained in 'services' in the Discovery section
+                                    type: object
+                            additionalProperties: false
+                additionalProperties: false
+            mapsconfig:
+                description: eBPF map configurations
+                type: object
+                properties:
+                    globalscalefactor:
+                        description: |-
+                            GlobalScaleFactor scales map sizes in powers of two:
+                              > 0: grows size (2x per step)
+                              < 0: shrinks size (1/2 per step)
+                              = 0: no change
+                        type: integer
+                additionalProperties: false
+            maxtransactiontime:
+                description: |-
+                    Maximum time allowed for two requests to be correlated as parent -> child
+                    Some programs (e.g. load generators) keep on generating requests from the same thread in perpetuity,
+                    which can generate very large traces. We want to mark the parent trace as invalid if this happens.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            mongorequestscachesize:
+                description: MongoDB requests cache size.
+                type: integer
+            mssqlpreparedstatementscachesize:
+                description: MSSQL prepared statements cache size.
+                type: integer
+            mysqlpreparedstatementscachesize:
+                description: MySQL prepared statements cache size.
+                type: integer
+            overridebpfloopenabled:
+                description: |-
+                    Skips checking the kernel version for bpf_loop functionality. Some modified kernels have this
+                    backported prior to version 5.17.
+                type: boolean
+            payloadextraction:
+                description: Configure data extraction/parsing based on protocol
+                type: object
+                properties:
+                    http:
+                        type: object
+                        properties:
+                            aws:
+                                description: AWS payload extraction and parsing
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable AWS services (S3, SQS, etc.) payload extraction and parsing
+                                        type: boolean
+                                additionalProperties: false
+                            elasticsearch:
+                                description: Elasticsearch payload extraction and parsing
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable Elasticsearch payload extraction and parsing
+                                        type: boolean
+                                additionalProperties: false
+                            enrichment:
+                                description: Enrichment configures HTTP header and payload extraction with policy-based rules
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable HTTP header and payload enrichment
+                                        type: boolean
+                                    policy:
+                                        description: Policy controls the default behavior
+                                        type: object
+                                        properties:
+                                            defaultaction:
+                                                description: DefaultAction specifies what to do when no rule matches, per type.
+                                                type: object
+                                                properties:
+                                                    body:
+                                                        type: integer
+                                                    headers:
+                                                        type: integer
+                                                additionalProperties: false
+                                            obfuscationstring:
+                                                description: ObfuscationString is the replacement string used when a rule's action is "obfuscate"
+                                                type: string
+                                        additionalProperties: false
+                                    rules:
+                                        description: Rules is an ordered list of include/exclude/obfuscate rules.
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                action:
+                                                    description: 'Action of the rule: "include", "exclude", or "obfuscate"'
+                                                    type: integer
+                                                match:
+                                                    description: Match defines the matching criteria for this rule
+                                                    type: object
+                                                    properties:
+                                                        casesensitive:
+                                                            description: CaseSensitive controls whether header matching is case-sensitive (headers only)
+                                                            type: boolean
+                                                        methods:
+                                                            description: Methods is a list of HTTP methods this rule applies to (shared). Empty means all methods.
+                                                            type: array
+                                                            items:
+                                                                type: object
+                                                        obfuscationjsonpaths:
+                                                            description: ObfuscationJSONPaths is a list of JSONPath expressions for fields to obfuscate (body only)
+                                                            type: array
+                                                            items:
+                                                                type: object
+                                                        patterns:
+                                                            description: Patterns is a list of glob patterns to match header names against (headers only)
+                                                            type: array
+                                                            items:
+                                                                type: object
+                                                        urlpathpatterns:
+                                                            description: URLPathPatterns is a list of glob patterns to match the request path against (shared)
+                                                            type: array
+                                                            items:
+                                                                type: object
+                                                    additionalProperties: false
+                                                scope:
+                                                    description: 'Scope of the rule: "request", "response", or "all"'
+                                                    type: integer
+                                                type:
+                                                    description: 'Type specifies what this rule matches against: "headers" or "body"'
+                                                    type: integer
+                                            additionalProperties: false
+                                additionalProperties: false
+                            genai:
+                                description: GenAI payload extraction
+                                type: object
+                                properties:
+                                    anthropic:
+                                        description: Anthropic payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable Anthropic payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    bedrock:
+                                        description: AWS Bedrock payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable AWS Bedrock payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    embedding:
+                                        description: Generic embedding provider (Voyage AI, Cohere, Jina AI) payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable generic embedding provider (Voyage AI, Cohere, Jina AI) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    gemini:
+                                        description: Google AI Studio (Gemini) payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable Google AI Studio (Gemini) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    mcp:
+                                        description: Model Context Protocol (MCP) payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable Model Context Protocol (MCP) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    openai:
+                                        description: OpenAI payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable OpenAI payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    qwen:
+                                        description: Qwen (DashScope) payload extraction and parsing
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable Qwen (DashScope) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    rerank:
+                                        description: Rerank payload extraction and parsing (Cohere, Jina AI, Voyage AI, etc.)
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable Rerank (Cohere, Jina AI, Voyage AI, etc.) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                    retrieval:
+                                        description: Vector retrieval payload extraction and parsing (Pinecone, Qdrant, Milvus, Chroma, Weaviate, etc.)
+                                        type: object
+                                        properties:
+                                            enabled:
+                                                description: Enable vector retrieval (Pinecone, Qdrant, Milvus, Chroma, Weaviate, etc.) payload extraction and parsing
+                                                type: boolean
+                                        additionalProperties: false
+                                additionalProperties: false
+                            graphql:
+                                description: GraphQL payload extraction and parsing
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable GraphQL payload extraction and parsing
+                                        type: boolean
+                                additionalProperties: false
+                            jsonrpc:
+                                description: JSON-RPC payload extraction and parsing
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable JSON-RPC payload extraction and parsing
+                                        type: boolean
+                                additionalProperties: false
+                            sqlpp:
+                                description: SQL++ payload extraction and parsing (Couchbase and other SQL++ databases)
+                                type: object
+                                properties:
+                                    enabled:
+                                        description: Enable SQL++ payload extraction and parsing
+                                        type: boolean
+                                    endpointpatterns:
+                                        description: |-
+                                            EndpointPatterns specifies URL path patterns to detect SQL++ endpoints
+                                            Example: ["/query/service", "/query"]
+                                        type: array
+                                        items:
+                                            type: string
+                                additionalProperties: false
+                        additionalProperties: false
+                additionalProperties: false
+            postgrespreparedstatementscachesize:
+                description: Postgres prepared statements cache size.
+                type: integer
+            protocoldebug:
+                description: Enables debug printing of the protocol data
+                type: boolean
+            redisdbcache:
+                type: object
+                properties:
+                    enabled:
+                        type: boolean
+                    maxsize:
+                        type: integer
+                additionalProperties: false
+            statswakeupdatabytes:
+                description: |-
+                    StatsWakeupDataBytes specifies the minimum number of bytes that must be available in the
+                    stats eBPF ring buffer before waking up the userspace consumer.
+                    When 0, every submission wakes up userspace immediately.
+                    Higher values reduce wakeup overhead under high traffic at the cost of delivery latency.
+                    The value should be well below ring buffer size / flushInterval to avoid event loss.
+                type: integer
+            tcbackend:
+                description: 'Select the TC attachment backend: accepted values are ''tc'' (netlink), and ''tcx'''
+                type: integer
+            trackrequestheaders:
+                description: |-
+                    TrackRequestHeaders enables the kprobes based HTTP request tracking to start tracking the request
+                    headers to process any 'Traceparent' fields.
+                type: boolean
+            wakeuplen:
+                description: |-
+                    WakeupLen specifies how many messages need to be accumulated in the eBPF ringbuffer
+                    before sending a wakeup request.
+                    High values of WakeupLen could add a noticeable metric delay in services with low
+                    requests/second.
+                    Must be at least 0
+                    TODO: see if there is a way to force eBPF to wakeup userspace on timeout
+                type: integer
+        additionalProperties: false
+    enforcesyscaps:
+        description: |-
+            Check for required system capabilities and bail if they are not
+            present. If set to 'false', OBI will still print a list of missing
+            capabilities, but the execution will continue
+        type: boolean
+    exec:
+        description: |-
+            Exec allows selecting the instrumented executable whose complete path contains the Exec value.
+
+            Deprecated: Use OTEL_EBPF_AUTO_TARGET_EXE
+        type: object
+    filters:
+        type: object
+        properties:
+            application:
+                type: object
+            network:
+                type: object
+            stats:
+                type: object
+        additionalProperties: false
+    healthcheck:
+        type: object
+        properties:
+            port:
+                description: 0 (default) means disabled
+                type: integer
+            unixsocketpath:
+                description: |-
+                    when set, the health endpoint binds this unix socket (a filesystem path or a leading-'@'
+                    abstract name) instead of the TCP port
+                type: string
+        additionalProperties: false
+    internalmetrics:
+        type: object
+        properties:
+            avoidedservices:
+                type: object
+                properties:
+                    disabled:
+                        description: Disabled disables the avoided-services internal metric.
+                        type: boolean
+                    limit:
+                        description: |-
+                            Limit bounds the number of avoided-services metric series, including the overflow series.
+                            0 uses the OpenTelemetry default metric cardinality limit.
+                        type: integer
+                additionalProperties: false
+            bpfmetricscrapeinterval:
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            exporter:
+                type: string
+            prometheus:
+                type: object
+                properties:
+                    path:
+                        type: string
+                    port:
+                        type: integer
+                additionalProperties: false
+        additionalProperties: false
+    java:
+        type: object
+        properties:
+            debug:
+                type: boolean
+            debuginstrumentation:
+                type: boolean
+            enabled:
+                type: boolean
+            timeout:
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+        additionalProperties: false
+    jvmruntimemetrics:
+        type: object
+        properties:
+            enabled:
+                type: boolean
+            samplinginterval:
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+        additionalProperties: false
+    logconfig:
+        description: LogConfig enables the logging of the configuration on startup.
+        type: string
+    logformat:
+        type: string
+    loglevel:
+        type: string
+    metrics:
+        description: Metrics configures the progressive support of the OTEL declarative configuration.
+        type: object
+        properties:
+            features:
+                description: |-
+                    Features specifies which metric features to export. Accepted values: application, network,
+                    application_span, application_service_graph, stats, ...
+                    envDefault is provided to avoid breaking changes
+                type: integer
+        additionalProperties: false
+    nameresolver:
+        type: object
+        properties:
+            cachelen:
+                description: |-
+                    CacheLen specifies the max size of the LRU cache that is checked before
+                    performing the name lookup. Default: 256
+                type: integer
+            cachettl:
+                description: |-
+                    CacheTTL specifies the time-to-live of a cached IP->hostname entry. After the
+                    cached entry becomes older than this time, the IP->hostname entry will be looked
+                    up again.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            sources:
+                description: 'Sources specifies the backends used for name resolving. Accepted values: dns, k8s, rdns'
+                type: array
+                items:
+                    type: object
+        additionalProperties: false
+    networkflows:
+        description: NetworkFlows configuration for Network Observability feature
+        type: object
+        properties:
+            agentip:
+                description: AgentIP allows overriding the reported Agent IP address on each flow.
+                type: string
+            agentipiface:
+                description: |-
+                    AgentIPIface specifies which interface should the agent pick the IP address from in order to
+                    report it in the AgentIP field on each flow. Accepted values are: external (default), local,
+                    or name:<interface name> (e.g. name:eth0).
+                    If the AgentIP configuration property is set, this property has no effect.
+                type: string
+            agentiptype:
+                description: |-
+                    AgentIPType specifies which type of IP address (IPv4 or IPv6 or any) should the agent report
+                    in the AgentID field of each flow. Accepted values are: any (default), ipv4, ipv6.
+                    If the AgentIP configuration property is set, this property has no effect.
+                type: string
+            cacheactivetimeout:
+                description: |-
+                    CacheActiveTimeout specifies the maximum duration that flows are kept in the accounting
+                    cache before being flushed for its later export.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            cachemaxflows:
+                description: |-
+                    CacheMaxFlows specifies how many flows can be accumulated in the accounting cache before
+                    being flushed for its later export. Default value is 5000.
+                    Decrease it if you see the "received message larger than max" error in OBI logs.
+                type: integer
+            cidrs:
+                description: |-
+                    CIDRs list, to be set as the "src.cidr" and "dst.cidr"
+                    attribute as a function of the source and destination IP addresses.
+                    If an IP does not match any address here, the attributes won't be set.
+                    If an IP matches multiple CIDR definitions, the flow will be decorated with the
+                    narrowest CIDR. By this reason, you can safely add a 0.0.0.0/0 entry to group there
+                    all the traffic that does not match any of the other CIDRs.
+                type: object
+            deduper:
+                description: |-
+                    Deduper specifies the deduper type. Accepted values are "none" (disabled) and "first_come".
+                    When enabled, it will detect duplicate flows (flows that have been detected e.g. through
+                    both the physical and a virtual interface).
+                    "first_come" will forward only flows from the first interface the flows are received from.
+                    Default value: first_come
+                type: string
+            deduperfcttl:
+                description: |-
+                    DeduperFCTTL specifies the expiry duration of the flows "first_come" deduplicator. After
+                    a flow hasn't been received for that expiry time, the deduplicator forgets it. That means
+                    that a flow from a connection that has been inactive during that period could be forwarded
+                    again from a different interface.
+                    If the value is not set, it will default to 2 * CacheActiveTimeout
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            direction:
+                description: |-
+                    Direction allows selecting which flows to trace according to its direction. Accepted values
+                    are "ingress", "egress" or "both" (default).
+                type: string
+            enable:
+                description: |-
+                    Enable network metrics.
+                    Default value is false (disabled)
+
+                    Deprecated: add "network" or "network_flow_packets" or "network_inter_zone" to OTEL_EBPF_METRICS_FEATURES
+
+                    TODO OBI 3.0: remove
+                type: boolean
+            excludeinterfaces:
+                description: |-
+                    ExcludeInterfaces contains the interface names that will be excluded from flow tracing. Default:
+                    "lo" (loopback).
+                    If an entry is enclosed by slashes (e.g. `/br-/`), it will match as regular expression,
+                    otherwise it will be matched as a case-sensitive string.
+                type: array
+                items:
+                    type: string
+            excludeprotocols:
+                description: |-
+                    ExcludeProtocols causes OBI to drop flows whose transport protocol is in this list.
+                    If the Protocols list is already defined, ExcludeProtocols has no effect.
+                type: array
+                items:
+                    type: string
+            geoip:
+                type: object
+                properties:
+                    cachelen:
+                        description: It also accepts OTEL_EBPF_NETWORK_GEOIP_CACHE_LEN for backwards-compatibility
+                        type: integer
+                    cachettl:
+                        description: It also accepts OTEL_EBPF_NETWORK_GEOIP_CACHE_TTL for backwards-compatibility
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    ipinfo:
+                        type: object
+                        properties:
+                            path:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_IPINFO_PATH for backwards-compatibility
+                                type: string
+                        additionalProperties: false
+                    maxmindinfo:
+                        type: object
+                        properties:
+                            asnpath:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_MAXMIND_ASN_PATH for backwards-compatibility
+                                type: string
+                            countrypath:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_MAXMIND_COUNTRY_PATH for backwards-compatibility
+                                type: string
+                        additionalProperties: false
+                additionalProperties: false
+            guessports:
+                description: |-
+                    GuessPorts controls how OBI assigns server.port/client.port when the connection initiator is unknown.
+                    Accepted values are "ordinal" (assume highest port is client) and "disable"
+                    (default, do not guess and emit empty client/server port attributes for unknown-initiator flows).
+                type: string
+            interfaces:
+                description: |-
+                    Interfaces contains the interface names from where flows will be collected. If empty, the agent
+                    will fetch all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.
+                    If an entry is enclosed by slashes (e.g. `/br-/`), it will match as regular expression,
+                    otherwise it will be matched as a case-sensitive string.
+                type: array
+                items:
+                    type: string
+            listeninterfaces:
+                description: |-
+                    ListenInterfaces specifies the mechanism used by the agent to listen for added or removed
+                    network interfaces. Accepted values are "watch" (default) or "poll".
+                    If the value is "watch", interfaces are traced immediately after they are created. This is
+                    the recommended setting for most configurations. "poll" value is a fallback mechanism that
+                    periodically queries the current network interfaces (frequency specified by ListenPollPeriod).
+                type: string
+            listenpollperiod:
+                description: |-
+                    ListenPollPeriod specifies the periodicity to query the network interfaces when the
+                    ListenInterfaces value is set to "poll".
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            print:
+                description: Print enables printing the network flows to the Standard Output
+                type: boolean
+            protocols:
+                description: Protocols causes OBI to drop flows whose transport protocol is not in this list.
+                type: array
+                items:
+                    type: string
+            reversedns:
+                description: |-
+                    ReverseDNS allows flows that haven't been previously decorated with any source/destination name
+                    to override the name with the network hostname of the source and destination IPs.
+                    This is an experimental feature and it is not guaranteed to work on most virtualized environments
+                    for external traffic.
+                type: object
+                properties:
+                    cachelen:
+                        description: |-
+                            CacheLen only applies to the "local" and "ebpf" ReverseDNS type. It
+                            specifies the max size of the LRU cache that is checked before
+                            performing the name lookup. Default: 256
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_CACHE_LEN for backwards-compatibility
+                        type: integer
+                    cachettl:
+                        description: |-
+                            CacheTTL only applies to the "local" and "ebpf" ReverseDNS type. It
+                            specifies the time-to-live of a cached IP->hostname entry. After the
+                            cached entry becomes older than this time, the IP->hostname entry will be looked
+                            up again.
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_CACHE_TTL for backwards-compatibility
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    type:
+                        description: |-
+                            Type specifies the ReverseDNS method. Values are "none" (default), "local" and "ebpf"
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_TYPE for backwards-compatibility
+                        type: string
+                additionalProperties: false
+            sampling:
+                description: |-
+                    Sampling holds the rate at which packets should be sampled and sent to the target collector.
+                    E.g. if set to 100, one out of 100 packets, on average, will be sent to the target collector.
+                type: integer
+            source:
+                description: |-
+                    Specify the source type for network events, e.g tc or socket_filter. The tc implementation
+                    cannot be used when there are other tc eBPF probes, e.g. Cilium CNI.
+                type: string
+        additionalProperties: false
+    nodejs:
+        type: object
+        properties:
+            enabled:
+                type: boolean
+        additionalProperties: false
+    otelmetrics:
+        type: object
+        properties:
+            allowservicegraphselfreferences:
+                type: boolean
+            buckets:
+                type: object
+                properties:
+                    durationhistogram:
+                        type: array
+                        items:
+                            type: number
+                    genaiclientdurationhistogram:
+                        type: array
+                        items:
+                            type: number
+                    genaitokenusagehistogram:
+                        type: array
+                        items:
+                            type: number
+                    requestsizehistogram:
+                        type: array
+                        items:
+                            type: number
+                    responsesizehistogram:
+                        type: array
+                        items:
+                            type: number
+                    stattcprtthistogram:
+                        type: array
+                        items:
+                            type: number
+                additionalProperties: false
+            commonendpoint:
+                type: string
+            deprfeatures:
+                description: |-
+                    Features specifies which metric features to export. Accepted values: application, network,
+                    application_span, application_service_graph, ...
+                    envDefault is provided to avoid breaking changes
+
+                    Deprecated: use top-level MetricsConfig.Features instead.
+                type: integer
+            exponentialhistogram:
+                type: object
+                properties:
+                    maxscale:
+                        description: |-
+                            Sets the maximum resolution scale used by base-2 exponential histograms.
+                            Higher values create narrower buckets and more precision, but may require more buckets. Valid values are from -10 to 20.
+                        type: integer
+                    maxsize:
+                        description: |-
+                            Sets the maximum number of buckets used for a base-2 exponential histogram.
+                            Higher values reduce bucket compaction and preserve more detail at the cost of larger metric payloads.
+                        type: integer
+                additionalProperties: false
+            extraspanresourcelabels:
+                description: |-
+                    ExtraSpanResourceLabels adds extra metadata labels to OTEL span metrics from sources whose availability can't be known
+                    beforehand. For example, to add the OTEL deployment.environment resource attribute as a OTEL resource attribute,
+                    you should add `deployment.environment`.
+                type: array
+                items:
+                    type: string
+            histogramaggregation:
+                type: string
+            injectheaders:
+                description: InjectHeaders allows injecting custom headers to the HTTP OTLP exporter
+                type: object
+            insecureskipverify:
+                description: InsecureSkipVerify enables skipping TLS certificate verification (not standard, so we don't follow the same naming convention)
+                type: boolean
+            instrumentations:
+                description: Allows configuration of which instrumentations should be enabled, e.g. http, grpc, sql...
+                type: array
+                items:
+                    type: object
+            interval:
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            metricsconsumer:
+                description: |-
+                    MetricsConsumer is the collector consumer to send metrics to.
+                    When set, metrics will be sent directly to this consumer instead of via HTTP/gRPC.
+                type: object
+            metricsendpoint:
+                type: string
+            metricsprotocol:
+                type: string
+            otelintervalms:
+                description: |-
+                    OTELIntervalMS supports metric intervals as specified by the standard OTEL definition.
+                    OTEL_EBPF_METRICS_INTERVAL takes precedence over it.
+                type: integer
+            otlpendpointprovider:
+                description: |-
+                    OTLPEndpointProvider allows overriding the OTLP Endpoint. It needs to return an endpoint and
+                    a boolean indicating if the endpoint is common for both traces and metrics
+                type: object
+            protocol:
+                type: string
+            reporterscachelen:
+                type: integer
+            sdkloglevel:
+                description: |-
+                    SDKLogLevel works independently from the global LogLevel because it prints GBs of logs in Debug mode
+                    and the Info messages leak internal details that are not usually valuable for the final user.
+                    Accepted values: debug, info, warn, error (case-insensitive).
+                type: string
+            ttl:
+                description: |-
+                    TTL specifies the time since a metric was updated for the last time until it is
+                    removed from the metrics set.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+        additionalProperties: false
+    port:
+        description: |-
+            Port allows selecting the instrumented executable that owns the Port value. If this value is set (and
+            different to zero), the value of the Exec property won't take effect.
+            It's important to emphasize that if your process opens multiple HTTP/GRPC ports, the auto-instrumenter
+            will instrument all the service calls in all the ports, not only the port specified here.
+        type: object
+        properties:
+            ranges:
+                type: array
+                items:
+                    type: object
+                    properties:
+                        end:
+                            description: if End == 0, this entry is a single value; otherwise it's an inclusive range
+                            type: integer
+                        start:
+                            type: integer
+                    additionalProperties: false
+        additionalProperties: false
+    profileport:
+        type: integer
+    prometheus:
+        type: object
+        properties:
+            allowservicegraphselfreferences:
+                type: boolean
+            buckets:
+                type: object
+                properties:
+                    durationhistogram:
+                        type: array
+                        items:
+                            type: number
+                    genaiclientdurationhistogram:
+                        type: array
+                        items:
+                            type: number
+                    genaitokenusagehistogram:
+                        type: array
+                        items:
+                            type: number
+                    requestsizehistogram:
+                        type: array
+                        items:
+                            type: number
+                    responsesizehistogram:
+                        type: array
+                        items:
+                            type: number
+                    stattcprtthistogram:
+                        type: array
+                        items:
+                            type: number
+                additionalProperties: false
+            deprfeatures:
+                description: |-
+                    Features specifies which metric features to export. Accepted values: application, network,
+                    application_span, application_service_graph, ...
+
+                    Deprecated: use top-level MetricsConfig.Features instead.
+                type: integer
+            disablebuildinfo:
+                type: boolean
+            exemplarfilter:
+                description: |-
+                    ExemplarFilter controls when exemplars are attached to metrics.
+                    Accepted values: "always_on", "always_off", "trace_based".
+                    Defaults to "always_off": do not attach exemplars.
+                    This mimics the OTEL_METRICS_EXEMPLAR_FILTER specification.
+                type: string
+            extraresourcelabels:
+                description: |-
+                    ExtraResourceLabels adds extra metadata labels to Prometheus metrics from sources whose availability can't be known
+                    beforehand. For example, to add the OTEL deployment.environment resource attribute as a Prometheus resource attribute,
+                    you should add `deployment.environment`.
+                type: array
+                items:
+                    type: string
+            extraspanresourcelabels:
+                description: |-
+                    ExtraSpanResourceLabels adds extra metadata labels to Prometheus span metrics from sources whose availability can't be known
+                    beforehand. For example, to add the OTEL deployment.environment resource attribute as a Prometheus resource attribute,
+                    you should add `deployment.environment`.
+                type: array
+                items:
+                    type: string
+            instrumentations:
+                description: Allows configuration of which instrumentations should be enabled, e.g. http, grpc, sql...
+                type: array
+                items:
+                    type: object
+            nativehistogram:
+                description: |-
+                    NativeHistogram configures native histogram bucket parameters.
+                    Uses recommended values if not specified.
+                type: object
+                properties:
+                    bucketfactor:
+                        type: number
+                    maxbucketnumber:
+                        type: integer
+                    minresetduration:
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                additionalProperties: false
+            path:
+                type: string
+            port:
+                description: 0 means disabled
+                type: integer
+            registry:
+                description: |-
+                    Registry is only used for embedding OBI within third-party collectors.
+                    It must be nil when OBI runs as standalone
+                type: object
+            spanmetricsservicecachesize:
+                type: integer
+            ttl:
+                description: |-
+                    TTL specifies the time since a metric was updated for the last time until it is
+                    removed from the metrics set.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+        additionalProperties: false
+    routes:
+        description: Routes configures URL path grouping. If not set, data will be directly forwarded to exporters.
+        type: object
+        properties:
+            ignoredevents:
+                description: 'Deprecated: To be removed and replaced by a collector-like filtering mechanism'
+                type: string
+            ignorepatterns:
+                description: 'Deprecated: To be removed and replaced by a collector-like filtering mechanism'
+                type: array
+                items:
+                    type: string
+            maxpathsegmentcardinality:
+                description: |-
+                    Max allowed path segment cardinality (per service) for the heuristic matcher
+                    0 = disabled
+                type: integer
+            patterns:
+                description: Patterns defines the URL path patterns that will match to a route
+                type: array
+                items:
+                    type: string
+            unmatch:
+                description: |-
+                    Unmatch specifies what to do when a route pattern is not matched.
+                    Empty string is treated the same as "wildcard".
+                type: string
+            wildcardchar:
+                description: Character that will be used to replace route segments
+                type: string
+        additionalProperties: false
+    servicename:
+        description: |-
+            ServiceName specifies the name of the instrumented service, taken from either OTEL_EBPF_SERVICE_NAME env var or OTEL_SERVICE_NAME (for OTEL spec compatibility).
+            Using env and envDefault is a trick to get the value either from one of either variables.
+
+            Deprecated: Service name should be set in the instrumentation target (env vars, kube metadata...)
+            as this is a reminiscence of past times when we only supported one executable per instance.
+        type: string
+    servicenamespace:
+        description: |-
+            Deprecated: Service namespace should be set in the instrumentation target (env vars, kube metadata...)
+            as this is a reminiscence of past times when we only supported one executable per instance.
+        type: string
+    shutdowntimeout:
+        description: Timeout for a graceful shutdown
+        type: string
+        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+    stats:
+        type: object
+        properties:
+            agentip:
+                description: AgentIP allows overriding the reported Agent IP address on each stat.
+                type: string
+            agentipiface:
+                description: |-
+                    AgentIPIface specifies which interface should the agent pick the IP address from in order to
+                    report it in the AgentIP field on each stat. Accepted values are: external (default), local,
+                    or name:<interface name> (e.g. name:eth0).
+                    If the AgentIP configuration property is set, this property has no effect.
+                type: string
+            agentiptype:
+                description: |-
+                    AgentIPType specifies which type of IP address (IPv4 or IPv6 or any) should the agent report
+                    in the AgentID field of each stat. Accepted values are: any (default), ipv4, ipv6.
+                    If the AgentIP configuration property is set, this property has no effect.
+                type: string
+            cidrs:
+                description: |-
+                    CIDRs list, to be set as the "src.cidr" and "dst.cidr"
+                    attribute as a function of the source and destination IP addresses.
+                    If an IP does not match any address here, the attributes won't be set.
+                    If an IP matches multiple CIDR definitions, the stat will be decorated with the
+                    narrowest CIDR. By this reason, you can safely add a 0.0.0.0/0 entry to group there
+                    all the traffic that does not match any of the other CIDRs.
+                type: object
+            geoip:
+                type: object
+                properties:
+                    cachelen:
+                        description: It also accepts OTEL_EBPF_NETWORK_GEOIP_CACHE_LEN for backwards-compatibility
+                        type: integer
+                    cachettl:
+                        description: It also accepts OTEL_EBPF_NETWORK_GEOIP_CACHE_TTL for backwards-compatibility
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    ipinfo:
+                        type: object
+                        properties:
+                            path:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_IPINFO_PATH for backwards-compatibility
+                                type: string
+                        additionalProperties: false
+                    maxmindinfo:
+                        type: object
+                        properties:
+                            asnpath:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_MAXMIND_ASN_PATH for backwards-compatibility
+                                type: string
+                            countrypath:
+                                description: It also accepts OTEL_EBPF_NETWORK_GEOIP_MAXMIND_COUNTRY_PATH for backwards-compatibility
+                                type: string
+                        additionalProperties: false
+                additionalProperties: false
+            print:
+                description: Print enables printing the stats to the Standard Output
+                type: boolean
+            reversedns:
+                description: |-
+                    ReverseDNS allows stats that haven't been previously decorated with any source/destination name
+                    to override the name with the network hostname of the source and destination IPs.
+                    This is an experimental feature and it is not guaranteed to work on most virtualized environments
+                    for external traffic.
+                type: object
+                properties:
+                    cachelen:
+                        description: |-
+                            CacheLen only applies to the "local" and "ebpf" ReverseDNS type. It
+                            specifies the max size of the LRU cache that is checked before
+                            performing the name lookup. Default: 256
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_CACHE_LEN for backwards-compatibility
+                        type: integer
+                    cachettl:
+                        description: |-
+                            CacheTTL only applies to the "local" and "ebpf" ReverseDNS type. It
+                            specifies the time-to-live of a cached IP->hostname entry. After the
+                            cached entry becomes older than this time, the IP->hostname entry will be looked
+                            up again.
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_CACHE_TTL for backwards-compatibility
+                        type: string
+                        pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+                    type:
+                        description: |-
+                            Type specifies the ReverseDNS method. Values are "none" (default), "local" and "ebpf"
+                            It also accepts OTEL_EBPF_NETWORK_REVERSE_DNS_TYPE for backwards-compatibility
+                        type: string
+                additionalProperties: false
+        additionalProperties: false
+    targetpids:
+        description: |-
+            TargetPIDs selects processes by PID for instrumentation. When non-empty, only these PIDs are
+            instrumented. Accepts YAML list (target_pids: [1234, 5678]), single number, or env
+            OTEL_EBPF_TARGET_PID=1234,5678. Alternative to Exec or AutoTargetExe when PIDs are known.
+        type: object
+        properties:
+            ranges:
+                type: array
+                items:
+                    type: object
+                    properties:
+                        end:
+                            description: if End == 0, this entry is a single value; otherwise it's an inclusive range
+                            type: integer
+                        start:
+                            type: integer
+                    additionalProperties: false
+        additionalProperties: false
+    traceprinter:
+        type: string
+    traces:
+        type: object
+        properties:
+            backoffinitialinterval:
+                description: |-
+                    Configuration options for BackOffConfig of the traces exporter.
+                    See https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configretry/backoff.go
+                    BackOffInitialInterval the time to wait after the first failure before retrying.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            backoffmaxelapsedtime:
+                description: BackOffMaxElapsedTime specifies the maximum amount of time (including retries) spent trying to send a request/batch.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            backoffmaxinterval:
+                description: BackOffMaxInterval specifies the upper bound on backoff interval.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            batchmaxsize:
+                description: |-
+                    BatchMaxSize is the maximum number of spans that the batcher will accumulate
+                    before flushing a batch to the sending queue.
+                type: integer
+            batchtimeout:
+                description: BatchTimeout is the time after which a batch will be sent regardless of its size.
+                type: string
+                pattern: ^(0|[-+]?((\d+(\.\d*)?|\.\d+)(ns|us|µs|μs|ms|s|m|h))+)$
+            commonendpoint:
+                type: string
+            injectheaders:
+                description: InjectHeaders allows injecting custom headers to the HTTP OTLP exporter
+                type: object
+            insecureskipverify:
+                description: InsecureSkipVerify enables skipping TLS certificate verification (not standard, so we don't follow the same naming convention)
+                type: boolean
+            instrumentations:
+                description: Allows configuration of which instrumentations should be enabled, e.g. http, grpc, sql...
+                type: array
+                items:
+                    type: object
+            otlpendpointprovider:
+                description: |-
+                    OTLPEndpointProvider allows overriding the OTLP Endpoint. It needs to return an endpoint and
+                    a boolean indicating if the endpoint is common for both traces and metrics
+                type: object
+            protocol:
+                type: string
+            queuesize:
+                description: |-
+                    QueueSize is the maximum number of spans that the sending queue will hold
+                    before applying back-pressure. It must be >= `2 * BatchMaxSize`, otherwise the
+                    memory queue rejects every batch with "element size too large" and drops
+                    spans permanently. If left at 0 it defaults to `4 * BatchMaxSize`.
+                type: integer
+            reporterscachelen:
+                type: integer
+            samplerconfig:
+                type: object
+                properties:
+                    arg:
+                        type: string
+                    name:
+                        type: string
+                additionalProperties: false
+            sdkloglevel:
+                description: |-
+                    SDKLogLevel works independently from the global LogLevel because it prints GBs of logs in Debug mode
+                    and the Info messages leak internal details that are not usually valuable for the final user.
+                    Accepted values: debug, info, warn, error (case-insensitive). dpanic/panic/fatal are mapped to error.
+                type: string
+            tracesconsumer:
+                type: object
+            tracesendpoint:
+                type: string
+            tracesprotocol:
+                type: string
+        additionalProperties: false
+additionalProperties: false
