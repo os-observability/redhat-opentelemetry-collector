@@ -28,6 +28,7 @@ ifeq (, $(shell which ocb >/dev/null 2>/dev/null))
 	machine=$$(uname -m) ;\
 	[ "$${machine}" != x86 ] || machine=386 ;\
 	[ "$${machine}" != x86_64 ] || machine=amd64 ;\
+	[ "$${machine}" != aarch64 ] || machine=arm64 ;\
 	echo "Installing ocb ($${os}/$${machine}) at $(OTELCOL_BUILDER_DIR)";\
 	mkdir -p $(OTELCOL_BUILDER_DIR) ;\
 	curl -sLo $(OTELCOL_BUILDER) "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv$(OCB_VERSION)/ocb_$(OCB_VERSION)_$${os}_$${machine}" ;\
