@@ -18,8 +18,10 @@ COPY --from=bpf-generator /opt/app-root/src/.obi-src .obi-src
 
 RUN CGO_ENABLED=0 go build -C ./_build -mod=mod -o opentelemetry-collector -trimpath -ldflags "-w"
 
+# ART/doozer replaces this with the rhel-9-micro stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi-micro AS target-base
 
+# ART/doozer replaces this with the rhel-9 stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi as install-additional-packages
 COPY --from=target-base / /mnt/rootfs
 RUN rpm --root /mnt/rootfs --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
@@ -29,6 +31,7 @@ RUN dnf install --installroot=/mnt/rootfs --releasever=9 --setopt=install_weak_d
     dnf clean all && \
     rm -rf /mnt/rootfs/var/cache/*
 
+# ART/doozer replaces this with the rhel-9-micro stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi-micro
 WORKDIR /
 COPY --from=install-additional-packages /mnt/rootfs/ /
