@@ -25,7 +25,7 @@ COPY --from=target-base / /mnt/rootfs
 RUN rpm --root /mnt/rootfs --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 # Install the systemd package which provides journalctl required by journald receiver and add user to systemd-journal group.
 # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/journaldreceiver
-RUN dnf install --installroot /mnt/rootfs --releasever 9 --setopt install_weak_deps=false --setopt reposdir=/etc/yum.repos.d --nodocs -y systemd && \
+RUN dnf install --installroot=/mnt/rootfs --releasever=9 --setopt=install_weak_deps=false --setopt=reposdir=/etc/yum.repos.d --nodocs -y systemd && \
     dnf clean all && \
     rm -rf /mnt/rootfs/var/cache/*
 
