@@ -4,6 +4,10 @@ FROM registry.redhat.io/openshift/golang-builder:golang-builder-v1.26-rhel9 AS b
 WORKDIR /opt/app-root/src
 USER root
 
+RUN dnf -y install clang llvm && \
+    dnf clean all && \
+    rm -rf /var/cache/yum
+
 COPY .obi-src .obi-src
 RUN GOFLAGS=-mod=mod make -C .obi-src generate
 
