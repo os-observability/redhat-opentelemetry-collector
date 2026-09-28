@@ -691,6 +691,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexp
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.158.0/go.mod h1:YIQoZjxtWC06AKW90YvxDpWrOdJ+kdeMTKx2G1Yw2oM=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.158.0 h1:owEclInmnkQCRTCPjz84Cea4qaZxtOSAeydCjCl0UII=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.158.0/go.mod h1:78IlTTIkQ2E4fWCVWO3D95Co6odwa/cy1eRN1pxuUkA=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter v0.158.0 h1:Hl3w8bt7clGVHcd0rA+gBExsK852kc9qd8qndEZfun8=
+github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter v0.158.0/go.mod h1:gaZzgJrySF/37gIfUsV6Q43G+gFyslP2/4pOlrU7K+k=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.158.0 h1:dsotCftrCMCA97hqoTwjQIkLIBxoOMNA9Mp/u+vdvaQ=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.158.0/go.mod h1:GmYgdDYVfJ3+Im/hSGhhJjeEuMUCQ3FYx34wE2UZAeA=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding v0.158.0 h1:OMekJiKlROgLKwjHksIzkTUIn5SerX37lkaOgZeT4cQ=
@@ -809,6 +811,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrs
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.158.0/go.mod h1:iDTfoTIDbjFNK8UwaxkYExm75+/GPirQJ68IxP9mi8E=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.158.0 h1:yc7UuqN3hcJvwP1+gYWKSLGfREqbjj1bvumUeHvDg30=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.158.0/go.mod h1:aYwhKnQaCR8LBhKY4qNZeIlYKqG0C6X39z62HCEXevc=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/logdedupprocessor v0.158.0 h1:gBIjB4XwOA6Pu2dtWTKetU9TTcJJypgdBBhf6716OpQ=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/logdedupprocessor v0.158.0/go.mod h1:BcdpWBc9Si7uA4DBVYk9biJzZEPCulmlZOZV8X+H0jE=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor v0.158.0 h1:RwyGSx9A6O+GyeoZcJRBemRsMQSfdxljf/D5d3SzpCU=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor v0.158.0/go.mod h1:7BDsT7Qg2wZHXBKiX3ah33imUxs/+DSZxn8bvxT9+kc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v0.158.0 h1:MjvDGM73PCVon8W3BKZYI2dLM2ETlPwiWnRK3YaussA=
@@ -851,6 +855,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusrec
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.158.0/go.mod h1:v0iOLCt53Qx35O5XB8re3aUPvMEzE+PiJsfqxs2sx7g=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusremotewritereceiver v0.158.0 h1:Y/dH+sLOMsIxfWzJpI4iLsKk35ItrOHB97D5ejxpq0k=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusremotewritereceiver v0.158.0/go.mod h1:mhomqsbEaCIc0Oqq8NuZLgy4MRSLnOiWTcmMftxOxC0=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/webhookeventreceiver v0.158.0 h1:Crfr87KaosqXbmScZfPSEfTYbY5d8EKl2m2owi6aQxU=
+github.com/open-telemetry/opentelemetry-collector-contrib/receiver/webhookeventreceiver v0.158.0/go.mod h1:2YzH+GPycyjcUVLwfgoNTE1vkzBnZP+Z2rJ0cRkxrfo=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.158.0 h1:0F4+ldWkOeCjgee8W5gphTSKv0F9bKK1w81kbtXXviA=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.158.0/go.mod h1:cOmbMK9ZbIGMhYROq9XVsk1GKAQg4EI3Or8K8wi8bjA=
 github.com/opencontainers/go-digest v1.0.0 h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
@@ -886,6 +892,8 @@ github.com/pb33f/libopenapi-validator v0.13.8/go.mod h1:mWwedExRS1L8gjK6BGE1oDA5
 github.com/pb33f/ordered-map/v2 v2.3.1 h1:5319HDO0aw4DA4gzi+zv4FXU9UlSs3xGZ40wcP1nBjY=
 github.com/pb33f/ordered-map/v2 v2.3.1/go.mod h1:qxFQgd0PkVUtOMCkTapqotNgzRhMPL7VvaHKbd1HnmQ=
 github.com/pborman/getopt v0.0.0-20170112200414-7148bc3a4c30/go.mod h1:85jBQOZwpVEaDAr341tbn15RS4fCAsIst0qp7i8ex1o=
+github.com/philippgille/chromem-go v0.7.0 h1:4jfvfyKymjKNfGxBUhHUcj1kp7B17NL/I1P+vGh1RvY=
+github.com/philippgille/chromem-go v0.7.0/go.mod h1:hTd+wGEm/fFPQl7ilfCwQXkgEUxceYh86iIdoKMolPo=
 github.com/pierrec/lz4/v4 v4.1.15/go.mod h1:gZWDp/Ze/IJXGXf23ltt2EXimqmTUXEy0GFuRQyBid4=
 github.com/pierrec/lz4/v4 v4.1.27 h1:+PhzhWDrjRj89TH2sw43nE3+4+W8lSxIuQadEHZyjUk=
 github.com/pierrec/lz4/v4 v4.1.27/go.mod h1:EoQMVJgeeEOMsCqCzqFm2O0cJvljX2nGZjcRIPL34O4=
@@ -1047,6 +1055,12 @@ github.com/wk8/go-ordered-map/v2 v2.1.8 h1:5h/BUHu93oj4gIdvHHHGsScSTMijfx5PeYkE/
 github.com/wk8/go-ordered-map/v2 v2.1.8/go.mod h1:5nJHM5DyteebpVlHnWMV0rPz6Zp7+xBAnxjb1X5vnTw=
 github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
 github.com/x448/float16 v0.8.4/go.mod h1:14CWIYCyZA/cWjXOioeEpHeN/83MdbZDRQHoFcYsOfg=
+github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f h1:J9EGpcZtP0E/raorCMxlFGSTBrsSlaDGf3jU/qvAE2c=
+github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f/go.mod h1:N2zxlSyiKSe5eX1tZViRH5QA0qijqEDrYZiPEAiq3wU=
+github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 h1:EzJWgHovont7NscjpAxXsDA8S8BMYve8Y5+7cuRE7R0=
+github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415/go.mod h1:GwrjFmJcFw6At/Gs6z4yjiIwzuJ1/+UwLxMQDVQXShQ=
+github.com/xeipuuv/gojsonschema v1.2.0 h1:LhYJRs+L4fBtjZUfuSZIKGeVu0QRy8e5Xi7D17UxZ74=
+github.com/xeipuuv/gojsonschema v1.2.0/go.mod h1:anYRn/JVcOK2ZgGU+IjEV4nwlhoK5sQluxsYJ78Id3Y=
 github.com/xwb1989/sqlparser v0.0.0-20180606152119-120387863bf2 h1:zzrxE1FKn5ryBNl9eKOeqQ58Y/Qpo3Q9QNxKHX5uzzQ=
 github.com/xwb1989/sqlparser v0.0.0-20180606152119-120387863bf2/go.mod h1:hzfGeIUDq/j97IG+FhNqkowIyEcD88LrW6fyU3K3WqY=
 github.com/xyproto/randomstring v1.0.5 h1:YtlWPoRdgMu3NZtP45drfy1GKoojuR7hmRcnhZqKjWU=
