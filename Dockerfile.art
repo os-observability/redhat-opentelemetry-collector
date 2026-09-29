@@ -50,6 +50,7 @@ ENTRYPOINT ["/usr/bin/opentelemetry-collector"]
 CMD ["--config", "/etc/otelcol/config.yaml"]
 EXPOSE 4317 55678 55679
 
+
 LABEL com.redhat.component="opentelemetry-collector-container" \
       name="rhosdt/opentelemetry-collector-rhel9" \
       summary="OpenTelemetry Collector" \
