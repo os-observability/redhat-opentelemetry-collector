@@ -20,7 +20,7 @@ USER root
 COPY . .
 COPY --from=bpf-generator /opt/app-root/src/.obi-src .obi-src
 
-RUN CGO_ENABLED=0 go build -C ./_build -mod=mod -o opentelemetry-collector -trimpath -ldflags "-w"
+RUN CGO_ENABLED=0 GOFIPS140=certified go build -C ./_build -mod=mod -o opentelemetry-collector -trimpath -ldflags "-w"
 
 # ART/doozer replaces this with the rhel-9-micro stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi-micro AS target-base
@@ -43,13 +43,13 @@ COPY --from=install-additional-packages /mnt/rootfs/ /
 COPY --from=builder /opt/app-root/src/_build/opentelemetry-collector /usr/bin/opentelemetry-collector
 COPY configs/otelcol.yaml /etc/otelcol/config.yaml
 
+ENV GODEBUG=fips140=auto
 ARG USER_UID=1001
 RUN useradd -u ${USER_UID} otelcol && usermod -a -G systemd-journal otelcol
 USER ${USER_UID}
 ENTRYPOINT ["/usr/bin/opentelemetry-collector"]
 CMD ["--config", "/etc/otelcol/config.yaml"]
 EXPOSE 4317 55678 55679
-
 
 LABEL com.redhat.component="opentelemetry-collector-container" \
       name="rhosdt/opentelemetry-collector-rhel9" \
