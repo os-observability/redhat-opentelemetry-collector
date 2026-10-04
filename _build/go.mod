@@ -6,7 +6,7 @@ go 1.26.0
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v0.158.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.158.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.162.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter v0.158.0
