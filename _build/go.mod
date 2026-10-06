@@ -27,7 +27,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/oidcauthextension v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage v0.158.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.158.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.162.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.158.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.158.0
