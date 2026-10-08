@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Vulnerability alerts ignore grouping by design (each CVE gets its own PR). Automerge is not used because Prow/Tide requires lgtm+approved labels and ok-to-test for bot PRs.",
+  "extends": ["security:only-security-updates", ":disableDependencyDashboard"],
+  "labels": ["dependencies"],
+  "enabledManagers": ["gomod"],
+  "includePaths": ["_build/**"],
+  "packageRules": [
+    {
+      "matchManagers": ["gomod"],
+      "matchDepNames": [
+        "github.com/open-telemetry/opentelemetry-operator",
+        "github.com/open-telemetry/opentelemetry-operator/apis"
+      ],
+      "enabled": false
+    }
+  ],
+  "gomod": {
+    "packageRules": [
+      {
+        "matchDepTypes": ["indirect"],
+        "enabled": false
+      }
+    ]
+  }
+}
