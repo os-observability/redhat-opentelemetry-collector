@@ -1,4 +1,4 @@
-%global goipath         github.com/os-observability/redhat-opentelemetry-collector
+%global goipath         github.com/openshift/redhat-opentelemetry-collector
 
 Version:                %%VERSION%%
 ExcludeArch:            %{ix86} s390 ppc ppc64
