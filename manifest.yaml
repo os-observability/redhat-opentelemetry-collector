@@ -1,5 +1,5 @@
 dist:
-  module: github.com/os-observability/redhat-opentelemetry-collector
+  module: github.com/openshift/redhat-opentelemetry-collector
   name: otelcol
   description: Red Hat build of OpenTelemetry
   version: 0.158.0
