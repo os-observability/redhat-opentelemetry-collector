@@ -1,44 +1,49 @@
-FROM registry.redhat.io/ubi9/ubi-minimal as bpf-generator
+# ART/doozer replaces this with the rhel-9-golang stream from ocp-build-data at rebase time
+FROM registry.redhat.io/openshift/golang-builder:golang-builder-v1.26-rhel9 AS bpf-generator
 
 WORKDIR /opt/app-root/src
 USER root
 
-RUN microdnf -y install golang clang llvm make && \
-    microdnf clean all && \
+RUN dnf -y install clang llvm && \
+    dnf clean all && \
     rm -rf /var/cache/yum
 
 COPY .obi-src .obi-src
-RUN make -C .obi-src generate
+RUN GOFLAGS=-mod=mod make -C .obi-src generate
 
-FROM registry.redhat.io/ubi9/ubi-minimal as builder
+# ART/doozer replaces this with the rhel-9-golang stream from ocp-build-data at rebase time
+FROM registry.redhat.io/openshift/golang-builder:golang-builder-v1.26-rhel9 AS builder
 
 WORKDIR /opt/app-root/src
 USER root
 
-RUN microdnf -y install which golang make
 COPY . .
 COPY --from=bpf-generator /opt/app-root/src/.obi-src .obi-src
 
-RUN CGO_ENABLED=0 go build -C ./_build -mod=mod -o opentelemetry-collector -trimpath -ldflags "-w"
+RUN CGO_ENABLED=0 GOFIPS140=certified go build -C ./_build -mod=mod -o opentelemetry-collector -trimpath -ldflags "-w"
 
+# ART/doozer replaces this with the rhel-9-micro stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi-micro AS target-base
 
+# ART/doozer replaces this with the rhel-9 stream from ocp-build-data at rebase time
 FROM registry.redhat.io/ubi9/ubi as install-additional-packages
 COPY --from=target-base / /mnt/rootfs
 RUN rpm --root /mnt/rootfs --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 # Install the systemd package which provides journalctl required by journald receiver and add user to systemd-journal group.
 # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/journaldreceiver
-RUN dnf install --installroot /mnt/rootfs --releasever 9 --setopt install_weak_deps=false --setopt reposdir=/etc/yum.repos.d --nodocs -y systemd && \
+RUN dnf install --installroot=/mnt/rootfs --releasever=9 --setopt=install_weak_deps=false --setopt=reposdir=/etc/yum.repos.d --nodocs -y systemd && \
     dnf clean all && \
     rm -rf /mnt/rootfs/var/cache/*
 
-FROM scratch
+# ART/doozer replaces this with the rhel-9-micro stream from ocp-build-data at rebase time
+FROM registry.redhat.io/ubi9/ubi-micro
 WORKDIR /
 COPY --from=install-additional-packages /mnt/rootfs/ /
 
 COPY --from=builder /opt/app-root/src/_build/opentelemetry-collector /usr/bin/opentelemetry-collector
 COPY configs/otelcol.yaml /etc/otelcol/config.yaml
 
+ENV GODEBUG=fips140=auto
 ARG USER_UID=1001
 RUN useradd -u ${USER_UID} otelcol && usermod -a -G systemd-journal otelcol
 USER ${USER_UID}
